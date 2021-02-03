@@ -1,0 +1,108 @@
+* TODO import the neccessary modules, change the module type to  ES6, create the dir tree structure
+* TODO do not allow a logged in user to access the login page again
+  That can be achieved by having an authiration middleware
+* use case
+** DONE case 1
+   CLOSED: [2021-01-13 Wed 14:41]
+  no user logged in
+  no shopping cart by anynomous session
+  user logs in
+  Does user have a shopping cart?
+  yes -> load it
+  no -> do nothing
+  remove the shopping Cart from the db
+** TODO case 2
+   no user logged in
+   shopping Cart by anonymous session exists
+   user logs in
+   server asks the user if the anonymous session shopping cart wants to be added to his already existing shopping cart.
+   yes -> add the anonymous shopping cart
+   no -> do not add the anonymous shopping cart but it must be kept for when the user logs in.
+** TODO case 3
+   anonymous user
+   adds products to the shopping cart
+* the shopping Cart process
+  when iam adding a product to the cart but that product already exists i just want to increment it.
+  if that product is not in the cart iam fetching it from the database and adding it to the cart
+
+** the cart data structure
+   its an array of objects
+   each object has two properties
+   one being the actual product itself as stored in the database
+   and the other being the ammount
+
+   [
+     {
+       product: {},
+       amount: 1
+     },
+     {
+       product: {},
+       amount: 1
+     }
+   ]
+
+* DONE create all the authorization routes and their files
+  CLOSED: [2021-01-21 Thu 10:11]
+* DONE move states file to lib
+  CLOSED: [2021-01-21 Thu 10:14]
+
+* DONE move standalone functionality from the states file to their own
+  CLOSED: [2021-01-25 Mon 09:19]
+* DONE create all website pages
+  CLOSED: [2021-01-21 Thu 10:35]
+* DONE link login routes to app.js file
+  CLOSED: [2021-01-21 Thu 10:45]
+* which routes exist on the main layouts file
+  login -> done
+  register -> done
+  checkout -> not done
+  home -> node done
+  logout -> not done
+  
+* DONE change routes to login, check everything is working
+  CLOSED: [2021-01-21 Thu 17:58]
+* DONE create logout route
+  CLOSED: [2021-01-21 Thu 10:48]
+* DONE create home and checkout routse
+  CLOSED: [2021-01-21 Thu 11:31]
+
+* website routes map
+** home needs
+   /login
+   /register
+   /shoppingCart or /checkout
+   /
+   /logout
+** login routes needs
+   /login
+   /login/local
+   /login/facebook
+   /login/google
+   /login/facebook/callback
+   /login/google/callback
+** checkout has
+   /login
+   /register
+
+
+
+* states tests
+** DONE create a user 
+   CLOSED: [2021-01-21 Thu 20:28]
+
+** 
+* DONE login local 
+  CLOSED: [2021-01-28 Thu 08:40]
+instead of having passport send responses, have it supply another middleware with
+a message indicating the result of its operations. 
+** pre login
+ Is it successfull? yes - no
+ if no:
+
+*** not successfull
+    display reason for not being successfull at the users initiation login page.
+
+* TODO MARIOS
+** TODO fix /login javascript file
+** TODO fix /login css file

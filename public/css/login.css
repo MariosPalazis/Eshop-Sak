@@ -1,0 +1,318 @@
+/*/////////////////////
+The Container of entire login
+//////////////////////*/
+#login-container{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*/////////////////////
+inputs of the form fields -COMMON
+//////////////////////*/
+.form-inputs {
+    width: 100%;
+    text-align: center;
+}
+
+/*/////////////////////
+Input of email
+//////////////////////*/
+#email-input{
+    width: 100%;
+    text-align: center;
+}
+/*/////////////////////
+Help dialogs look alike -Common
+//////////////////////*/
+.help-dialog {
+    width: 80%;
+    max-width: 750px;
+    background-color:black;
+    border-radius: 5px;
+    color: white;
+    margin: -2px auto 5px;
+    padding: 10px;
+    text-align: center;
+    /*visibility*/
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+/*/////////////////////
+addon-class shows help-dialog -common
+//////////////////////*/
+.dialog-show{
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+/*/////////////////////
+field that help putting eye in position
+//////////////////////*/
+.eye{
+    margin-left: -3px;
+}
+/*/////////////////////
+Input of password
+//////////////////////*/
+#password-input{
+    width: 100%;
+    text-align: center;
+}
+
+/*/////////////////////
+    eye of password img 
+ ////////////////////*/
+ #eye-password{
+    margin-left: -40px;
+    margin-bottom: -10px;
+    width: 30px;
+    cursor: pointer;
+ }
+ /*/////////////////////
+    field-of submit
+ ////////////////////*/
+ .submit-container{
+    width: 100%;
+    text-align: center;
+ }
+ /*/////////////////////
+    form submit button
+ ////////////////////*/
+ #submit-button{
+    background-color:brown;
+    color: white;
+    padding: 14px 0;
+    margin: 5px 0 1px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    max-width: 750px;
+    font-size: large;
+ }
+ #submit-button:hover{
+     opacity: 0.8;
+ }
+ /*/////////////////////
+    field of third-party logins
+ ////////////////////*/
+ #third-party-logins{
+    padding: 10px 0;
+    margin-top: -10px;
+    text-align: center;
+    width: 100%;
+ }
+ /*/////////////////////
+    fb login button, hover, image and text
+ ////////////////////*/
+#facebook-login{
+    width: 50%;
+    max-width: 750px;
+    margin: 5px auto 5px;
+    background-color: blue;
+    cursor: pointer;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+}
+#facebook-login:hover{
+    opacity: 0.8;
+}
+#facebook-login img{
+    width: 20px;
+    margin-bottom: -5px;
+  }
+
+  #facebook-login a{
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+  }
+ /*/////////////////////
+    google login button  hover, image and text
+ ////////////////////*/
+#google-login{
+    width: 50%;
+    max-width: 750px;
+    margin: 5px auto 5px;
+    background-color: rgb(216, 57, 57);
+    cursor: pointer;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+}
+#google-login:hover{
+    background-color: rgb(184, 110, 110);
+}
+#google-login img{
+  width: 20px;
+  margin-bottom: -5px;
+}
+#google-login a{
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+  }
+ /*/////////////////////
+    extra inputs on login like:
+    forgot password remember am container
+ ////////////////////*/
+#login-extras{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ /*/////////////////////
+    register here extra
+ ////////////////////*/
+ .register{
+    text-align: center;
+ }
+ .register a{
+     color: blue;
+ }
+ /*/////////////////////
+    forgot password  extra
+ ////////////////////*/
+ .forgot-password{
+     text-align: center;
+    color: black;
+ }
+ /*/////////////////////
+    Input Style Both
+ ////////////////////*/
+.input-default {
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid rgb(89, 89, 89);
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+  }
+
+/*/////////////////////
+    correct-wrong input style js
+ ////////////////////*/
+.input-correct{
+    border: 1px solid green;
+    color: green;
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+.input-wrong{
+    border: 1px solid red;
+    color: red;
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+
+ @media (min-width:750px){
+    .input-default{
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    /*/////////////////////
+        correct-wrong input style js
+     ////////////////////*/
+     .input-correct{
+        border: 1px solid green;
+        color: green;
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    .input-wrong{
+        border: 1px solid red;
+        color: red;
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    .help-dialog {
+        width: 600px;
+        background-color:black;
+        border-radius: 5px;
+        color: white;
+        margin: -2px auto 5px;
+        padding: 10px;
+        text-align: center;
+        /*visibility*/
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .dialog-show{
+        display: block;
+        visibility: visible;
+        opacity: 1;
+    }
+    #facebook-login{
+        width: 375px;
+        margin: 5px auto 5px;
+        background-color: blue;
+        cursor: pointer;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+      }
+      #google-login{
+        width: 375px;
+        margin: 5px auto 5px;
+        background-color: rgb(216, 57, 57);
+        cursor: pointer;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+      }
+      #submit-button{
+        background-color:brown;
+        color: white;
+        padding: 10px 0;
+        margin: 5px 0 1px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 375px;
+        font-size: large;
+     }
+    }

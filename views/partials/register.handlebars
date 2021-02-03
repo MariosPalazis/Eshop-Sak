@@ -1,0 +1,81 @@
+
+<article id="register-container" >
+    <section id="custom-register-container">
+        <form id="register-form" >
+            <section class="form-inputs name-container">
+                <div class="name-input">
+                    <input type="text"
+                            placeholder="Full name *"
+                            id="name"
+                            name="name"
+                            class="inputs-default"
+                </div>
+                <div id="name-validation" class="help-dialog hide-dialog">
+                    <p >Example: <span>John Smith </span>!</p>
+                </div>
+            </section>
+            <section class="form-inputs email-container">
+                <div class="email-input">
+                    <input type="email"
+                            id="email"
+                            placeholder="Email *"
+                            class="inputs-default"
+                            name="email">
+                </div>
+                <div id="email-validation" class="help-dialog hide-dialog">
+                    <p >Email must match the form<span> you@example.com</span>!</p>
+                </div>
+            </section>
+            <section class="form-inputs password-container">
+                <div class="password-input">
+                    <div class="eye">
+                            <input type="password"
+                                id="password"
+                                class="inputs-default"
+                                placeholder="Password *"
+                                name="password" >
+                            <img id="eye-password" src="{{subRoutes}}assets/smalls/open_fill_black.svg" alt="show-hide-password">
+                    </div>
+                </div>
+                <div id="password-validation" class="help-dialog hide-dialog">
+                    <p>Password must contain at least 1 capital letter and 1 number!</p>
+                </div>
+            </section>
+            <section class="form-inputs confirm-password-container">
+                <div class="confirm-password-input">
+                    <div class="eye">
+                        <input type="password"
+                                id="confirm-password"
+                                class="inputs-default"
+                                placeholder="ConfirmPassword *"
+                                name="confirm-password">
+                        <img id="eye-confirm" src="{{subRoutes}}assets/smalls/open_fill_black.svg" alt="show-hide-password">
+                    </div>
+                </div>
+                <div id="confirm-validation" class="help-dialog hide-dialog">
+                    <p>Passwords must much each other!</p>
+                </div>
+            </section>
+            <section class="submit-container">
+                <button id="submit-button" type="submit" >REGISTER</button>
+            </section>
+        </form>
+    </section>
+    <section id="third-party-registers">
+        <article id="facebook-register" >
+            <img src="{{subRoutes}}assets/socials/fb_logo.webp"  alt="Facebook-logo">
+            <a href="login/facebook" >Register with Facebook</a>           
+        </article>
+        <article id="google-register" >
+            <img src="{{subRoutes}}assets/socials/google_logo.png"  alt="Google-logo"  >
+            <a href="/login/google" >Register with Google</a>                
+        </article>
+    </section>
+</article>
+{{#section 'stylesheets'}}
+<link rel="stylesheet" href="{{subRoutes}}css/register.css" >
+{{/section}}
+{{#section 'script'}}
+<script type="module" src="{{subRoutes}}js/register.js"></script>
+{{/section}}
+

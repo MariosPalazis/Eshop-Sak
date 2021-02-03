@@ -1,0 +1,309 @@
+#register-container{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#custom-register-container{
+    text-align: center;
+}
+/*/////////////////////
+    inputs-common
+ ////////////////////*/
+.form-inputs{
+    width: 100%;
+    text-align: center;
+}
+/*/////////////////////
+    slyle help dialog-common
+ ////////////////////*/
+.help-dialog{
+    width: 80%;
+    max-width: 750px;
+    background-color:black;
+    border-radius: 5px;
+    color: white;
+    margin: -2px auto 5px;
+    padding: 10px;
+    text-align: center;
+}
+/*/////////////////////
+    initial state of dialogs and inputs
+ ////////////////////*/
+.hide-dialog{
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+.inputs-default{
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+/*/////////////////////
+    correct-wrong input style js
+ ////////////////////*/
+ .inputs-correct{
+    border: 1px solid green;
+    color: green;
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+.inputs-wrong{
+    border: 1px solid red;
+    color: red;
+    width: 80%;
+    max-width: 750px;
+    padding: 12px 20px;
+    margin: 4px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+    font-size: large;
+}
+/*/////////////////////
+    eye
+ ////////////////////*/
+ .eye{
+    margin-left: -2px;
+   }
+ #eye-password{
+    margin-left: -40px;
+    margin-bottom: -10px;
+    width: 30px;
+    cursor: pointer;
+ }
+ #eye-confirm{
+    margin-left: -40px;
+    margin-bottom: -10px;
+    width: 30px;
+    cursor: pointer;
+ }
+ @media (max-width: 540px) {
+    .eye{
+     margin-left: -5px;
+    }
+  }
+ /*/////////////////////
+    Submit button
+ ////////////////////*/
+ .submit-container{
+    width: 100%;
+    text-align: center;
+ }
+ #submit-button{
+    background-color:brown;
+    color: white;
+    padding: 10px 0;
+    margin: 5px 0 1px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    max-width: 750px;
+    font-size: large;
+ }
+ #submit-button:hover{
+     opacity: 0.8;
+ }
+/*/////////////////////
+    third-party Register
+ ////////////////////*/
+ #third-party-registers{
+    text-align: center;
+    width: 100%;
+  }
+  #facebook-register{
+    width: 50%;
+    max-width: 750px;
+    margin: 5px auto 5px;
+    background-color: blue;
+    cursor: pointer;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+  }
+  #facebook-register:hover{
+      opacity: 0.8;
+  }
+  #facebook-register img{
+      width: 16px;
+      margin-bottom: -3px;
+  }
+  #facebook-register a{
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+  }
+  #google-register{
+    width: 50%;
+    max-width: 750px;
+    margin: 5px auto 5px;
+    background-color: rgb(216, 57, 57);
+    cursor: pointer;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+  }
+  #google-register:hover{
+    opacity: 0.8;
+}
+#google-register img{
+    width: 16px;
+    margin-bottom: -3px;
+}
+#google-register a{
+    font-size: larger;
+    color: white;
+    text-decoration: none;
+  }
+
+  /*/////////////////////
+    pop-Up register
+ ////////////////////*/
+ .popup-container{
+    border: solid;
+    width: 100%;
+    height: 400px;
+    position: relative;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+.popup-container-show{
+    border: solid;
+    width: 100%;
+    height: 400px;
+    position: relative;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+#popup-logo{
+  padding: 15px 0px;
+  text-align: center;
+}
+#popup-message{
+    font-size: 30;
+    color: red;
+    padding: 15px 0px;
+   text-align: center;
+}
+#popup-close{
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+}
+#popup-close img{
+    width: 30px;
+}
+.singwithlogo{
+  margin-bottom: -1px;
+}
+@media (min-width:750px){
+    .inputs-default{
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    /*/////////////////////
+        correct-wrong input style js
+     ////////////////////*/
+     .inputs-correct{
+        border: 1px solid green;
+        color: green;
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    .inputs-wrong{
+        border: 1px solid red;
+        color: red;
+        width: 600px;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 5px;
+        font-size: large;
+    }
+    #facebook-register{
+        width: 375px;
+        margin: 5px auto 5px;
+        background-color: blue;
+        cursor: pointer;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+      }
+      #google-register{
+        width: 375px;
+        margin: 5px auto 5px;
+        background-color: rgb(216, 57, 57);
+        cursor: pointer;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+      }
+      #submit-button{
+        background-color:brown;
+        color: white;
+        padding: 10px 0;
+        margin: 5px 0 1px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 375px;
+        font-size: large;
+     }
+     .help-dialog{
+        width: 375px;
+        background-color:black;
+        border-radius: 5px;
+        color: white;
+        margin: -2px auto 5px;
+        padding: 10px;
+        text-align: center;
+    }
+    /*/////////////////////
+        initial state of dialogs and inputs
+     ////////////////////*/
+    .hide-dialog{
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+    }
+     
+}

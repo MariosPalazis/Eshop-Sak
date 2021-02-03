@@ -1,0 +1,14 @@
+<section>
+    <a href="/login">login</a>
+    <a href="/register" >register</a>
+    <a href="/checkout" >checkout</a>
+    <a href="/checkout/address" >address</a>
+    <a href="/product" >products</a>
+    <a href="/" >home</a>
+    <a href="/logout">logout</a>
+    <a href="/about" >about</a>
+    {{#if stateCart}}
+    <p>{{stateCart.totalAmount}}</p>
+    {{/if}}
+</section>
+

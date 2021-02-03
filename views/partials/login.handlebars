@@ -1,0 +1,52 @@
+<article id="login-container" >
+    <section id="custom-login-container" >
+        <form id="login-form">
+            <section class="form-inputs email-container" >
+                <div id="email-input" >
+                    <input type="text" placeholder="YourEmail@example.com" id="email" name="email" class="input-default" autocomplete="email">
+                </div>
+                <div class="help-dialog" id="email-help" >
+                    <p>Email must match the form <span id="email-example">you@example.com</span>!</p>
+                </div>
+            </section>
+            <section class="form-inputs password-container" >
+                <div id="password-input" >
+                    <div class="eye" >
+                        <input type="password" class="input-default" id="password" placeholder="Password" name="password" >
+                        <img  id="eye-password" src="{{subRoutes}}assets/smalls/open_fill_black.svg" alt="show-hide-password">
+                    </div>
+                </div>
+                <div class="help-dialog" id="password-help">
+                    <p>Password must contain at least 1 capital letter and 1 number!</p>
+                </div>
+            </section>
+            <section class="submit-container" >
+                <button type="submit" id="submit-button">Login</button>
+            </section>
+        </form>
+    </section>
+    <section id="third-party-logins">
+        <article id="facebook-login" class="social-login">
+            <img src="{{subRoutes}}assets/socials/fb_logo.webp" alt="facebook-logo">
+            <a id="facebook-submit-button" href="/login/facebook">Facebook login</a>
+        </article>
+        <article id="google-login" >
+            <img src="{{subRoutes}}assets/socials/google_logo.png" alt="google-logo">
+            <a id="google-submit-button" href="/login/google">Google login</a>
+        </article>
+    </section>
+    <section id="login-extras">
+        <div class="register" ><p>Don't have an Account? <a href="/register">Register</a></p></div>
+        <div class="forgot-password" ><a href="#">Forgot password?</a></div>
+    </section>
+</article>
+
+
+
+{{#section 'stylesheets'}}
+<link rel="stylesheet" href="{{subRoutes}}css/login.css" >
+{{/section}}
+{{#section 'script'}}
+<script type="module" src="{{subRoutes}}js/login.js"></script>
+{{/section}}
+

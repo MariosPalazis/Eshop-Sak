@@ -1,0 +1,239 @@
+/*///////////////////////
+Whole footer
+///////////////////////*/
+footer{
+    background-color: gray;
+}
+/*///////////////////////
+ Footer's  main-links field
+///////////////////////*/
+.footer-main-container{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+/*///////////////////////
+ footer's main-copyright divider
+///////////////////////*/
+hr{
+    width: 90%;
+    color: white;
+    margin: 0 auto;
+    border: 2px solid;
+    border-radius: 5px;
+}
+/*///////////////////////
+ Footer's  copyright container
+///////////////////////*/
+.footer-copyright-container{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 15px 0;
+    color: white;
+    font-size: 14px;
+}
+/*///////////////////////
+ links inside footer-copyright
+///////////////////////*/
+.footer-copyright-container p{
+    margin-left: 45px;
+}
+/*///////////////////////
+ main logo field
+///////////////////////*/
+.logo-field{
+    position: relative;
+    width: 10%;
+    text-align: center;
+    padding: 20px 0;
+}
+/*///////////////////////
+  logo 
+///////////////////////*/
+.logo-field img{
+    width: 50px;
+}
+/*///////////////////////
+ main width of 3/4 fields
+///////////////////////*/
+.footer-width-field{
+    width: 30%;
+    float: left;
+}
+/*///////////////////////
+  address field
+///////////////////////*/
+.address-field{
+    text-align: left;
+    padding: 15px;
+    font-size: 15px;
+    color: white;
+}
+/*///////////////////////
+ address info
+///////////////////////*/
+.address-field p{
+    margin:5px;
+}
+/*///////////////////////
+ main Headers
+///////////////////////*/
+h5{
+    margin-left: 15px;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+/*///////////////////////
+ Desktop dividers
+///////////////////////*/
+.desktop-divider-1{
+    position:absolute;
+    right: 30%;
+    top:35%;
+    height: 80px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: white;
+}
+.desktop-divider-2{
+    position:absolute;
+    right: 60%;
+    top:35%;
+    height: 80px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: white;
+}
+/*///////////////////////
+ for copyright -common divider
+///////////////////////*/
+.copyright-divider{
+    height: 80px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: white;
+}
+/*///////////////////////
+ main instructions field
+///////////////////////*/
+.instructions-field{
+    text-align: center;
+    padding: 15px;
+    color: white;
+}
+/*///////////////////////
+ main instructions field links
+///////////////////////*/
+.instructions-field p{
+    margin: 10px;
+}
+/*///////////////////////
+ main company field
+///////////////////////*/
+.company-field{
+    text-align: center;
+    padding: 15px;
+    color: white;
+}
+/*///////////////////////
+ main company field links
+///////////////////////*/
+.company-field p{
+    margin: 10px;
+}
+/*///////////////////////
+ hr dividers on mobile only
+///////////////////////*/
+.mobile-divider{
+    width: 30%;
+    margin: 1px auto 10px;
+    height: 2px;
+    border-radius: 5px;
+    position: relative;
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
+/*MOBILE*/
+/*///////////////////////
+ ///////////////////////
+Mobile behaviour, 
+see before for class explanation
+ ///////////////////////
+///////////////////////*/
+@media (max-width: 630px){
+    .footer-main-container{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        position: relative;
+    }
+    h5{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .logo-field{
+        width: 100%;
+        order: 1;
+        border-top: none;
+        border-right:none;
+        text-align: center;
+        position: relative;
+    }
+    .logo-field img{
+        width: 45px;
+    }
+    .footer-width-field{
+        width: 100%;
+        float: left;
+    }
+    .address-field{
+        text-align: center;
+        padding: 15px;
+        order: 4;
+        border-right:none;
+    }
+    .address-field p{
+        margin:5px;
+    }
+    .instructions-field{
+        text-align: center;
+        padding: 15px;
+        order: 2;
+        border-right:none;
+    }
+    .instructions-field p{
+        margin: 10px;
+    }
+    .company-field{
+        text-align: center;
+        padding: 15px;
+        order: 3;
+    }
+    .company-field p{
+        margin: 10px;
+    }
+    .desktop-divider-1{
+        position:absolute;
+        visibility: hidden;
+        display: none;
+        opacity: 0;
+    }
+    .desktop-divider-2{
+        position:absolute;
+        visibility: hidden;
+        display: none;
+        opacity: 0;
+    }
+    .mobile-divider{
+        width: 30%;
+        margin: 1px auto 10px;
+        height: 2px;
+        border-radius: 5px;
+        position: relative;
+        visibility: visible;
+        display: block;
+        opacity: 1;
+    }
+}
