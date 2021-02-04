@@ -171,14 +171,25 @@ function passBlur(){
         // PAVLOS STARTS HERE
 
 const form = document.getElementById("register-form");
+const facebookRegister = document.getElementById("facebook-submit-button");
+const googleRegister = document.getElementById("google-submit-button");
 
 // <<<------  REGISTERING EVENT HANDLERS  ------->>> //
 form.addEventListener("submit", sendForm);
+facebookRegister.addEventListener("click", socialRedirect);
+googleRegister.addEventListener("click", socialRedirect);
+
 
 
 // <<<------  END REGISTERING EVENT HANDLERS ------>>> //
 
 
+function socialRedirect(event) {
+  event.preventDefault();
+  let myUrl = new URL(this);
+  myUrl.searchParams.append("urlOrigin", window.location.pathname);
+  window.location.href = myUrl;
+}
 
 //onSubmit
 function sendForm(event) {
@@ -199,9 +210,7 @@ function sendForm(event) {
         }).then(response => {
         return response.text();
         }).then(data => {
-          alert(data);
-          location.reload();
-        //window.location.href = data;
+        window.location.href = data;
         }).catch(err => {
         alert(err);
         })
@@ -221,9 +230,7 @@ function sendForm(event) {
       }).then(response => {
         return response.text();
       }).then(data => {
-        alert(data);
-        location.reload();
-        //window.location.href = data;
+        window.location.href = data;
       }).catch(err => {
         alert(err);
       })

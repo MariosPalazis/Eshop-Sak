@@ -7,7 +7,7 @@
                     <input type="text"
                             placeholder="Full name *"
                             id="name"
-                            name="name"
+                            name="fullName"
                             class="inputs-default"
                 </div>
                 <div id="name-validation" class="help-dialog hide-dialog">
@@ -64,11 +64,11 @@
     <section id="third-party-registers">
         <article id="facebook-register" >
             <img src="{{subRoutes}}assets/socials/fb_logo.webp"  alt="Facebook-logo">
-            <a href="login/facebook" >Register with Facebook</a>           
+            <a id="facebook-submit-button" href="login/facebook" >Register with Facebook</a>           
         </article>
         <article id="google-register" >
             <img src="{{subRoutes}}assets/socials/google_logo.png"  alt="Google-logo"  >
-            <a href="/login/google" >Register with Google</a>                
+            <a id="google-submit-button" href="/login/google" >Register with Google</a>                
         </article>
     </section>
 </article>

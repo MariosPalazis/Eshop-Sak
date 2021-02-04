@@ -44,10 +44,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // - express-session
 app.use(expressSession({
-  resave: false,
+  resave: false, //false
   saveUninitialized: true,
   secret: config.credentials.cookieSecret,
-  rolling: true,
+  rolling: true, //true
   cookie: {
     sameSite: "strict",
     maxAge: 1000000,
@@ -103,6 +103,11 @@ app.use(myMiddleware.flashMessages);
 app.use(myMiddleware.stateShoppingCart);
 
 
+app.use((req, res, next) => {
+
+  console.log(req.session);
+  next();
+})
 // COSTUM MODULES ENDS HERE //
 // --------------------------- //
 

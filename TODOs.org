@@ -151,6 +151,82 @@ a message indicating the result of its operations.
 ** DONE send a flash Message if a user exists with email
    CLOSED: [2021-02-03 Wed 16:14]
 
+** DONE all validations done
+   CLOSED: [2021-02-04 Thu 08:15]
+** DONE hash the password
+   CLOSED: [2021-02-04 Thu 10:29]
+** DONE creation of a user record in the database
+   CLOSED: [2021-02-04 Thu 10:59]
+   need to check what fields are benig send but req.body
+** DONE filling the neccessary information for a registered user
+   CLOSED: [2021-02-04 Thu 11:29]
+** DONE login a registered user
+   CLOSED: [2021-02-04 Thu 12:29]
+** DONE redirect successfull registration and login to the proper page
+   CLOSED: [2021-02-04 Thu 14:52]
+*** on registration failure
+    no matter the url origin of a user at the time of his landing to the registration page
+    a failed registration always redirects back to the registration page
+*** on registration success
+    from the checkout/login -> checkout/address
+    from register -> /home
+*** plan
+    the checkout/address must be attaching a query string
+    when a users selects the registration proccess
+
+    then the /register page will be attaching that query string
+    to the post fetch
+
+    that means however that the loginLocal function that currently
+    draws the origin of a url from req.originalUrl must be changed
+    to accomodate the new method. However the local login proccess is
+    dependent on the value of req.originalUrl, so any change will have
+    to take that into consideration and make the appropriate changes
+    to those files that are dependent or create that dependency.
+
+
+
+    -> files creatating the dependency:
+    public/js/login.js
+    controllers/login.js
+
+    <- files that need to create the appropriate structures to accomodate the
+    new reality:
+
+    public/js/register.js
+    public/js/checkout_address.js
+
+
+
+**** which routes can a user access the register page
+     from /home
+     from /checkout/login
+     from /login
+
+     wherever a login component exists the actual anchor that redirects
+     to the register page is in:
+
+     /views/partials/login.js
+
+     and the javascript file that is imported by the partial
+
+     /public/js/login.js
+
+     intercepts the click event, prevents its default behavior and creates
+     a new url adding a query string.
+
+     That query string is the location that the registration proccess conceptual starts
+**** login routes
+     from /checkout/login
+     from /login
+**** DONE have the checkout address create a query string and attaching it
+**** DONE have the loginLocal page use that variable stored in req.session.urlOrigin
+     CLOSED: [2021-02-04 Thu 13:12]
+
+    
+    
+** TODO registration with the social apps
+** TODO check unsuccessfull login and registration proccesses work as they are supposed to
 ** TODO check if that user is registered with social apps
 * What does a registration mean?
 A user is created in the database
