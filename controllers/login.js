@@ -6,8 +6,26 @@ import passport from "../lib/passport.js";
 import CustomErrors from "../lib/errors.js";
 
 export default {
-  register(req, res) {
+  renderRegister(req, res) {
     res.render("register", {layout: "none"});
+  },
+
+  async register(req, res, next) {
+    console.log("hey iam the register post route");
+    console.log(req.body);
+
+
+    await req.app.locals.capability.User.register(req.app.locals.capability, req.session, req.body);
+    if (await req.app.locals.capability.User.register(req.app.locals.capability, req.session, req.body)) {
+      next();
+    } else {
+      res.send("again")
+    }
+  },
+
+  successfullRegistration(req, res, next) {
+    console.log("successfully registered");
+    res.send("success");
   },
 
   login(req, res) {

@@ -179,6 +179,7 @@ form.addEventListener("submit", sendForm);
 // <<<------  END REGISTERING EVENT HANDLERS ------>>> //
 
 
+
 //onSubmit
 function sendForm(event) {
     event.preventDefault();
@@ -191,23 +192,46 @@ function sendForm(event) {
         }
 
 
-        fetch("/login/local", {
+        fetch("/register", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(data)
         }).then(response => {
         return response.text();
         }).then(data => {
-        window.location.href = data;
+          alert(data);
+          location.reload();
+        //window.location.href = data;
         }).catch(err => {
         alert(err);
         })
     }
     else{
-      nameBlur();
-      emailBlur();
-      passBlur();
-      confBlur()
+      const formData = new FormData(form);
+      let data = {};
+      for (const key of formData.keys()) {
+        data[key] = formData.get(key);
+      }
+
+
+      fetch("/register", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data)
+      }).then(response => {
+        return response.text();
+      }).then(data => {
+        alert(data);
+        location.reload();
+        //window.location.href = data;
+      }).catch(err => {
+        alert(err);
+      })
+
+      // nameBlur();
+      // emailBlur();
+      // passBlur();
+      // confBlur()
     }
 
 }

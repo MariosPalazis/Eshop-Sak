@@ -102,7 +102,59 @@ a message indicating the result of its operations.
 
 *** not successfull
     display reason for not being successfull at the users initiation login page.
+* TODO verifications
+** TODO register a user, makes sure the full name is divided into first and last
+* DONE add a post method to the register route
+  CLOSED: [2021-02-03 Wed 14:17]
+* DONE add a handler function to the register controller
+  CLOSED: [2021-02-03 Wed 14:17]
+* DONE add a register function to states2
+  CLOSED: [2021-02-03 Wed 14:29]
 
-* TODO MARIOS
-** TODO fix /login javascript file
-** TODO fix /login css file
+* TODO different registration methods for facebook and google
+
+
+  when locally a user can register:
+  - email
+  - firstName
+  - lastName
+  - password
+
+  when with third party:
+  - firstName
+
+** what can go wrong
+
+   A user might have forgotten that he has registered with socials
+   and try and create a new account with the same email
+   that he has registered.
+
+*** handling that case:
+    User might be notifiied with a flashMessage that the email
+    has been registered through a social app and that's why there
+    is no password, therefore if i send him an email to that address
+    and he verifies that indeed it is him, he could be provided with
+    an option to create a password and effectively switch the login/reg
+    method to a local one.
+
+* plan
+- open registration handlebars file.
+- check what data is being sent to the server, yes.
+- is there even a fetch? yes.
+
+
+** DONE seed a state
+   CLOSED: [2021-02-03 Wed 14:53]
+** DONE check if a user already exists with that email
+   CLOSED: [2021-02-03 Wed 14:58]
+
+** DONE send a flash Message if a user exists with email
+   CLOSED: [2021-02-03 Wed 16:14]
+
+** TODO check if that user is registered with social apps
+* What does a registration mean?
+A user is created in the database
+That same user is logged in
+
+full name is divided into first and last.
+

@@ -175,51 +175,6 @@
     text-decoration: none;
   }
 
-  /*/////////////////////
-    pop-Up register
- ////////////////////*/
- .popup-container{
-    border: solid;
-    width: 100%;
-    height: 400px;
-    position: relative;
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-}
-.popup-container-show{
-    border: solid;
-    width: 100%;
-    height: 400px;
-    position: relative;
-    display: block;
-    visibility: visible;
-    opacity: 1;
-}
-#popup-logo{
-  padding: 15px 0px;
-  text-align: center;
-}
-#popup-message{
-    font-size: 30;
-    color: red;
-    padding: 15px 0px;
-   text-align: center;
-}
-#popup-close{
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 20px;
-    height: 20px;
-}
-#popup-close img{
-    width: 30px;
-}
-.singwithlogo{
-  margin-bottom: -1px;
-}
 @media (min-width:750px){
     .inputs-default{
         width: 600px;
