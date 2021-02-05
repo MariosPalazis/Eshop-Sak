@@ -226,6 +226,32 @@ a message indicating the result of its operations.
     
     
 ** TODO registration with the social apps
+*** TODO social apps routes
+    on success:
+    /login -> /
+    /register -> /
+    /checkout/login -> /checkout/address
+** TESTS
+test what happens when you login/register with socials from:
+
+
+login:socials:
+/checkout/login  -> /checkout (YES)
+/login -> /home (YES) 
+/register -> /home (YES)
+
+
+register:socials:
+/register -> / (YES)
+/checkout/login -> 
+
+
+
+
+
+
+
+   
 ** TODO check unsuccessfull login and registration proccesses work as they are supposed to
 ** TODO check if that user is registered with social apps
 * What does a registration mean?

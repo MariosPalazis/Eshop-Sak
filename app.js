@@ -44,10 +44,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // - express-session
 app.use(expressSession({
-  resave: false, //false
-  saveUninitialized: true,
+  resave: true, //false
+  saveUninitialized: false,
   secret: config.credentials.cookieSecret,
-  rolling: true, //true
+  rolling: false, //true
   cookie: {
     sameSite: "strict",
     maxAge: 1000000,
@@ -104,7 +104,6 @@ app.use(myMiddleware.stateShoppingCart);
 
 
 app.use((req, res, next) => {
-
   console.log(req.session);
   next();
 })

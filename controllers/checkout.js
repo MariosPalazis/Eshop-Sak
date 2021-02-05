@@ -1,14 +1,10 @@
 export default {
-  checkout(req, res) {
-    res.redirect(303, "/checkout/login");
-  },
-
   checkoutLogin(req, res) {
     res.render("checkout/checkout_login", {layout: "checkout"});
   },
 
   checkoutAddress(req, res) {
-    res.render("checkout/checkout_address", {layout: "checkout"}); 
+    res.render("checkout/checkout_address", {layout: "checkout"});
   },
 
   async postCheckoutAddress(req, res) {

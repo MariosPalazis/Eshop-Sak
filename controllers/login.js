@@ -111,6 +111,7 @@ export default {
 
   loginFacebook(req, res, next) {
     console.log(Chalk.yellow.bold("<<<----- INITIATING FACEBOOK LOGIN PROCCESS ---->>>"));
+    req.app.locals.urlOrigin = req.session.urlOrigin || req.query.urlOrigin;
     passport.authenticate("facebook")(req, res, next);
   },
   loginFacebookCallback(req, res, next) {
@@ -260,40 +261,38 @@ export default {
     }
   },
 
-  socialsSuccess(req, res) {
-
+  socialsSuccess(req, res, next) {
+    console.log(Chalk.cyan.bold("<<<---- TERMINATING POST LOGIN PROCESS ----->>>"));
+    if (!req.session.state.login.loggedIn) {
+      next();
+    } else {
       console.log(Chalk.red.bold("<<<---- SUCCESSFULL LOGIN ---->>>"));
       console.log(Chalk.yellow.bold("<<<---- TERMINATING SOCIAL LOGIN PROCCESS ---->>>"));
-      console.log(req.session);
-      res.redirect(301, "/");
-      // switch (req.session.urlOrigin) {
-      // case "/checkout":
-      //   res.redirect(303, "/checkout/address");
-      //   break;
-      // default:
-      //   res.redirect(303, "/");
-      //   break;
-      // }
-      // switch (req.session.state.login.url) {
-      // case "/checkout": // will be changed to /checkout/login eventually
-      //   res.redirect(303, "/checkout/address");
-      //   break;
-      // default:
-      //   res.redirect(303, "/");
-      //   break;
-      // }
+      switch (req.app.locals.urlOrigin) {
+      case "/checkout": // will be changed to checkout/login eventually
+        delete req.app.locals.urlOrigin;
+        res.redirect(303, "/checkout/address");
+        break;
+      default:
+        delete req.app.locals.urlOrigin;
+        res.redirect(303, "/");
+        break;
+      }
+    }
   },
+
   socialsFailure(req, res) {
     console.log(Chalk.red.bold("<<<---- FAILED LOGIN ---->>>"));
     console.log(Chalk.yellow.bold("<<<---- TERMINATINGC SOCIAL LOGIN PROCCESS ---->>>"));
-    switch (req.session.state.login.url) {
-    case "/login":
-      res.redirect(303, "/login");
-      break;
-    case "/checkout/login/":
+    switch (req.app.locals.urlOrigin) {
+    case "/checkout": // will be changed to checkout/login eventually
+      delete req.app.locals.urlOrigin;
+      if (req.session.urlOrigin) delete req.session.urlOrigin;
       res.redirect(303, "/checkout/login");
       break;
     default:
+      delete req.app.locals.urlOrigin;
+      if (req.session.urlOrigin) delete req.session.urlOrigin;
       res.redirect(303, "/login");
       break;
     }
