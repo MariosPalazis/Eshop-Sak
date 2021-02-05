@@ -7,9 +7,14 @@
     </head>
     <body>
         {{> header}}
+        {{{_sections.stylesheets}}}
+        {{{_sections.script}}}
         <main>
             {{{body}}}
         </main>
+        {{> footer}}
+        {{{_sections.stylesheets}}}
+        {{{_sections.script}}}
         {{> flashMessages}}
         {{{_sections.stylesheets}}}
         {{{_sections.script}}}

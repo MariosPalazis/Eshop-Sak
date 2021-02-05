@@ -92,6 +92,8 @@ function validateEmail(){
 
 const form = document.getElementById("login-form");
 const facebookLogin = document.getElementById("facebook-submit-button");
+const googleLogin = document.getElementById("google-submit-button");
+const register = document.getElementById("register-anchor");
 
 
 
@@ -100,9 +102,17 @@ const facebookLogin = document.getElementById("facebook-submit-button");
 // <<<------  REGISTERING EVENT HANDLERS  ------->>> //
 form.addEventListener("submit", sendForm);
 facebookLogin.addEventListener("click", socialRedirect);
-
+googleLogin.addEventListener("click", socialRedirect);
+register.addEventListener("click", registerURLAddQueryString);
 // <<<------  END REGISTERING EVENT HANDLERS ------>>> //
 
+
+function registerURLAddQueryString(event) {
+  event.preventDefault();
+  let myUrl = new URL(this);
+  myUrl.searchParams.append("urlOrigin", window.location.pathname);
+  window.location.href = myUrl;
+}
 
 function socialRedirect(event) {
   event.preventDefault();
@@ -122,8 +132,10 @@ function sendForm(event) {
       data[key] = formData.get(key);
     }
 
+    let myUrl = new URL("login/local", "http://localhost:3000/");
+    myUrl.searchParams.append("urlOrigin", window.location.pathname);
 
-    fetch("/login/local", {
+    fetch(myUrl, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data)
@@ -139,5 +151,4 @@ function sendForm(event) {
     validateEmail();
     validatePassword();
   }
-  
 }

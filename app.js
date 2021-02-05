@@ -44,13 +44,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // - express-session
 app.use(expressSession({
-  resave: false,
-  saveUninitialized: true,
+  resave: false, //false
+  saveUninitialized: false,
   secret: config.credentials.cookieSecret,
-  rolling: true,
+  rolling: false, //true
   cookie: {
-    sameSite: "strict",
-    maxAge: 1000000,
+    sameSite: "lax",
+    maxAge: 10000,
   },
   store: new redisStore({
     client: redisClient
@@ -103,6 +103,10 @@ app.use(myMiddleware.flashMessages);
 app.use(myMiddleware.stateShoppingCart);
 
 
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+})
 // COSTUM MODULES ENDS HERE //
 // --------------------------- //
 

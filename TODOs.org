@@ -1,6 +1,3 @@
-* TODO import the neccessary modules, change the module type to  ES6, create the dir tree structure
-* TODO do not allow a logged in user to access the login page again
-  That can be achieved by having an authiration middleware
 * use case
 ** DONE case 1
    CLOSED: [2021-01-13 Wed 14:41]
@@ -21,140 +18,34 @@
 ** TODO case 3
    anonymous user
    adds products to the shopping cart
-* the shopping Cart process
-  when iam adding a product to the cart but that product already exists i just want to increment it.
-  if that product is not in the cart iam fetching it from the database and adding it to the cart
-
-** the cart data structure
-   its an array of objects
-   each object has two properties
-   one being the actual product itself as stored in the database
-   and the other being the ammount
-
-   [
-     {
-       product: {},
-       amount: 1
-     },
-     {
-       product: {},
-       amount: 1
-     }
-   ]
-
-* DONE create all the authorization routes and their files
-  CLOSED: [2021-01-21 Thu 10:11]
-* DONE move states file to lib
-  CLOSED: [2021-01-21 Thu 10:14]
-
-* DONE move standalone functionality from the states file to their own
-  CLOSED: [2021-01-25 Mon 09:19]
-* DONE create all website pages
-  CLOSED: [2021-01-21 Thu 10:35]
-* DONE link login routes to app.js file
-  CLOSED: [2021-01-21 Thu 10:45]
-* which routes exist on the main layouts file
-  login -> done
-  register -> done
-  checkout -> not done
-  home -> node done
-  logout -> not done
-  
-* DONE change routes to login, check everything is working
-  CLOSED: [2021-01-21 Thu 17:58]
-* DONE create logout route
-  CLOSED: [2021-01-21 Thu 10:48]
-* DONE create home and checkout routse
-  CLOSED: [2021-01-21 Thu 11:31]
-
-* website routes map
-** home needs
-   /login
-   /register
-   /shoppingCart or /checkout
-   /
-   /logout
-** login routes needs
-   /login
-   /login/local
-   /login/facebook
-   /login/google
-   /login/facebook/callback
-   /login/google/callback
-** checkout has
-   /login
-   /register
 
 
 
-* states tests
-** DONE create a user 
-   CLOSED: [2021-01-21 Thu 20:28]
 
-** 
-* DONE login local 
-  CLOSED: [2021-01-28 Thu 08:40]
-instead of having passport send responses, have it supply another middleware with
-a message indicating the result of its operations. 
-** pre login
- Is it successfull? yes - no
- if no:
-
-*** not successfull
-    display reason for not being successfull at the users initiation login page.
-* TODO verifications
-** TODO register a user, makes sure the full name is divided into first and last
-* DONE add a post method to the register route
-  CLOSED: [2021-02-03 Wed 14:17]
-* DONE add a handler function to the register controller
-  CLOSED: [2021-02-03 Wed 14:17]
-* DONE add a register function to states2
-  CLOSED: [2021-02-03 Wed 14:29]
-
-* TODO different registration methods for facebook and google
+   
+* DONE fixing flash messages
+  CLOSED: [2021-02-05 Fri 15:53]
+** testing where does flash messages work
+local login ->
+--> ON SUCCESS -> works
+--> ON FAILURE -> works
 
 
-  when locally a user can register:
-  - email
-  - firstName
-  - lastName
-  - password
-
-  when with third party:
-  - firstName
-
-** what can go wrong
-
-   A user might have forgotten that he has registered with socials
-   and try and create a new account with the same email
-   that he has registered.
-
-*** handling that case:
-    User might be notifiied with a flashMessage that the email
-    has been registered through a social app and that's why there
-    is no password, therefore if i send him an email to that address
-    and he verifies that indeed it is him, he could be provided with
-    an option to create a password and effectively switch the login/reg
-    method to a local one.
-
-* plan
-- open registration handlebars file.
-- check what data is being sent to the server, yes.
-- is there even a fetch? yes.
+address local login ->
+--> ON SUCCESS -> works
+--> ON FAILURE -> works
 
 
-** DONE seed a state
-   CLOSED: [2021-02-03 Wed 14:53]
-** DONE check if a user already exists with that email
-   CLOSED: [2021-02-03 Wed 14:58]
 
-** DONE send a flash Message if a user exists with email
-   CLOSED: [2021-02-03 Wed 16:14]
+facebook login ->
+does not work
 
-** TODO check if that user is registered with social apps
-* What does a registration mean?
-A user is created in the database
-That same user is logged in
 
-full name is divided into first and last.
+facebook address login ->
+does not work 
+
+
+
+
+
 

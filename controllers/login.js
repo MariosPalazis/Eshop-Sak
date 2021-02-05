@@ -7,25 +7,24 @@ import CustomErrors from "../lib/errors.js";
 
 export default {
   renderRegister(req, res) {
+    // if there is no query string it means the register page
+    // was accessed through the navigation bar, not from any of the
+    // other routes such as through the login component, either at:
+    // /login or /checkout/login
+    req.session.urlOrigin = req.query.urlOrigin || "/register";
     res.render("register", {layout: "none"});
   },
 
   async register(req, res, next) {
-    console.log("hey iam the register post route");
-    console.log(req.body);
+    console.log(Chalk.yellow.bold("<<<------ INITIATING REGISTRATION PROCCESS ----->>>"));
 
-
-    await req.app.locals.capability.User.register(req.app.locals.capability, req.session, req.body);
     if (await req.app.locals.capability.User.register(req.app.locals.capability, req.session, req.body)) {
+      console.log(Chalk.yellow.bold("<<<----- REGISTRATION PROCCESS SUCCESSFULL ----->>>"));
       next();
     } else {
-      res.send("again")
+      console.log(Chalk.yellow.bold("<<<----- REGISTRATION PROCCESS FAILED ----->>>"));
+      res.send("/register");
     }
-  },
-
-  successfullRegistration(req, res, next) {
-    console.log("successfully registered");
-    res.send("success");
   },
 
   login(req, res) {
@@ -33,16 +32,23 @@ export default {
   },
 
   logout(req, res) {
+    req.logout();
+    if (req.session.passport) delete req.session.passport;
     req.app.locals.capability.User.logout(req.session);
     res.redirect(303, "/");
   },
 
-  test(req, res) {
-    res.render("test");
-  },
-
   loginLocal(req, res, next) {
     console.log(Chalk.yellow.bold("<<<---- INITIATING LOCAL LOGIN PROCCESS ---->>>"));
+
+    // it is the query string parameter req.query.urlOrigin that
+    // provides the logic for where a successfull or unsuccessfull login
+    // will land. But because the register process also sets that property
+    // i am making sure that the loginLocal function has not been called
+    // by the register function. If it has then the req.session.urlOrigin will
+    // already be set.
+    if (!req.session.urlOrigin) req.session.urlOrigin = req.query.urlOrigin;
+
     passport.authenticate("local", (err, user, info) => {
       let loginPayload = {};
       if (err) {
@@ -50,7 +56,6 @@ export default {
           loginPayload = {
             login: {
               loggedIn: false,
-              url: req.originalUrl,
               method: "local",
               message: "dbError",
             },
@@ -62,7 +67,6 @@ export default {
           loginPayload = {
             login: {
               loggedIn: false,
-              url: req.originalUrl,
               method: "local",
               message: "email",
             },
@@ -72,7 +76,6 @@ export default {
           loginPayload = {
             login: {
               loggedIn: false,
-              url: req.originalUrl,
               method: "local",
               message: "password",
             },
@@ -85,7 +88,6 @@ export default {
             loginPayload = {
               login: {
                 loggedIn: false,
-                url: req.originalUrl,
                 method: "local",
                 message: "passport",
               },
@@ -95,7 +97,6 @@ export default {
             loginPayload = {
               login: {
                 loggedIn: true,
-                url: req.originalUrl,
                 method: "local",
                 message: "success",
               },
@@ -111,7 +112,7 @@ export default {
 
   loginFacebook(req, res, next) {
     console.log(Chalk.yellow.bold("<<<----- INITIATING FACEBOOK LOGIN PROCCESS ---->>>"));
-    req.app.locals.urlOrigin = req.query.urlOrigin;
+    req.app.locals.urlOrigin = req.session.urlOrigin || req.query.urlOrigin;
     passport.authenticate("facebook")(req, res, next);
   },
   loginFacebookCallback(req, res, next) {
@@ -121,7 +122,6 @@ export default {
         loginPayload = {
           login: {
             loggedIn: false,
-            url: req.app.locals.urlOrigin,
             method: "social",
             message: "dbError",
           },
@@ -131,7 +131,6 @@ export default {
         loginPayload = {
           login: {
             loggedIn: false,
-            url: req.app.locals.urlOrigin,
             method: "social",
             message: "facebook",
           },
@@ -143,7 +142,6 @@ export default {
             loginPayload = {
               login: {
                 loggedIn: false,
-                url: req.app.locals.urlOrigin,
                 method: "social",
                 message: "passport",
               },
@@ -153,7 +151,6 @@ export default {
             loginPayload = {
               login: {
                 loggedIn: true,
-                url: req.app.locals.urlOrigin,
                 method: "social",
                 message: "success",
               },
@@ -162,7 +159,6 @@ export default {
           }
         })
       }
-      delete req.app.locals.urlOrigin;
       res.locals.capability.constructSessionState(req.session, loginPayload);
       next();
     })(req, res, next);
@@ -221,16 +217,13 @@ export default {
           }
         })
       }
-      delete req.app.locals.urlOrigin;
       res.locals.capability.constructSessionState(req.session, loginPayload);
-      next();
     })(req, res, next);
   },
 
   postLogin(req, res, next) {
     console.log(Chalk.cyan.bold("<<<---- INITIATING POST LOGIN PROCCESS ---->>>"));
-    res.locals.capability.User.login(res, req);
-    console.log(req.session);
+    res.locals.capability.User.login(res, req.session);
     next();
   },
 
@@ -241,14 +234,13 @@ export default {
     } else {
       console.log(Chalk.red.bold("<<<---- SUCCESSFULL LOGIN ---->>>"));
       console.log(Chalk.yellow.bold("<<<--- TERMINATING LOCAL LOGIN PROCCESS ---->>>"));
-      switch (req.session.state.login.url) {
-      case "/login/local":
-        res.send("/");
-        break;
-      case "/checkout/login/local":
+      switch (req.session.urlOrigin) {
+      case "/checkout/login":
+        delete req.session.urlOrigin;
         res.send("/checkout/address");
         break;
       default:
+        delete req.session.urlOrigin;
         res.send("/");
         break;
       }
@@ -258,49 +250,50 @@ export default {
   localFailure(req, res) {
     console.log(Chalk.red.bold("<<<---- FAILED LOGIN ---->>>"));
     console.log(Chalk.yellow.bold("<<<---- TERMINATING LOCAL LOGIN PROCCESS ---->>>"));
-    switch (req.session.state.login.url) {
-    case "/login/local":
-      res.send("/login");
-      break;
-    case "/checkout/login/local":
+    switch (req.session.urlOrigin) {
+    case "/checkout/login":
+      delete req.session.urlOrigin;
       res.send("/checkout/login");
       break;
     default:
+      delete req.session.urlOrigin;
       res.send("/login");
       break;
     }
   },
 
   socialsSuccess(req, res, next) {
+    console.log(Chalk.cyan.bold("<<<---- TERMINATING POST LOGIN PROCESS ----->>>"));
     if (!req.session.state.login.loggedIn) {
       next();
     } else {
       console.log(Chalk.red.bold("<<<---- SUCCESSFULL LOGIN ---->>>"));
       console.log(Chalk.yellow.bold("<<<---- TERMINATING SOCIAL LOGIN PROCCESS ---->>>"));
-      switch (req.session.state.login.url) {
-      case "/login":
-        res.redirect(303, "/");
-        break;
+      switch (req.app.locals.urlOrigin) {
       case "/checkout/login":
+        delete req.app.locals.urlOrigin;
         res.redirect(303, "/checkout/address");
         break;
       default:
+        delete req.app.locals.urlOrigin;
         res.redirect(303, "/");
         break;
       }
     }
   },
+
   socialsFailure(req, res) {
     console.log(Chalk.red.bold("<<<---- FAILED LOGIN ---->>>"));
     console.log(Chalk.yellow.bold("<<<---- TERMINATINGC SOCIAL LOGIN PROCCESS ---->>>"));
-    switch (req.session.state.login.url) {
-    case "/login":
-      res.redirect(303, "/login");
-      break;
-    case "/checkout/login/":
+    switch (req.app.locals.urlOrigin) {
+    case "/checkout/login":
+      delete req.app.locals.urlOrigin;
+      if (req.session.urlOrigin) delete req.session.urlOrigin;
       res.redirect(303, "/checkout/login");
       break;
     default:
+      delete req.app.locals.urlOrigin;
+      if (req.session.urlOrigin) delete req.session.urlOrigin;
       res.redirect(303, "/login");
       break;
     }
