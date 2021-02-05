@@ -44,13 +44,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // - express-session
 app.use(expressSession({
-  resave: true, //false
+  resave: false, //false
   saveUninitialized: false,
   secret: config.credentials.cookieSecret,
   rolling: false, //true
   cookie: {
-    sameSite: "strict",
-    maxAge: 1000000,
+    sameSite: "lax",
+    maxAge: 10000,
   },
   store: new redisStore({
     client: redisClient
