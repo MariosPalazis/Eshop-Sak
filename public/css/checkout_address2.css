@@ -1,0 +1,44 @@
+#address-container-first-time{
+    width: 100%;
+}
+.paulos-borders{
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+    width: 90%;
+    max-width: 900px;
+    margin: 1px auto;
+}
+.shipping-container{
+    display: grid;
+    width: 90%;
+    grid-template-columns: 100%;
+    margin:15px auto;
+}
+.shipping-inputs{
+    width: 100%;
+    margin: 5px auto;
+    padding: 10px;
+    text-align: center;
+    box-shadow: -2px 4px gainsboro;
+}
+.textarea-container{
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+}
+#comments{
+    border-radius: 5px;
+    width: 90%;
+    max-width: 800px;
+    padding: 15px;
+    font-size: 15px;
+    margin: 1px auto;
+}
+@media(min-width:800px){
+    #comments{
+        border: 0.5px solid rgb(160, 160, 160);
+        border-radius: 5px;
+        width: 720px;
+        margin: 1px auto;
+    }
+}

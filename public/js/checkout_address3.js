@@ -27,9 +27,9 @@ cityS.addEventListener("blur", validateInp);
 countryS.addEventListener("blur", validateInp);
 postcodeS.addEventListener("blur", validateInp);
 
+
 //taking textarea
 const comments=document.getElementById("comments");
-
 //clear inputs
 
 function clearInp() {
@@ -43,6 +43,7 @@ function clearInp() {
     comments.value="";
 }
 clearInp();
+
 
 form.addEventListener("submit", sendForm);
 
@@ -144,71 +145,39 @@ function toggleOldLabel(x){
 //Pop-Down Divs
 //Taking Popups
 const popactive = document.getElementById("pop-active");
-const popold = document.getElementById("pop-old");
 const popadd = document.getElementById("pop-new");
 //Taking labels
 const active = document.getElementById("label-active");
-const old = document.getElementById("label-old");
 const add = document.getElementById("label-new");
 active.addEventListener("click", openActive);
-old.addEventListener("click", openOld);
 add.addEventListener("click", openAdd);
 Toggle("active");
 active.classList.add("label-checked");
-old.classList.remove("label-checked");
 add.classList.remove("label-checked");
 function openActive(event){
     event.preventDefault();
     Toggle("active");
     active.classList.add("label-checked");
-    old.classList.remove("label-checked");
-    add.classList.remove("label-checked");
-    toggleOldLabel(false);
-    uncheckOldLabels();
-}
-function openOld(event){
-    event.preventDefault();
-    Toggle("old");
-    active.classList.remove("label-checked");
-    old.classList.add("label-checked");
     add.classList.remove("label-checked");
 }
 function openAdd(event){
     event.preventDefault();
     Toggle("add");
     active.classList.remove("label-checked");
-    old.classList.remove("label-checked");
     add.classList.add("label-checked");
-    toggleOldLabel(false);
-    uncheckOldLabels();
 }
-
 function Toggle(label){
     switch(label){
         case "active":
             popactive.classList.toggle("show-on");
-            popold.classList.remove("show-on");
             popadd.classList.remove("show-on");
-            checkedLabel.firstElementChild.innerHTML="";
-            break;
-        case "old":
-            popactive.classList.remove("show-on");
-            popold.classList.toggle("show-on");
-            popadd.classList.remove("show-on");
-            if((!popold.classList.contains("show-on"))&&(checkedLabel.firstElementChild.innerHTML!="")){
-                toggleOldLabel(true);
-            }
-            else{
-              toggleOldLabel(false);
-            }
             break;
         case "add":
             popactive.classList.remove("show-on");
-            popold.classList.remove("show-on");
             popadd.classList.toggle("show-on");
-            checkedLabel.firstElementChild.innerHTML="";
             break;
         default:
             break;
     }
 }
+
