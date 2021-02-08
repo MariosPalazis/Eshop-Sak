@@ -98,15 +98,12 @@ let Capability = capability(app);
 
 
 app.use(Capability.initializeCapability);
+app.use(Capability.seedProducts);
 app.use(myMiddleware.subRoutes);
 app.use(myMiddleware.flashMessages);
 app.use(myMiddleware.stateShoppingCart);
 
 
-app.use((req, res, next) => {
-  console.log(req.session);
-  next();
-})
 // COSTUM MODULES ENDS HERE //
 // --------------------------- //
 

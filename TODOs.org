@@ -49,3 +49,27 @@ does not work
 
 
 
+
+* the adding of a product procedure
+*** product 1:
+    wheel diameter,
+    thickness,
+    leather color,
+    color of thread,
+    spokes & pcs,
+    color of spokes (if different),
+*** product 2:
+    length,
+    leather color,
+    color of thread,
+    thickness,
+** proccess
+   user adds a product,
+   products gets added to his shopping cart,
+   shopping cart is updated,
+   flash message appears, notifying the user of the change and promting him to checkout,
+
+   if on mobile the flash message incluse a checkout link, if on desktop the flash message does
+   not include a checkout link,
+** tasks
+*** TODO change the product model
