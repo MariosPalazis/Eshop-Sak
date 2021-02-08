@@ -216,29 +216,10 @@ function sendForm(event) {
         })
     }
     else{
-      const formData = new FormData(form);
-      let data = {};
-      for (const key of formData.keys()) {
-        data[key] = formData.get(key);
-      }
-
-
-      fetch("/register", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(data)
-      }).then(response => {
-        return response.text();
-      }).then(data => {
-        window.location.href = data;
-      }).catch(err => {
-        alert(err);
-      })
-
-      // nameBlur();
-      // emailBlur();
-      // passBlur();
-      // confBlur()
+      nameBlur();
+      emailBlur();
+      passBlur();
+      confBlur()
     }
 
 }

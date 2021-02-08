@@ -7,16 +7,10 @@
     </head>
     <body>
         {{> header}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
         <main>
             {{{body}}}
+            {{{_sections.stylesheets}}}
+            {{{_sections.script}}}
         </main>
-        {{> footer}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
-        {{> flashMessages}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
     </body>
 </html>

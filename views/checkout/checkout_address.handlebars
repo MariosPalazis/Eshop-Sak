@@ -1,8 +1,9 @@
-{{#section "script"}}
-<script src="{{subRoutes}}js/checkout_address.js" type="text/javascript" ></script>
+{{#section "stylesheets"}}
+<link rel="stylesheet" href="{{subRoutes}}css/checkout_address3.css" >
 {{/section}}
-<link rel="stylesheet" href="{{subRoutes}}css/defaults.css">
-<link rel="stylesheet" href="{{subRoutes}}css/checkout_address.css" >
+{{#section "script"}}
+<script src="{{subRoutes}}js/checkout_address3.js" type="text/javascript" ></script>
+{{/section}}
 <section id="address-container" >
     <div class="paulos-borders">
         <section class="popFields">
@@ -14,26 +15,6 @@
                 <label id="act-email" class="pop-active-content">mmmm@mail.com</label>
             </div>
         </section>
-
-        <section class="popFields">
-            <div id="label-old" class="labels"><div class="radio"></div><label class="vis-labels">Old addresses</label></div>
-            <div id="pop-old" class="pop">
-                <article class="sub-address">
-                    <input type="radio" class="pop-old-content-radio" id="old-address1" name="address" value=""><b><label id="old-address-town"> <label id="old-address">leoforos oxi 12</label>, <label id="old-town">Thessaloniki</label></label></b></br>
-                    <label id="act-name" class="pop-old-content">paulos noulis</label></br>
-                    <label id="act-notes" class="pop-old-content">there are no note</label></br>
-                    <label id="act-TK" class="pop-old-content">54670, Thessaloniki</label></br>
-                    <label id="act-email" class="pop-old-content">mmmm@mail.com</label>
-                </article>
-                <article class="sub-address">
-                    <input type="radio" class="pop-old-content-radio" id="old-address2" name="address" value=""><b><label id="old-address-town2"> <label id="old-address2">leoforos oxi 12</label>, <label id="old-town2">Thessaloniki</label></label></b></br>
-                    <label id="act-name2" class="pop-old-content">paulos noulis</label></br>
-                    <label id="act-notes2" class="pop-old-content">there are no note</label></br>
-                    <label id="act-TK2" class="pop-old-content">54670, Thessaloniki</label></br>
-                    <label id="act-email2" class="pop-old-content">mmmm@mail.com</label>
-                </article>
-            </div>
-        </section>
         <section class="popFields">
             <div id="label-new" class="labels bottom-border-radius"><div class="radio"></div><label class="vis-labels">New Address</label></div>
             <div id="pop-new" class="pop">
@@ -41,15 +22,18 @@
                 <article class="shipping-container" >
                     <input type="text" name="name"  id="name" class="shipping-inputs" placeholder="Name: John Smith" >
                     <input type="email" name="email"  id="email" class="shipping-inputs" placeholder="Email: yourmail@mail.com" >
-                    <input type="text" name="address1" id="address1" class="shipping-inputs" placeholder="Address1: Baker Street, 2B"  >
-                    <input type="text" name="address2" id="address2" class="shipping-inputs" placeholder="Address2: Baker Street, 2B"  >
-                    <input type="text" name="country" id="country" class="shipping-inputs" placeholder="Country: Sweden" >
+                    <input type="text" name="address1" id="address1" class="shipping-inputs" placeholder="Line 1: Baker Street, 2B"  >
+                    <input type="text" name="address2" id="address2" class="shipping-inputs" placeholder="Line 2: Baker Street, 2B"  >
                     <input type="text" name="city" id="city" class="shipping-inputs" placeholder="City: London"  >
+                    <input type="text" name="country" id="country" class="shipping-inputs" placeholder="Country: Sweden" >
                     <input type="text" name="postcode" id="postcode" class="shipping-inputs" placeholder="PostCode: W1U 8ED"  >
                 </article>
                 </form>
             </div>
         </section>
+    </div>
+    <div class="textarea-container">
+        <textarea id="comments" placeholder="Put your comments here..." rows="5"></textarea>
     </div>
     <div class="submit-container">
         <input type="submit" id="submit" form="address-form" value="submit" >
