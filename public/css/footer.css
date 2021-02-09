@@ -2,7 +2,7 @@
 Whole footer
 ///////////////////////*/
 footer{
-    background-color: gray;
+    background-color: #00001a;
 }
 /*///////////////////////
  Footer's  main-links field
@@ -17,7 +17,7 @@ footer{
 ///////////////////////*/
 hr{
     width: 90%;
-    color: white;
+    color:  #331a00;
     margin: 0 auto;
     border: 2px solid;
     border-radius: 5px;
@@ -91,28 +91,26 @@ h5{
     position:absolute;
     right: 30%;
     top:35%;
-    height: 80px;
-    width: 5px;
-    border-radius: 50%;
-    background-color: white;
+    height: 60px;
+    width: 2px;
+    background-color:  #663300;
 }
 .desktop-divider-2{
     position:absolute;
     right: 60%;
     top:35%;
-    height: 80px;
-    width: 5px;
-    border-radius: 50%;
-    background-color: white;
+    height: 60px;
+    width: 2px;
+    background-color:  #663300;
 }
 /*///////////////////////
  for copyright -common divider
 ///////////////////////*/
 .copyright-divider{
-    height: 80px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: white;
+    height: 10px;
+    width: 10px;
+    color: #663300;
+    background-color:  #663300;
 }
 /*///////////////////////
  main instructions field

@@ -11,3 +11,53 @@
     {{/if}}
 </section>
 
+
+{{#section 'stylesheets'}}
+<link rel="stylesheet" href="{{subRoutes}}css/header.css" >
+{{/section}}
+{{#section 'script'}}
+<script type="module" src="{{subRoutes}}js/header.js"></script>
+{{/section}}
+
+<header>
+    <nav id="desktop" class="stickymenu">
+        <section id="logo"> 
+            <a href="#"><img src="{{subRoutes}}assets/socials/google_logo.png" alt="logo" ></a>
+        </section>
+        <section id="desktop-links">
+            <a href="#home">Home</a>
+            <a href="#company">Company</a>
+            <a href="#product">Product</a>
+            <a href="#contact">Contact</a>
+        </section>
+        <section id="desktop-login">
+            <div class="login-box">
+                <a href="#sing">Login</a>
+            </div>
+        </section>
+    </nav>
+    <nav id="mobile" class="stickymenu">
+        <div class="topnav">
+            <div class="padd">
+                <img src="{{subRoutes}}assets/socials/google_logo.png" class="active" alt="logo"> 
+                <div class="shopping-bag"> 
+                    <img src="{{subRoutes}}assets/smalls/shopping-bag.svg" id="bag" class="bag" alt="logo"  >
+                    <div class="bag-number">3</div>
+                </div>
+            </div>
+            <img src="{{subRoutes}}assets/smalls/mobHamb.png" id="hamburger" class="icon" alt="logo"  >   
+        </div>
+        <div id="myLinks">
+            <div class="spread">
+                <a href="#" >Home</a>
+                <a href="#" >Compant</a>
+                <a href="#" >Product</a>
+                <a href="#" >Contact</a>
+            </div>
+            <div class="bottom">
+                <a href="#" class="user-status">Login/User account</a>
+                <a href="#" class="user-status">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
