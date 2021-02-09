@@ -32,7 +32,10 @@ const productSchema = new mongoose.Schema({
   description: String,
   wheelDiameter: [
     {
-      amount: [Number],
+      amount: {
+        from: Number,
+        to: Number,
+      },
       unit: String,
       price: Number,
       priceUnit: String,

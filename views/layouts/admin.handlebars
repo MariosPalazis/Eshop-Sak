@@ -6,13 +6,11 @@
         <link rel="stylesheet" href="{{subRoutes}}css/defaults.css" >
     </head>
     <body>
-        {{> header}}
-            <main>
+        {{> admin_panel}}
+        <main>
             {{{body}}}
         </main>
-        {{> footer}}
-        {{> flashMessages}}
-        {{{_sections.stylesheets}}}
+        {{{_sections.stylesheet}}}
         {{{_sections.script}}}
     </body>
 </html>
