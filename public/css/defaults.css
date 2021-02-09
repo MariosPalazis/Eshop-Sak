@@ -1,5 +1,6 @@
 html * {
     box-sizing: border-box;
+    font-family: 'Impact', sans-serif, monospace;
     font-size: 100%;
     margin: 0px;
     padding: 0px;
@@ -11,3 +12,4 @@ html * {
 a{
     text-decoration: none;
 }
+

@@ -1,0 +1,242 @@
+.content{
+    padding-top:100px ;
+}
+/*Carousel*/
+#carousel-section{
+    width: 100%;
+    margin-top: 40px;
+}
+/* Slideshow container */
+.slideshow-container {
+  width: 100%;
+  margin: auto;
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+.mySlides img{
+    width:100%; 
+    height:100%;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  top: 45%;
+  height: 60px;
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(133, 133, 133, 0.8);
+}
+
+/* Position the "next button" to the right */
+.prev{
+    left: 20px;
+    border-radius: 3px 0 0 3px;
+}
+.next {
+  right: 20px;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: black;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+/*Second field*/
+#twofield{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.textbox{
+    float: left;
+    width: 40%;
+    margin: 60px auto;
+    text-align: center;
+    padding: 40px 30px;;
+    background-color: rgb(255, 232, 202);
+    border: 1px solid black;
+}
+
+@media (max-width: 800px) {
+    #twofield{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .textbox{
+        width: 60%;
+        margin: 20px 60px;
+        text-align: center;
+        padding: 40px 30px;;
+        background-color: rgb(255, 232, 202);
+        border: 1px solid black;
+    }
+}
+/*banner*/
+#banner{
+    background: url("../assets/smalls/car2.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    padding: 200px 0;
+    text-align: center;
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+#bannertext{
+    font-size: 30px;
+    color: white;  
+}
+/*parallax*/
+#parallax-banner{
+    background-image: url("../assets/smalls/car2.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 400px;
+    padding: 200px 0;
+    text-align: center;
+    position: relative;
+}
+#parallax-bannertext{
+    font-size: 30px;
+    color: white;  
+}
+
+/*cards*/
+#imageboxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.imagebox{
+    float: left;
+    width: 400px;
+    height: 400px;
+    margin: 60px 50px;
+}
+.imageboxphoto{
+    width: 100%;
+    height: 300px;
+}
+.imageboxtext{
+    float: left;
+    margin-left: 5px;
+}
+.imageboxlink{
+    float:right;
+    margin-right: 5px;
+    color: lightskyblue;
+}
+@media (max-width: 1050px) {
+    .imagebox{
+        float: left;
+        width: 300px;
+        height: 300px;
+        margin: 60px 10px;
+    }
+}
+@media (max-width: 780px) {
+    #imageboxes{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .imagebox{
+        width: 70%;
+        height: 300px;
+        margin: 20px 0;
+    }
+}
+/*FOOTER*/
+footer{
+    background-color:Gray;
+    text-align: center;
+    color: white;
+}
+#footer-link-container{
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    flex-direction: row;
+}
+#footer-links{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.footer-navs{
+    padding: 10px 10px;
+    color: white;
+    margin: auto;
+}
+.footer-navs a{
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.footer-navs a:hover{
+    color: thistle;
+}
+footer h4{
+    padding-bottom: 30px;
+}
+hr{
+    width: 50%;
+}
+@media (max-width: 450px){
+    #footer-link-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 250px;
+    }
+    #footer-links{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+    }
+}
