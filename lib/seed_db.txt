@@ -6,36 +6,51 @@ let a = async () => {
     description: "a large black back",
     wheelDiameter: [
       {
-        amount: [57],
+        amount: {
+          from: 0,
+          to: 57,
+        },
         unit: "cm",
         price: 20,
         priceUnit: "euro",
         stock: 10,
       },
       {
-        amount: [58, 86],
+        amount: {
+          from: 58,
+          to: 86,
+        },
         unit: "cm",
         price: 20,
         priceUnit: "euro",
         stock: 10,
       },
       {
-        amount: [87, 114],
+        amount: {
+          from: 87,
+          to: 114,
+        },
         unit: "cm",
         price: 20,
         priceUnit: "euro",
         stock: 10,
       },
       {
-        amount: [115, 143],
+        amount: {
+          from: 115,
+          to: 143,
+        },
         unit: "cm",
         price: 20,
         priceUnit: "euro",
         stock: 10,
       },
       {
-        amount: [173, 190],
-        Unit: "cm",
+        amount: {
+          from: 173,
+          to: 190,
+        },
+        unit: "cm",
         price: 20,
         priceUnit: "euro",
         stock: 10,
@@ -62,7 +77,7 @@ let a = async () => {
         unit: "mm",
         price: 10,
         priceUnit: "euro",
-        stoock: 10,
+        stock: 10,
       },
     ],
 

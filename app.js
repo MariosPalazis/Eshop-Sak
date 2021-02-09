@@ -116,6 +116,7 @@ app.use(myMiddleware.stateShoppingCart);
 import checkoutRoutes from "./routes/checkout.js";
 import loginRoutes from "./routes/login.js";
 import productsRoutes from "./routes/products.js";
+import adminRoutes from "./routes/admin.js";
 
 
 app.get("/", (req, res) => {
@@ -124,9 +125,13 @@ app.get("/", (req, res) => {
 })
 
 
+app.get("/test", (req, res) => {
+  res.render("test", {layout: null});
+});
 app.use("/", loginRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/product", productsRoutes);
+app.use("/admin", adminRoutes);
 app.get("/pay", (req, res) => {
   res.render("checkout/payment.handlebars", {layout: null});
 })

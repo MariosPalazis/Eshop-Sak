@@ -72,4 +72,89 @@ does not work
    if on mobile the flash message incluse a checkout link, if on desktop the flash message does
    not include a checkout link,
 ** tasks
-*** TODO change the product model
+*** DONE change the product model
+    CLOSED: [2021-02-08 Mon 09:04]
+*** DONE add the ability to add a product 
+    CLOSED: [2021-02-08 Mon 09:40]
+*** TODO fix stoock in thickness 
+*** DONE implement the fetch 
+    CLOSED: [2021-02-08 Mon 17:48]
+
+*** TODO how do i deal with the different operations and the sending of data
+    operations:
+    delete
+    update
+    add
+
+    so the edits are pushed to the updateSTack
+    the deletes are not pushed to any stack, but a delete class is added
+    to those rows that have been selected for deletion.
+
+    when the administrator will want to commit the ones for deletion
+    get added to the updateStack, after the updateStack has removed any
+    possible duplicate table rows that have been marked both for deletion
+    and update.
+
+    In order to implement the sending of only one data structure to the
+    server instead of many, i must add a property to each data element
+    that describes the operation that the table row is marked for. For example:
+
+    data = {
+    operation: remove | update | new
+    }
+*** stocking remove operations
+    if there does not exists a delete calss then the table row that
+    was pushed in the stack needs to be removed
+
+    if a delete class does exist then the table row must be pushed in the stack
+*** TODO preparing the data
+updated data format:
+data = {
+    dbPropertyName: dbPropertyName,
+    index: index,
+    operation: "",
+}
+
+
+*** TODO FINAL CHANGES TO THE ADMIN.JS
+    do not allow user to commit changes if there are any pending alterations
+    when adding the new rows, check to see if there is actually anything new to add
+    before i start the loops
+    finish the thickness switch statements
+    
+** admin.js plan
+*** high level
+    when a user wants to edit a row,
+    each table cell in that row becomes an input
+
+    the edit img turns into a done button.
+    On click the input turns back into a cell
+
+*** suppling different pages for each product
+    3 products
+    wheel cover
+    sprayhood
+    custom
+
+
+*** the admin routes
+    admin/products.handlebars
+    admin/wheel_cover.handlebars
+    admin/sprayhood.handlebars
+    admin/custom.handlebars
+
+
+    admin/products/products.handlebars
+    admin/products/wheel_cover.handlebars
+    admin/products/sprayhood.handlebars
+    admin/products/custom.handlebars
+
+
+    admin/orders
+    admin/statistics
+
+
+    admin/emails/
+
+    orders -> change status.
+    

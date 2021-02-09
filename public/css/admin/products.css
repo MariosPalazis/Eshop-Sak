@@ -1,0 +1,48 @@
+.new {
+    background-color: #5AFF2D;
+    padding: 20px 0;
+}
+
+.edited {
+    background-color: #FFB141;
+    padding: 20px 0;
+}
+
+.new-edited {
+    background-color: #F7FF72;
+    padding: 20px 0;
+}
+
+.delete-indicator {
+    background-color: red;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+
+.new-indicator {
+    background-color: #5AFF2D;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.edited-indicator {
+    background-color: #FFB141;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.new-edited-indicator {
+    background-color: #F7FF72;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+
+/* This rule must be placed after the .edited selector rule */
+.delete { background-color: red; padding: 20px 0; }
+
