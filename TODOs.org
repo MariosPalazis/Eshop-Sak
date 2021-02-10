@@ -88,7 +88,16 @@ does not work
     CLOSED: [2021-02-10 Wed 08:20]
 *** DONE test and implement the spokes table
     CLOSED: [2021-02-10 Wed 08:35]
-*** TODO test and implement color of spokes table
+*** DONE test and implement color of spokes table
+    CLOSED: [2021-02-10 Wed 08:40]
+*** DONE send the data to the server, create route to handle it
+    CLOSED: [2021-02-10 Wed 10:10]
+    route and controller to receive the data done.
+    enable fetch client side
+*** DONE add a cancel button on the add new product procedure
+    CLOSED: [2021-02-10 Wed 10:29]
+*** TODO on a successfull server trip and database update the client should refresh
+
 *** the admin routes
     admin/products.handlebars
     admin/wheel_cover.handlebars
@@ -110,3 +119,8 @@ does not work
 
     orders -> change status.
     
+* DONE implementing the sprayhood product
+  CLOSED: [2021-02-10 Wed 13:05]
+
+* TODO find the best way to serve the products to the admin, routes, files etc.
+* TODO implementing shopping cart

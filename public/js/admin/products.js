@@ -46,7 +46,7 @@ function refreshInputs(row) {
   }
 }
 
-function addThis() {
+function addThis(event) {
   // remove the disabled property from the anchors inside each cell, inside the table row
   // turn the add new product button into  a done button
   // when the user is done adding the table row
@@ -73,6 +73,14 @@ function addThis() {
   // children[i].length = the last table cell of the row, which holds the index
   // of the rows that correspond with those of the database
 
+
+  if (event.target.classList.contains("cancel-button")) {
+    tableCellContentSwitch(children[children.length -1], "add");
+    parentRow.classList.remove("add");
+    refreshInputs(parentRow);
+    toggleCommit(ON);
+    return;
+  }
   // turn the add new product button into a done button
   if (parentRow.classList.contains("add")) {
     // get the contents of all the inputs
@@ -88,7 +96,7 @@ function addThis() {
     }
 
     // make sure the "to" column has a smaller number than the "from" column
-    if (tableClass === "wheelDiameter" || tableClass === "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "length" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (childrenText[0] > childrenText[1]) {
         children[0].firstChild.classList.add("delete");
@@ -187,7 +195,7 @@ function editThis() {
     }
 
 
-    if (tableClass === "wheelDiameter" || tableClass === "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "length" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (parseInt(childrenText[0]) > parseInt(childrenText[1])) {
         children[0].firstChild.classList.add("delete");
@@ -340,6 +348,7 @@ function tableCellContentSwitch(cell, operation) {
 
   let done = document.createElement("BUTTON");
   done.innerHTML = "done";
+  done.classList.add("add-button");
 
   let editImg = document.createElement("IMG");
   editImg.setAttribute("src", "/assets/smalls/edit_pencil_icon.svg");
@@ -349,6 +358,7 @@ function tableCellContentSwitch(cell, operation) {
 
   let cancel = document.createElement("BUTTON");
   cancel.innerHTML = "cancel";
+  cancel.classList.add("cancel-button");
 
   let deleteImg = document.createElement("IMG");
   deleteImg.setAttribute("src", "/assets/smalls/delete_garbage_bin.svg");
@@ -385,12 +395,15 @@ function tableCellContentSwitch(cell, operation) {
     break;
   case "add":
     if (cell.classList.contains("add")) {
-      done.setAttribute("colspan", "2");
+      //done.setAttribute("colspan", "2");
       cell.classList.remove("add");
       cell.children[0].remove();
       cell.appendChild(done);
+      cell.appendChild(cancel);
+
     } else {
       cell.classList.add("add");
+      cell.children[0].remove();
       cell.children[0].remove();
       cell.appendChild(add);
     }
@@ -427,15 +440,14 @@ function commitUpdates() {
     tables: prepareData(tables),
   };
 
-
-  fetch("/admin/update/wheelCover", {
+  fetch("/admin/update/product", {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(data),
   }).then(response => {
     return response.text();
   }).then(data => {
-    alert(data);
+    if (data === "success") location.reload();
   }).catch(err => {
     alert(err);
   })
@@ -508,7 +520,31 @@ function bubbleShort(changedTables) {
         }
       }
     } else if (table.tableClass === "thickness") {
-    } else {
+      for (let i = 0; i < table.rows.length; ++i) {
+        for (let j = 0; j < table.rows.length - 1; ++j) {
+          // 0 = from
+          // 1 = to
+          // so if the next row is less than the previous one swap them
+          if (parseInt(table.rows[j].children[0].innerText) > parseInt(table.rows[j + 1].children[0].innerText)) {
+            tmp = table.rows[j];
+            table.rows[j] = table.rows[j + 1];
+            table.rows[j + 1] = tmp;
+          }
+        }
+      }
+    } else if (table.tableClass === "length") {
+      for (let i = 0; i < table.rows.length; ++i) {
+        for (let j = 0; j < table.rows.length - 1; ++j) {
+          // 0 = from
+          // 1 = to
+          // so if the next row is less than the previous one swap them
+          if (parseInt(table.rows[j].children[0].innerText) > parseInt(table.rows[j + 1].children[0].innerText)) {
+            tmp = table.rows[j];
+            table.rows[j] = table.rows[j + 1];
+            table.rows[j + 1] = tmp;
+          }
+        }
+      }
       return;
     }
   }
@@ -520,6 +556,19 @@ function changeFormat(row, typeOfRow) {
   let cells = row.children;
   switch (typeOfRow) {
   case "wheelDiameter":
+    // range of cells of interest: 0 - 5
+    formatedRow = {
+      amount: {
+        from: parseInt(cells[0].innerText),
+        to: parseInt(cells[1].innerText),
+      },
+      unit: cells[2].innerText,
+      price: parseInt(cells[3].innerText),
+      priceUnit: cells[4].innerText,
+      stock: parseInt(cells[5].innerText),
+    };
+    break;
+  case "length":
     // range of cells of interest: 0 - 5
     formatedRow = {
       amount: {

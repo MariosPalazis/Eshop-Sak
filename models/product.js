@@ -51,6 +51,18 @@ const productSchema = new mongoose.Schema({
       stock: Number,
     }
   ],
+  length: [
+    {
+      amount: {
+        from: Number,
+        to: Number,
+      },
+      unit: String,
+      price: Number,
+      priceUnit: String,
+      stock: Number,
+    },
+  ],
   leatherColor: [
     {
       color: String,
