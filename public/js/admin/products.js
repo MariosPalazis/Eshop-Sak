@@ -5,9 +5,12 @@ const commitChangesButton = document.getElementById("commit");
 let productID = document.querySelector(".product-container");
 productID = productID.classList[1];
 
+// switches to be passed to the toggleCommit function
+const OFF = false;
+const ON = true;
 
-// stack where updates are pushed
-let updatesStack= [];
+// stack where new rows are pushed are pushed
+let newRows = [];
 
 for (const element of deleteElements) {
   element.addEventListener("click", deleteThis);
@@ -24,8 +27,26 @@ for (const element of addElements) {
 // on click, send the whole updates stack to the server
 commitChangesButton.addEventListener("click", commitUpdates);
 
+function toggleCommit(handle) {
 
-function addThis() {
+  if (handle) {
+    commitChangesButton.addEventListener("click", commitUpdates);
+  } else {
+    commitChangesButton.removeEventListener("click", commitUpdates);
+  }
+}
+
+function refreshInputs(row) {
+  let regexp = /unit/;
+  for (const cell of row.children) {
+    if (!regexp.test(cell.className) && cell.className !== "add") {
+      cell.firstChild.value = "";
+      cell.firstChild.disabled = true;
+    }
+  }
+}
+
+function addThis(event) {
   // remove the disabled property from the anchors inside each cell, inside the table row
   // turn the add new product button into  a done button
   // when the user is done adding the table row
@@ -52,6 +73,14 @@ function addThis() {
   // children[i].length = the last table cell of the row, which holds the index
   // of the rows that correspond with those of the database
 
+
+  if (event.target.classList.contains("cancel-button")) {
+    tableCellContentSwitch(children[children.length -1], "add");
+    parentRow.classList.remove("add");
+    refreshInputs(parentRow);
+    toggleCommit(ON);
+    return;
+  }
   // turn the add new product button into a done button
   if (parentRow.classList.contains("add")) {
     // get the contents of all the inputs
@@ -67,7 +96,7 @@ function addThis() {
     }
 
     // make sure the "to" column has a smaller number than the "from" column
-    if (tableClass === "wheelDiameter" || "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "length" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (childrenText[0] > childrenText[1]) {
         children[0].firstChild.classList.add("delete");
@@ -83,7 +112,10 @@ function addThis() {
     tableCellContentSwitch(children[children.length -1], "add");
     createNewTableRow(parentRow, childrenText);
     parentRow.classList.remove("add");
+    refreshInputs(parentRow);
+    toggleCommit(ON);
   } else {
+    toggleCommit(OFF);
     parentRow.classList.add("add");
     tableCellContentSwitch(children[children.length -1], "add");
   }
@@ -110,7 +142,6 @@ function deleteThis() {
 
     tableCellContentSwitch(children[children.length -2], "delete");
 
-    stockRemoves(parentRow, children[children.length - 1].innerText)
 
     // register again the event listener again, since the administrator
     // has choosen to cancel the deletion operation.
@@ -122,7 +153,6 @@ function deleteThis() {
 
     tableCellContentSwitch(children[children.length -2], "delete");
 
-    stockRemoves(parentRow, children[children.length - 1].innerText)
   }
 
 }
@@ -165,7 +195,7 @@ function editThis() {
     }
 
 
-    if (tableClass === "wheelDiameter" || "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "length" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (parseInt(childrenText[0]) > parseInt(childrenText[1])) {
         children[0].firstChild.classList.add("delete");
@@ -194,15 +224,15 @@ function editThis() {
 
     }
 
-    // push the updated row and neccessary information to a stack, when
-    // the administratior wants to update the server, all changes are pushed
-    stockUpdates(parentRow, childrenText, children[children.length - 1].innerText);
-
     // register again the event listener for the updated table row
     children[children.length -2].addEventListener("click", deleteThis);
 
     parentRow.classList.remove("edit");
+
+
+    toggleCommit(ON);
   } else {
+    toggleCommit(OFF);
     parentRow.classList.add("edit");
 
     // remove the inner Text of each table cell
@@ -231,35 +261,6 @@ function editThis() {
 }
 
 
-// the purpose of this function is to make sure
-// that the row of the first two tables are in the correct order
-// What is the correct order: a correct order is when the
-// second cell with header (to) is in ascending order
-function inputValidation(typeOfRow) {
-
-
-  let tmp;
-  if (typeOfRow === "wheelDiameter") {
-    let rows = document.querySelectorAll(".wheelDiameter-row");
-
-    alert("iam at input validation");
-    for (let i = 0; i < rows.length - 1; ++i) {
-      for (let j = 1; j < rows.length; ++j) {
-        if (rows[j].children[0] < rows[i].children[1]) {
-          alert("this did happen");
-          tmp = rows[j];
-          rows[j] = rows[i];
-          rows[i] = tmp;
-        }
-      }
-    }
-    console.log(rows);
-  } else if (typeOfRow === "thickness") {
-  } else {
-    return;
-  }
-
-}
 
 // given a parentRow and some tableCellContent
 // this function will add a new table row
@@ -291,12 +292,6 @@ function createNewTableRow(parentRow, newContent) {
     newCell.innerText = newContent[i];
   }
 
-  // two table cells are filled with the edit and delete icons
-  let editImg = document.createElement("IMG");
-  editImg.setAttribute("src", "/assets/smalls/edit_pencil_icon.svg");
-  editImg.setAttribute("alt", "edit-icon");
-  editImg.style.width = "20";
-  editImg.style.height = "20";
 
   let deleteImg = document.createElement("IMG");
   deleteImg.setAttribute("src", "/assets/smalls/delete_garbage_bin.svg");
@@ -305,14 +300,14 @@ function createNewTableRow(parentRow, newContent) {
   deleteImg.style.height = "20";
 
   newCell = newRow.insertCell(newContent.length);
-  newCell.classList.add("edit");
-  newCell.appendChild(editImg);
-  // event listeners must be added to the delete and edit icons because
-  // the script would have already run when the event listeners were registered
-  newCell.addEventListener("click", editThis);
+  newCell.style.width = "20px";
+  newCell.style.height = "20px";
   newCell = newRow.insertCell(newContent.length + 1);
+  newCell.setAttribute("colspan", 2);
   newCell.classList.add("delete-operation");
   newCell.appendChild(deleteImg);
+  // event listeners must be added to the delete and edit icons because
+  // the script would have already run when the event listeners were registered
   newCell.addEventListener("click", deleteThis);
 
   // last table cell is filled with the new parent rows index;
@@ -353,6 +348,7 @@ function tableCellContentSwitch(cell, operation) {
 
   let done = document.createElement("BUTTON");
   done.innerHTML = "done";
+  done.classList.add("add-button");
 
   let editImg = document.createElement("IMG");
   editImg.setAttribute("src", "/assets/smalls/edit_pencil_icon.svg");
@@ -362,6 +358,7 @@ function tableCellContentSwitch(cell, operation) {
 
   let cancel = document.createElement("BUTTON");
   cancel.innerHTML = "cancel";
+  cancel.classList.add("cancel-button");
 
   let deleteImg = document.createElement("IMG");
   deleteImg.setAttribute("src", "/assets/smalls/delete_garbage_bin.svg");
@@ -398,12 +395,15 @@ function tableCellContentSwitch(cell, operation) {
     break;
   case "add":
     if (cell.classList.contains("add")) {
-      done.setAttribute("colspan", "2");
+      //done.setAttribute("colspan", "2");
       cell.classList.remove("add");
       cell.children[0].remove();
       cell.appendChild(done);
+      cell.appendChild(cancel);
+
     } else {
       cell.classList.add("add");
+      cell.children[0].remove();
       cell.children[0].remove();
       cell.appendChild(add);
     }
@@ -425,129 +425,39 @@ function stockNew(tableRow, index) {
     row: tableRow,
   }
 
-  updatesStack.push(data);
+  newRows.push(data);
 }
-// for a descriptions of this functions purpose and behavior read the
-// comments of the stockUpdates
-function stockRemoves(tableRow, index) {
-
-  let dbPropertyName = tableRow.parentElement.parentElement.getAttribute("id");
-  let data = {
-    dbPropertyName: dbPropertyName,
-    index: index,
-    operation: "delete",
-  };
-
-  if (tableRow.classList.contains("delete")) {
-    let duplicate = updatesStack.findIndex((element) => {
-      return element.index === data.index && element.dbPropertyName === data.dbPropertyName;
-    })
-
-    // if a duplicate has been found, remove it from the stack
-    if (duplicate !== -1) {
-      updatesStack.splice(duplicate, 1);
-    }
-    // finally push the new update to the stack
-    updatesStack.push(data);
-  } else {
-    let removeElement = updatesStack.findIndex((element) => {
-      return element.index === data.index && element.dbPropertyName === data.dbPropertyName;
-    })
-
-    if (removeElement !== -1) {
-      updatesStack.splice(removeElement, 1);
-    }
-  }
-}
-
-
-// construct the new updates to be identical to the format
-// of the object in the database, and then push it to a stack
-// where all updates are kept, until the commit changes button
-// is pushed in which case the data is send to the server
-function stockUpdates(tableRow, rowTextContent, index) {
-  // get the tableRows parent and extract its id,
-  // its id is the same as the database property, that holds the array
-  // that the updated table row belong to.
-
-  // parentElement needs to be extracted twice, since tableRows are nested within a tbody
-  let dbPropertyName = tableRow.parentElement.parentElement.getAttribute("id");
-
-  let data = {
-    dbPropertyName: dbPropertyName,
-    index: index,
-    operation: "update",
-  };
-
-  switch (dbPropertyName) {
-  case "wheelDiameter":
-    data.row = {
-      amount: {
-        from: rowTextContent[0],
-        to: rowTextContent[1],
-      },
-      unit: rowTextContent[2],
-      price: rowTextContent[3],
-      priceUnit: rowTextContent[4],
-      stock: rowTextContent[5],
-    };
-    break;
-  case "thickness":
-    break;
-  case "leatherColor":
-    break;
-  case "threadColor":
-    break;
-  case "spokes":
-    break;
-  case "colorOfSpokes":
-    break;
-  default:
-    alert("error contact developer");
-    return;
-  }
-
-  // make sure that the stack does not have any idential rows
-  // when does that happen? When the administrator has commited
-  // changes to the same row therefore the one that came earlier
-  // in time is unneccessary
-  let duplicate = updatesStack.findIndex((element) => {
-    return element.index === data.index && element.dbPropertyName === data.dbPropertyName;
-  })
-
-  // if a duplicate has been found, remove it from the stack
-  if (duplicate !== -1) {
-    updatesStack.splice(duplicate, 1);
-  }
-  // finally push the new update to the stack
-  updatesStack.push(data);
-  console.log(updatesStack);
- }
 
 // sends the whole updates stack to the server
 function commitUpdates() {
-  prepareData();
-  // fetch("/admin/products/add", {
-  //   method: "POST",
-  //   headers: { "Content-type": "application/json" },
-  //   body: JSON.stringify(data),
-  // }).then(response => {
-  //   return response.text();
-  // }).then(data => {
-  //   alert(data);
-  // }).catch(err => {
-  //   alert(err);
-  // })
+  // gather all the tables that have been altered
+  let tables = document.querySelectorAll(".changed");
+  // if none of them has exit the function effectively doing nothing
+  if (!tables.length) return;
+  // else prepare the data for sending
+  const data = {
+    productId: productID,
+    tables: prepareData(tables),
+  };
+
+  fetch("/admin/update/product", {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(data),
+  }).then(response => {
+    return response.text();
+  }).then(data => {
+    if (data === "success") location.reload();
+  }).catch(err => {
+    alert(err);
+  })
 }
 
 // This functions purpose is to gather all the rows
 // and then apply the changes that have been kept in
-// the updatesStack data structure
-function prepareData() {
-  // get all the tbody nodes that have been changed.
-  let tables = document.querySelectorAll(".changed");
-
-  // get the id's of each table and add the row string
+// the newRows data structure
+function prepareData(tables) {
+    // get the id's of each table and add the row string
   let tableIds = [];
   for (const table of tables) {
     tableIds.push({
@@ -561,15 +471,19 @@ function prepareData() {
     table.rows = Array.from(document.querySelectorAll("." + table.rowClass));
   }
 
-  // check if there are any new rows
-  // add the new rows
-  for (const table of tableIds) {
-    for (const newRow of updatesStack) {
-      if (newRow.operation === "add" && newRow.dbPropertyName === table.tableClass) {
-        table.rows.push(newRow.row);
+
+  // check if there have been any new rows added to any table
+  if (newRows.length) {
+    for (const table of tableIds) {
+      for (const newRow of newRows) {
+        // insert the newly constructed row to its appropriate table
+        if (newRow.dbPropertyName === table.tableClass) table.rows.push(newRow.row);
       }
     }
   }
+
+  // shorting the array to ascending order
+  bubbleShort(tableIds);
 
   // transform the table rows into the format the database expects
   for (const table of tableIds) {
@@ -586,48 +500,134 @@ function prepareData() {
     }
   }
 
+  return tableIds;
+}
 
-  for (const table of tableIds) {
-    for (const row of table.rows) {
-      console.log(row);
+function bubbleShort(changedTables) {
+  let tmp = {};
+  for (const table of changedTables) {
+    if (table.tableClass === "wheelDiameter") {
+      for (let i = 0; i < table.rows.length; ++i) {
+        for (let j = 0; j < table.rows.length - 1; ++j) {
+          // 0 = from
+          // 1 = to
+          // so if the next row is less than the previous one swap them
+          if (parseInt(table.rows[j].children[0].innerText) > parseInt(table.rows[j + 1].children[0].innerText)) {
+            tmp = table.rows[j];
+            table.rows[j] = table.rows[j + 1];
+            table.rows[j + 1] = tmp;
+          }
+        }
+      }
+    } else if (table.tableClass === "thickness") {
+      for (let i = 0; i < table.rows.length; ++i) {
+        for (let j = 0; j < table.rows.length - 1; ++j) {
+          // 0 = from
+          // 1 = to
+          // so if the next row is less than the previous one swap them
+          if (parseInt(table.rows[j].children[0].innerText) > parseInt(table.rows[j + 1].children[0].innerText)) {
+            tmp = table.rows[j];
+            table.rows[j] = table.rows[j + 1];
+            table.rows[j + 1] = tmp;
+          }
+        }
+      }
+    } else if (table.tableClass === "length") {
+      for (let i = 0; i < table.rows.length; ++i) {
+        for (let j = 0; j < table.rows.length - 1; ++j) {
+          // 0 = from
+          // 1 = to
+          // so if the next row is less than the previous one swap them
+          if (parseInt(table.rows[j].children[0].innerText) > parseInt(table.rows[j + 1].children[0].innerText)) {
+            tmp = table.rows[j];
+            table.rows[j] = table.rows[j + 1];
+            table.rows[j + 1] = tmp;
+          }
+        }
+      }
+      return;
     }
   }
-
 }
 
 function changeFormat(row, typeOfRow) {
 
   let formatedRow = {};
+  let cells = row.children;
   switch (typeOfRow) {
   case "wheelDiameter":
     // range of cells of interest: 0 - 5
-    let cells = row.children;
-
     formatedRow = {
       amount: {
-        from: cells[0].innerText,
-        to: cells[1].innerText,
+        from: parseInt(cells[0].innerText),
+        to: parseInt(cells[1].innerText),
       },
       unit: cells[2].innerText,
-      price: cells[3].innerText,
+      price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
-      stock: cells[5].innerText,
+      stock: parseInt(cells[5].innerText),
+    };
+    break;
+  case "length":
+    // range of cells of interest: 0 - 5
+    formatedRow = {
+      amount: {
+        from: parseInt(cells[0].innerText),
+        to: parseInt(cells[1].innerText),
+      },
+      unit: cells[2].innerText,
+      price: parseInt(cells[3].innerText),
+      priceUnit: cells[4].innerText,
+      stock: parseInt(cells[5].innerText),
     };
     break;
   case "thickness":
     // range of cells of interest: 0 - 4
+    formatedRow = {
+      amount: parseInt(cells[0].innerText),
+      unit: cells[1].innerText,
+      price: parseInt(cells[2].innerText),
+      priceUnit: cells[3].innerText,
+      stock: parseInt(cells[4].innerText),
+    };
     break;
   case "leatherColor":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: parseInt(cells[1].innerText),
+      priceUnit: cells[2].innerText,
+      stock: parseInt(cells[3].innerText),
+    };
     break;
   case "threadColor":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: parseInt(cells[1].innerText),
+      priceUnit: cells[2].innerText,
+      stock: parseInt(cells[3].innerText),
+    };
     break;
   case "spokes":
     // range of cells of interest: 0 - 5
+    formatedRow = {
+      description: cells[0].innerText,
+      amount: parseInt(cells[1].innerText),
+      unit: cells[2].innerText,
+      price: parseInt(cells[3].innerText),
+      priceUnit: cells[4].innerText,
+      stock: parseInt(cells[5].innerText),
+    };
     break;
   case "colorOfSpokes":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: parseInt(cells[1].innerText),
+      priceUnit: cells[2].innerText,
+      stock: parseInt(cells[3].innerText),
+    };
     break;
   default:
     alert("error contact developer");
