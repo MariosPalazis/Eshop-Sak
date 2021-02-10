@@ -13,13 +13,14 @@ document.addEventListener('DOMContentLoaded',() =>{
        mobile.classList.add("hide");
        desktop.classList.remove("hide");
 
-       /*
+       
         // When the user scrolls the page, execute myFunction
       window.onscroll = function() {myFunction()};
   
       // Get the navbar
-        let navbar = document.getElementById("stickymenu");
-        const flexlogo=document.getElementById("flex-logo");
+        let navbar = document.getElementById("desktop");
+        const logo=document.getElementById("logo");
+
         const content=document.querySelector(".content");
       // Get the offset position of the navbar
         let sticky = navbar.offsetTop;
@@ -27,16 +28,16 @@ document.addEventListener('DOMContentLoaded',() =>{
       // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
         function myFunction() {
         if (window.pageYOffset >= sticky) {
-          navbar.classList.add("sticky");
-          flexlogo.classList.remove("hide-logo");
+          logo.style.width="20%";
+          navbar.classList.add("stickymenu");
           content.style.paddingTop="100px";
         } else {
-          navbar.classList.remove("sticky");
-          flexlogo.classList.add("hide-logo");
+          logo.style.width="100%";
+          navbar.classList.remove("stickymenu");
           content.style.paddingTop="0px";
         }
       }
-      */
+      
      }
      else{
       mobile.classList.remove("hide");
