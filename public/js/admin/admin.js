@@ -5,9 +5,12 @@ const commitChangesButton = document.getElementById("commit");
 let productID = document.querySelector(".product-container");
 productID = productID.classList[1];
 
+// switches to be passed to the toggleCommit function
+const OFF = false;
+const ON = true;
 
-// stack where updates are pushed
-let updatesStack= [];
+// stack where new rows are pushed are pushed
+let newRows = [];
 
 for (const element of deleteElements) {
   element.addEventListener("click", deleteThis);
@@ -24,6 +27,24 @@ for (const element of addElements) {
 // on click, send the whole updates stack to the server
 commitChangesButton.addEventListener("click", commitUpdates);
 
+function toggleCommit(handle) {
+
+  if (handle) {
+    commitChangesButton.addEventListener("click", commitUpdates);
+  } else {
+    commitChangesButton.removeEventListener("click", commitUpdates);
+  }
+}
+
+function refreshInputs(row) {
+  let regexp = /unit/;
+  for (const cell of row.children) {
+    if (!regexp.test(cell.className) && cell.className !== "add") {
+      cell.firstChild.value = "";
+      cell.firstChild.disabled = true;
+    }
+  }
+}
 
 function addThis() {
   // remove the disabled property from the anchors inside each cell, inside the table row
@@ -67,7 +88,7 @@ function addThis() {
     }
 
     // make sure the "to" column has a smaller number than the "from" column
-    if (tableClass === "wheelDiameter" || "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (childrenText[0] > childrenText[1]) {
         children[0].firstChild.classList.add("delete");
@@ -83,7 +104,10 @@ function addThis() {
     tableCellContentSwitch(children[children.length -1], "add");
     createNewTableRow(parentRow, childrenText);
     parentRow.classList.remove("add");
+    refreshInputs(parentRow);
+    toggleCommit(ON);
   } else {
+    toggleCommit(OFF);
     parentRow.classList.add("add");
     tableCellContentSwitch(children[children.length -1], "add");
   }
@@ -163,7 +187,7 @@ function editThis() {
     }
 
 
-    if (tableClass === "wheelDiameter" || "thickness") {
+    if (tableClass === "wheelDiameter" || tableClass === "thickness") {
       // make sure the "to" column has a smaller number than the "from" column
       if (parseInt(childrenText[0]) > parseInt(childrenText[1])) {
         children[0].firstChild.classList.add("delete");
@@ -198,7 +222,9 @@ function editThis() {
     parentRow.classList.remove("edit");
 
 
+    toggleCommit(ON);
   } else {
+    toggleCommit(OFF);
     parentRow.classList.add("edit");
 
     // remove the inner Text of each table cell
@@ -386,12 +412,19 @@ function stockNew(tableRow, index) {
     row: tableRow,
   }
 
-  updatesStack.push(data);
+  newRows.push(data);
 }
 
 // sends the whole updates stack to the server
 function commitUpdates() {
-  prepareData();
+  // gather all the tables that have been altered
+  let tables = document.querySelectorAll(".changed");
+  // if none of them has exit the function effectively doing nothing
+  if (!tables.length) return;
+  // else prepare the data for sending
+  prepareData(tables);
+
+
   // fetch("/admin/products/add", {
   //   method: "POST",
   //   headers: { "Content-type": "application/json" },
@@ -407,12 +440,9 @@ function commitUpdates() {
 
 // This functions purpose is to gather all the rows
 // and then apply the changes that have been kept in
-// the updatesStack data structure
-function prepareData() {
-  // get all the tbody nodes that have been changed.
-  let tables = document.querySelectorAll(".changed");
-
-  // get the id's of each table and add the row string
+// the newRows data structure
+function prepareData(tables) {
+    // get the id's of each table and add the row string
   let tableIds = [];
   for (const table of tables) {
     tableIds.push({
@@ -426,12 +456,13 @@ function prepareData() {
     table.rows = Array.from(document.querySelectorAll("." + table.rowClass));
   }
 
-  // check if there are any new rows
-  // add the new rows
-  for (const table of tableIds) {
-    for (const newRow of updatesStack) {
-      if (newRow.operation === "add" && newRow.dbPropertyName === table.tableClass) {
-        table.rows.push(newRow.row);
+
+  // check if there have been any new rows added to any table
+  if (newRows.length) {
+    for (const table of tableIds) {
+      for (const newRow of newRows) {
+        // insert the newly constructed row to its appropriate table
+        if (newRow.dbPropertyName === table.tableClass) table.rows.push(newRow.row);
       }
     }
   }
@@ -488,11 +519,10 @@ function bubbleShort(changedTables) {
 function changeFormat(row, typeOfRow) {
 
   let formatedRow = {};
+  let cells = row.children;
   switch (typeOfRow) {
   case "wheelDiameter":
     // range of cells of interest: 0 - 5
-    let cells = row.children;
-
     formatedRow = {
       amount: {
         from: cells[0].innerText,
@@ -506,18 +536,51 @@ function changeFormat(row, typeOfRow) {
     break;
   case "thickness":
     // range of cells of interest: 0 - 4
+    formatedRow = {
+      amount: cells[0].innerText,
+      unit: cells[1].innerText,
+      price: cells[2].innerText,
+      priceUnit: cells[3].innerText,
+      stock: cells[4].innerText,
+    };
     break;
   case "leatherColor":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: cells[1].innerText,
+      priceUnit: cells[2].innerText,
+      stock: cells[3].innerText,
+    };
     break;
   case "threadColor":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: cells[1].innerText,
+      priceUnit: cells[2].innerText,
+      stock: cells[3].innerText,
+    };
     break;
   case "spokes":
     // range of cells of interest: 0 - 5
+    formatedRow = {
+      description: cells[0].innerText,
+      amount: cells[1].innerText,
+      unit: cells[2].innerText,
+      price: cells[3].innerText,
+      priceUnit: cells[4].innerText,
+      stock: cells[5].innerText,
+    };
     break;
   case "colorOfSpokes":
     // range of cells of interest: 0 - 3
+    formatedRow = {
+      color: cells[0].innerText,
+      price: cells[1].innerText,
+      priceUnit: cells[2].innerText,
+      stock: cells[3].innerText,
+    };
     break;
   default:
     alert("error contact developer");
