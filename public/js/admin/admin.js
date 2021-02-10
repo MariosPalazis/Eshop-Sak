@@ -422,20 +422,23 @@ function commitUpdates() {
   // if none of them has exit the function effectively doing nothing
   if (!tables.length) return;
   // else prepare the data for sending
-  prepareData(tables);
+  const data = {
+    productId: productID,
+    tables: prepareData(tables),
+  };
 
 
-  // fetch("/admin/products/add", {
-  //   method: "POST",
-  //   headers: { "Content-type": "application/json" },
-  //   body: JSON.stringify(data),
-  // }).then(response => {
-  //   return response.text();
-  // }).then(data => {
-  //   alert(data);
-  // }).catch(err => {
-  //   alert(err);
-  // })
+  fetch("/admin/update/wheelCover", {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(data),
+  }).then(response => {
+    return response.text();
+  }).then(data => {
+    alert(data);
+  }).catch(err => {
+    alert(err);
+  })
 }
 
 // This functions purpose is to gather all the rows
@@ -485,12 +488,7 @@ function prepareData(tables) {
     }
   }
 
-  for (const table of tableIds) {
-    for (const row of table.rows) {
-      console.log(row);
-    }
-  }
-
+  return tableIds;
 }
 
 function bubbleShort(changedTables) {
@@ -525,61 +523,61 @@ function changeFormat(row, typeOfRow) {
     // range of cells of interest: 0 - 5
     formatedRow = {
       amount: {
-        from: cells[0].innerText,
-        to: cells[1].innerText,
+        from: parseInt(cells[0].innerText),
+        to: parseInt(cells[1].innerText),
       },
       unit: cells[2].innerText,
-      price: cells[3].innerText,
+      price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
-      stock: cells[5].innerText,
+      stock: parseInt(cells[5].innerText),
     };
     break;
   case "thickness":
     // range of cells of interest: 0 - 4
     formatedRow = {
-      amount: cells[0].innerText,
+      amount: parseInt(cells[0].innerText),
       unit: cells[1].innerText,
-      price: cells[2].innerText,
+      price: parseInt(cells[2].innerText),
       priceUnit: cells[3].innerText,
-      stock: cells[4].innerText,
+      stock: parseInt(cells[4].innerText),
     };
     break;
   case "leatherColor":
     // range of cells of interest: 0 - 3
     formatedRow = {
       color: cells[0].innerText,
-      price: cells[1].innerText,
+      price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
-      stock: cells[3].innerText,
+      stock: parseInt(cells[3].innerText),
     };
     break;
   case "threadColor":
     // range of cells of interest: 0 - 3
     formatedRow = {
       color: cells[0].innerText,
-      price: cells[1].innerText,
+      price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
-      stock: cells[3].innerText,
+      stock: parseInt(cells[3].innerText),
     };
     break;
   case "spokes":
     // range of cells of interest: 0 - 5
     formatedRow = {
       description: cells[0].innerText,
-      amount: cells[1].innerText,
+      amount: parseInt(cells[1].innerText),
       unit: cells[2].innerText,
-      price: cells[3].innerText,
+      price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
-      stock: cells[5].innerText,
+      stock: parseInt(cells[5].innerText),
     };
     break;
   case "colorOfSpokes":
     // range of cells of interest: 0 - 3
     formatedRow = {
       color: cells[0].innerText,
-      price: cells[1].innerText,
+      price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
-      stock: cells[3].innerText,
+      stock: parseInt(cells[3].innerText),
     };
     break;
   default:

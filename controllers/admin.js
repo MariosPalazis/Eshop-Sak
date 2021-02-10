@@ -46,6 +46,15 @@ export default {
       res.render("admin/products/custom", {layout: "admin", product: req.app.locals.products[index]});
     }
   },
+  async updateWheelCover(req, res) {
+    console.log(req.body);
+
+    await req.app.locals.capability.Admin.makeChangesToProduct(req.app.locals.capability, req.app.locals.products, req.body);
+
+    // update the records on the database
+
+    res.send("success");
+  },
   serverFailure(req, res) {
     res.send("server failure");
   },
