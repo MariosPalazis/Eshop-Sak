@@ -70,12 +70,12 @@
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 0;
+    top: 5px;
   }
 
   .shopping-bag{
     position: absolute;
-    top: 0px;
+    top: 5px;
     right: 55px;
     cursor: pointer;
   }
@@ -86,8 +86,8 @@
   }
   .bag-number {
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 22px;
+    height: 22px;
 
     background: rgb(255, 0, 0);
     border: none;
@@ -105,7 +105,7 @@
     color: black;
   }
   .active{
-    width: 35px;
+    width: 50px;
   }
   
 
@@ -174,7 +174,7 @@
   .login-panel{
     border: 1px solid black;
     border-radius: 5px;
-    padding: 2px 0px 5px 6px;
+    padding: 2px 3px 3px 6px;
     text-align: center;
     position: relative;
   }
