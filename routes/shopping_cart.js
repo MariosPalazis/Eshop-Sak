@@ -12,12 +12,12 @@ Router.get("/", (req, res) => {
 })
 
 Router.get("/wheelCover", async (req, res) => {
-  await myShop.addProduct(req.app.locals.capability, "100", req.session);
+  await myShop.addProduct(req.app.locals, "100", req.session);
   res.redirect(303, "/");
 })
 
 Router.get("/sprayhood", (req, res) => {
-  myShop.addProduct(req.app.locals.capability, "200", req.session);
+  myShop.addProduct(req.app.locals, "200", req.session);
   console.log(req.session);
   res.redirect(303, "/");
 

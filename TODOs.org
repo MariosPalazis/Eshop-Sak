@@ -203,7 +203,11 @@ does not work
    
 ** DONE create files for each product
    CLOSED: [2021-02-11 Thu 10:25]
-** TODO create the products routes
+** DONE create the products routes
+   CLOSED: [2021-02-11 Thu 11:49]
+** DONE check if a change in admin is reflected on the products
+   CLOSED: [2021-02-11 Thu 11:51]
+** TODO instead of fetching a product from the database, get it from the req.app.locals.products
 * the req.session object
   req.session.state = {}
   req.session.state = {
