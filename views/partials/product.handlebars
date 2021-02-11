@@ -1,0 +1,70 @@
+{{#if product}}
+{{#with product}}
+<section id="{{this.productID}}" class="product-container">
+    {{#if this.length}}
+    <article id="length" class="product">
+        <h3>length</h3>
+        {{#each this.length}}
+        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.wheelDiameter}}
+    <article id="wheelDiameter" class="product" >
+        <h3>wheel diameter</h3>
+        {{#each this.wheelDiameter}}
+        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span> </p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.thickness}}
+    <article id="thickness" class="product" >
+        <h3>thickness</h3>
+        {{#each this.thickness}}
+        <p><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.leatherColor}}
+    <article id="leatherColor" class="product">
+        <h3>Leather color</h3>
+        {{#each this.leatherColor}}
+        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.threadColor}}
+    <article id="threadColor" class="product" >
+        <h3>thread Color</h3>
+        {{#each this.threadColor}}
+        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.spokes}}
+    <article id="spokes" class="product" >
+        <h3>spokes</h3>
+        {{#each this.spokes}}
+        <p><span>{{this.description}}</span><span>{{this.amount}}</span><span>{{this.unit}}</span><span>{{this.price}}</span><span class="index" >{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+    {{#if this.colorOfSpokes}}
+    <article id="colorOfSpokes" class="product" >
+        <h3>color of spokes</h3>
+        {{#each this.colorOfSpokes}}
+        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+        {{/each}}
+    </article>
+    {{/if}}
+</section>
+{{/with}}
+{{#section 'stylesheets'}}
+<link rel="stylesheet" href="{{subRoutes}}css/products/product.css" >
+{{/section}}
+{{#section 'script'}}
+<script type="module" src="{{subRoutes}}js/products/product.js"></script>
+{{/section}}
+{{/if}}
+
+

@@ -50,7 +50,7 @@ app.use(expressSession({
   rolling: false, //true
   cookie: {
     sameSite: "lax",
-    maxAge: 10000,
+    maxAge: 100000,
   },
   store: new redisStore({
     client: redisClient
@@ -117,6 +117,7 @@ import checkoutRoutes from "./routes/checkout.js";
 import loginRoutes from "./routes/login.js";
 import productsRoutes from "./routes/products.js";
 import adminRoutes from "./routes/admin.js";
+import shoppingCartRoutes from "./routes/shopping_cart.js";
 
 
 app.get("/", (req, res) => {
@@ -128,8 +129,13 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   res.render("test", {layout: null});
 });
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+});
 app.use("/", loginRoutes);
 app.use("/checkout", checkoutRoutes);
+app.use("/shoppingCart", shoppingCartRoutes);
 app.use("/product", productsRoutes);
 app.use("/admin", adminRoutes);
 app.get("/pay", (req, res) => {

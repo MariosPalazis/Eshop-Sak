@@ -122,5 +122,92 @@ does not work
 * DONE implementing the sprayhood product
   CLOSED: [2021-02-10 Wed 13:05]
 
-* TODO find the best way to serve the products to the admin, routes, files etc.
+* DONE find the best way to serve the products to the admin, routes, files etc.
+  CLOSED: [2021-02-10 Wed 14:49]
+
+* TODO implementing the login state and how does that intersect the shopping cart
+  passport is trying to authenticate someone
+  constructs a login message
+
+  req.session.state.login = {
+       loggedin: true,
+       url: originurl,
+       method: local,
+       message: success,
+  }
+
+  the User.login accesses that object
+
+  if the passport authentication has not been successfull cut the login proccess
+  and communicate that to the user.
+** log
+
+  in the login method of the User class changed the first parameter
+  from (res) to (capability) -> req.app.locals.capability
+
+
+  in the postLogin method changed the second parameter from state to session
+  but the actual object remained the same req.session.
+  
 * TODO implementing shopping cart
+
+  the shopping cart is dependent on the session owner
+
+** the shopping cart object
+   // array of objects
+   shoppingCart: [ {}, {}, ... ]
+
+   // the object:, two properties one of them an object
+   {
+      product: {}
+      amount: number,
+   }
+
+   // the product: // same sturcture as the database
+   {
+       productID: "",
+       description: "",
+   }
+
+   
+   
+** where is the session owner defined or changed
+   at server start: states2.js ->  (session owner is anonymous);
+       initializeCapability(req, res, next) {
+      if (app.locals.capability) {
+        res.locals.capability = app.locals.capability;
+        next();
+      } else {
+        console.log(Chalk.red.bold("{{{{   INITIALIZATION OF STATE  }}}}"));
+        app.locals.capability  = new Capability();
+        app.locals.capability.makeSessionOwner(req.session, "anonymous");
+        next();
+      }
+    },
+
+** TODO implement th updateStateCart and the transfelLocalState to the new shoppingCart lib
+** TODO addProduct, getting the shoppingCart from each user (QUESTION)
+   why aim i getting 
+
+   the addProduct method of the shoppingCart class should not be accessing a users private
+   shoppingCart but onlyy the global shoppingCart.
+** log of actions
+   removed the seedShoppingCart function from the shoppingCart class.
+   i have though transfered its capability to the capability class and changed its name to
+   seedState
+
+
+* TODO implementing the user products
+** DONE create the products partial
+   CLOSED: [2021-02-11 Thu 10:24]
+   
+** DONE create files for each product
+   CLOSED: [2021-02-11 Thu 10:25]
+** TODO create the products routes
+* the req.session object
+  req.session.state = {}
+  req.session.state = {
+      user: {},
+      anonymous: {},
+      stateCart: {},
+  }
