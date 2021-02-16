@@ -102,6 +102,7 @@ app.use(Capability.seedProducts);
 app.use(myMiddleware.subRoutes);
 app.use(myMiddleware.flashMessages);
 app.use(myMiddleware.stateShoppingCart);
+app.use(myMiddleware.isUsername);
 
 
 // COSTUM MODULES ENDS HERE //
@@ -121,17 +122,12 @@ import shoppingCartRoutes from "./routes/shopping_cart.js";
 
 
 app.get("/", (req, res) => {
-
   res.render("home");
 })
 
 
-app.get("/test", (req, res) => {
-  res.render("test", {layout: null});
-});
-app.use((req, res, next) => {
-  console.log(req.session);
-  next();
+app.get("/new/header", (req, res) => {
+  res.render("newheader", {layout: "mine"});
 });
 app.use("/", loginRoutes);
 app.use("/checkout", checkoutRoutes);

@@ -1,0 +1,70 @@
+<section>
+    <a href="/login">login</a>
+    <a href="/register" >register</a>
+    <a href="/checkout/address" >address</a>
+    <a href="/" >home</a>
+    <a href="/logout">logout</a>
+    <a href="/new/header" >new header</a>
+    <a href="/shoppingCart" >shopping cart</a>
+    <a href="/shoppingCart/addDummy" >add an item to the shopping cart</a>
+</section>
+
+<header>
+    <nav id="mobile" class="stickymenu" >
+        <div class="topnav" >
+            <div class="padd" ><!-- What the fuck is padd? -->
+
+            </div>
+    </nav>
+    <nav id="desktop" >
+        <section id="logo" >
+            <a href="#"><img src="{{subRoutes}}assets/socials/google_logo.png" alt="logo" ></a>
+        </section>
+        <section id="desktop-links-container">
+            <ul id="desktop-links-list" >
+                <li><a href="/" >HOME</a></li>
+                <li><a href="#company" >COMPANY</a></li>
+                <li><span>SHOP</span>
+                    <ul>
+                        <li><a href="/product/wheelCover" >WHEELCOVER</a></li>
+                        <li><a href="/product/sprayhood" >SPRAYHOOD GRAB BAR COVER</a></li>
+                        <li><a href="/product/custom" >CUSTOM</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">SOMETHING</a></li>
+            </ul>
+        </section>
+        <section id="shoppingCart" >
+            <p><img src="{{subRoutes}}assets/smalls/shopping-bag.svg" id="desktop-bag" alt="logo" ></p>
+            {{#if stateCart}}
+            <div class="desktop-bag-number">{{stateCart.meta.totalAmount}}</div>
+            {{/if}}
+        </section>
+        <section id="login-container" >
+            {{#if username}}
+            <ul><li><span>{{username}}</span><span><img src="{{subRoutes}}assets/smalls/user_success.png" id="user" alt="logo" ></span>
+                <ul>
+                    <li><a href="/account/orders" >ORDERS</a></li>
+                    <li><a href="/account/addresses" >ADDRESSES</a></li>
+                    <li><a href="/account/settings" >SETTINGS</a></li>
+                    <li><a href="/logout">LOGOUT</a></li>
+                </ul>
+            </li>
+            </ul>
+            {{else}}
+            <ul><li><span>Login</span><span>Register</span><span><img src="{{subRoutes}}assets/smalls/user.png" id="user" alt="logo" ></span>
+                <ul>
+                </ul>
+            </li>
+            </ul>
+            {{/if}}
+        </section>
+    </nav>
+</header>
+
+{{#section 'stylesheets'}}
+<link rel="stylesheet" href="{{subRoutes}}css/header.css" >
+{{/section}}
+{{#section 'script'}}
+<script type="module" src="{{subRoutes}}js/header.js"></script>
+{{/section}}

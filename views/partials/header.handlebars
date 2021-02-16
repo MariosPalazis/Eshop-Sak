@@ -7,11 +7,14 @@
     <a href="/logout">logout</a>
     <a href="/about" >about</a>
     <a href="/shoppingCart" >shopping cart</a>
-    <a href="/shoppingCart/wheelCover" >add wheelCover</a>
-    <a href="/shoppingCart/sprayhood" >add sprayhood</a>
     <a href="/product/wheelCover" >wheelcover</a>
+    <a href="/product/sprayhood" >sprayhood</a>
+    <a href="/new/header">new header</a>
     {{#if stateCart}}
-    <p>{{stateCart.totalAmount}}</p>
+    <p>{{stateCart.meta.totalAmount}}</p>
+    {{/if}}
+    {{#if username}}
+    <p>{{username}}</p>
     {{/if}}
 </section>
 
@@ -69,7 +72,7 @@
     </nav>
 -->
     <nav id="desktop" >
-        <section id="logo"> 
+        <section id="logo">
             <a href="#"><img src="{{subRoutes}}assets/socials/google_logo.png" alt="logo" ></a>
         </section>
         <section id="desktop-links">

@@ -171,6 +171,131 @@ does not work
 
    
    
+** the stateCart object
+   req.session.state.stateCart = { totalAmount: 10, shoppingCart: [array] }
+
+   shoppingCart = [ { product: [object], amount: 6 } ]
+
+   product = {
+   productID: 100,
+   description: wheel cover,
+   wheelDiameter: [ [object], [object] ]
+   thickness: [ [object], [object] ]
+   leatherColor: [ [object], [object] ]
+   threadColor: [ [object], [object] ]
+   spokes: [ [object], [object] ],
+   colorOfSpokes: [ [object], [object] ]
+   }
+
+
+   wheelDiameter = [
+       amount: {
+          from: 10,
+          to: 20,
+       },
+       unit: "cm",
+       price: 20,
+       priceUnit: "euro",
+       stock: 10,
+   
+   ]
+
+
+** the req.app.locals.products object
+   req.app.locals.products = [ {object}, {object}, ]
+
+   object = {
+   productId: "100",
+   description: "wheel cover",
+   wheeldiameter: [ {object}, {object} ],
+   .
+   .
+   .
+   
+   }
+
+   wheelDiameter = [
+       {
+          amount: {
+              from: 10,
+              to: 20,
+              }
+           unit: "cm",
+           price: 20,
+       }
+   ]
+
+** the structure of the shopping cart
+   totalPrice
+   totalAmount
+
+   req.session.state.stateCart = { totalAmount: 10, totalPrice, shoppingCart: [array] }
+
+   shoppingCart = [ { product: object, amount: 6, price, totalPrice } ]
+
+   product = {productID, description, [rows] } 
+
+   rows =  [ {object} ]
+
+  req.session.state.stateCart:
+  {
+     totalAmount: 10,
+     totalPrice: 100,
+     shoppingCart: [
+                       {
+                           amount: 6,
+                           price: 100,
+                           totalPrice: 600,
+                           product: {
+                                        productID: 100,
+                                        description: "small ...",
+                                        rows: [
+                                                 {
+                                                   amount: {
+                                                              from: 52,
+                                                              to: 100,
+                                                            },
+                                                     unit: "cm",
+                                                     price: 20,
+                                                     priceUnit: euro,
+                                                     stock: 10,
+                                                  },
+                                                  {
+                                                    amount: 20,
+                                                    unit: "mm",
+                                                    price: 20,
+                                                    priceUnite: euro,
+                                                    stock: 10,
+                                                  }
+                                               ]
+                                      }
+                       },
+                       {
+                       },
+                       {
+                       },
+                    ]
+   }
+
+   shoppingCart: property(array of objects) ->
+   {{each}} 
+   product: property(object) ->
+   rows: property(array of objects) ->
+        {{each}}
+          amount: object
+        {{/each}}
+   {{/each}}
+   {{each}}
+
+
+   amount
+   price
+   totalPrice
+   productID "100"
+   description
+   rowsID
+   rows: [
+   ]
 ** where is the session owner defined or changed
    at server start: states2.js ->  (session owner is anonymous);
        initializeCapability(req, res, next) {
@@ -196,7 +321,41 @@ does not work
    i have though transfered its capability to the capability class and changed its name to
    seedState
 
+ 
+* PLAN
+** DONE match the client productId to the one in req.app.locals.products
+   CLOSED: [2021-02-11 Thu 13:18]
+** TODO delete the productId property of the payload
+** create the rowsId
+** search in the current session owners shopping cart for a duplicate item using the rowsId
 
+** TODO calculate the grand total amount and grand total price
+
+   length
+   thickness
+   leathercolor
+   theardColor
+
+** on user login
+   is there an anonymous shopping cart?
+     ---> yes
+         -----> create flash message, ask the user
+
+    ---> no
+         -----> dont create flash message
+
+
+         username created
+** DONE add username to the res.local object
+   CLOSED: [2021-02-12 Fri 14:37]
+** DONE create a new navigation bar where both the username and the shopping cart may be tested
+   CLOSED: [2021-02-12 Fri 15:22]
+** DONE create the controllers and routes for all the products
+   CLOSED: [2021-02-12 Fri 15:30]
+** DONE create the controllers and routes for the shopping cart
+   CLOSED: [2021-02-12 Fri 16:24]
+** TODO finish the navigation bar
+** TODO provide initial size values for section 1 and 2
 * TODO implementing the user products
 ** DONE create the products partial
    CLOSED: [2021-02-11 Thu 10:24]
@@ -207,7 +366,8 @@ does not work
    CLOSED: [2021-02-11 Thu 11:49]
 ** DONE check if a change in admin is reflected on the products
    CLOSED: [2021-02-11 Thu 11:51]
-** TODO instead of fetching a product from the database, get it from the req.app.locals.products
+** DONE instead of fetching a product from the database, get it from the req.app.locals.products
+   CLOSED: [2021-02-11 Thu 13:17]
 * the req.session object
   req.session.state = {}
   req.session.state = {

@@ -148,16 +148,15 @@
         <caption>SPOKES</caption>
         <tr><th>description</th><th>amount</th><th>unit</th><th>price</th><th>unit</th><th>stock</th></tr>
         {{#each this.spokes}}
-        <tr class="spokes-row">
+        <tr class="spokes-row" >
             <td class="spokes-description" >{{this.description}}</td>
             <td class="spokes-amount" >{{this.amount}}</td>
             <td class="spokes-unit" >{{this.unit}}</td>
             <td class="spokes-price" >{{this.price}}</td>
             <td class="spokes-price-unit" >{{this.priceUnit}}</td>
             <td class="spokes-stock" >{{this.stock}}</td>
-            <td class="edit" ><img src="/assets/smalls/edit_pencil_icon.svg" height="20" width="20" alt="edit-icon"></td>
-            <td class="delete-operation" ><img src="/assets/smalls/delete_garbage_bin.svg" height="20" width="20" alt="delete-icon"></td>
-            <td class="index" >{{@index}}</td>
+            <td class="edit" ><img src="/assets/smalls/edit_pencil_icon.svg" height="20" width="20" alt="edit-icon" ></td>
+            <td class="delete-operation" ><img src="/assets/smalls/delete_garbage_bin.svg" height="20" width="20" alt="delete-icon" ></td>
         </tr>
         {{/each}}
         <tr>

@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
   contactAddress: {type: String}, // email
   paymentId: {type: String, index: true}, // stripe
   amount: {type: Number},
-  status: {type: String}, // processing, pending, sending, received
+  status: {type: String}, // active, proccessing, sending, received,
   paymentStatus: {type: String}, // pending, received, refunded, problem
   currency: {type: String},
   date: {type: String},
@@ -31,7 +31,6 @@ const orderSchema = new mongoose.Schema({
     postCode: {type: String},
     tel: {type: Number},
   },
-
   shoppingCart: String,
   comment: String,
 });

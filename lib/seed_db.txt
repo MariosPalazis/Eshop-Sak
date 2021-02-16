@@ -153,6 +153,14 @@ let a = async () => {
     ],
     spokes: [
       {
+        description: "none",
+        amount: 0,
+        unit: "cm",
+        price: 0,
+        priceUnit: "euro",
+        stock: -1,
+      },
+      {
         description: "straight",
         amount: 10,
         unit: "cm",

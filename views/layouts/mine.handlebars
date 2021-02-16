@@ -6,16 +6,8 @@
         <link rel="stylesheet" href="{{subRoutes}}css/defaults.css" >
     </head>
     <body>
-        {{> header}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
         <main>
             {{{body}}}
         </main>
-        {{#if flashMessages}}
-        {{> flashMessages}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
-        {{/if}}
     </body>
 </html>

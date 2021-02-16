@@ -1,0 +1,305 @@
+.site-wide-header {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr min-content;
+    grid-template-rows: 80px;
+    grid-auto-rows: 1fr min-content;
+}
+
+.account-container {
+    visibility: hidden;
+    display: none;
+}
+
+.navigation-container {
+    visibility: hidden;
+    display: none;
+}
+
+
+
+.logo-container {
+    background-color: purple;
+}
+.logo-container > p {
+    max-width: 100px; /* a max-width given here enables its container to get a size of 1fr */
+    min-width: 100px;
+    height: 100%;  /* otherwise image overflows */
+    /* keep logo centered vertically and horizontally in its container */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+
+    /* make sure that the logos container can freely flow inside its container always keeping an equal
+       distance both sides, it appears as though the logo always remains centered */
+    margin: auto;
+}
+
+.logo-container > p > img {
+    /* Do not want the image to cover its container fully so that it appears to float within it */
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+
+.shoppingCart-container {
+
+    background-color: purple;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.shoppingCart-container > p {
+    width: 40px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shoppingCart-container > p > img {
+    width: 70%;
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: -1px;
+}
+
+
+.hamburger {
+
+    background-color: purple;
+    width: 50px;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-right: 7px;
+    padding-left: 9px;
+}
+
+.hamburger > span {
+    width: 90%;
+    height: 2px;
+    border-radius: 10px;
+    background-color: green;
+}
+
+.hamburger > span:nth-child(2) {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.navigation-container {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.navigation-container > ul {
+    background-color: yellow;
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: 100%;
+}
+
+.navigation-container > ul > li {
+    width: 100%;
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+.navigation-container .top-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+
+.submenu {
+    list-style-type: none;
+    text-decoration: none;
+    visibility: hidden;
+    display: none;
+}
+
+.submenu > li {
+    width: 100%;
+    flex: 0 1 auto;
+    text-align: center;
+}
+
+.sub-link {
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.submenu-link {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.submenu-link > .top-link {
+    width: auto;
+    height: auto;
+}
+
+.toggle-submenu {
+    visibility: visible;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-top: 3px solid black;
+    flex: 3;
+}
+.account-container {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+
+.not-logged-in-account {
+    list-style-type: none;
+    text-align: center;
+}
+.logged-in-account {
+    list-style-type: none;
+    text-align: center;
+}
+
+.not-logged-in-account > li {
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.logged-in-account > li {
+    width: 100%;
+
+}
+
+.account-logo-not-logged-in {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+
+.submenu-account-container > p {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+.account-name {
+    display: inline-block;
+    margin-bottom: -8px;
+    margin-left: 12px;
+    padding-right: 5px;
+}
+.account-logo-parent {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+.account-logo {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.not-logged-in-account:hover {
+    background-color: blue;
+}
+
+.not-logged-in-account span:not(:last-child) {
+    border-right: 3px solid black;
+}
+
+.not-logged-in-account span:last-child {
+    margin-left: 10px;
+}
+
+.not-logged-in-account span a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+
+.not-logged-in-account span a:hover {
+    background-color: yellow;
+}
+
+.submenu-account  {
+    visibility: hidden;
+    display: none;
+    list-style-type: none;
+    text-decoration: none;
+    height: 200px;
+}
+
+.submenu-account > li {
+    width: 100%;
+    flex: 1;
+}
+.submenu-account >li:nth-child(1) {
+    margin-top: 10px;
+}
+.submenu-account > li > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Added by javascript at the click of the hamburger */
+.toggle-visibility {
+    visibility: visible;
+    display: block;
+}
+
+.toggle-submenu {
+    visibility: visible;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-top: 3px solid black;
+    flex: 3;
+    height: 200px;
+}
+
+@media screen and (min-width: 950px) {
+}

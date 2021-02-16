@@ -6,10 +6,10 @@ html * {
     padding: 0px;
     height: auto;
 }
-*, *:before, *:after{
+*, *:before, *:after {
     box-sizing: inherit;
 }
-a{
+a {
     text-decoration: none;
 }
 
