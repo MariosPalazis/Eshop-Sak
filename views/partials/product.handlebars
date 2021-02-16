@@ -1,78 +1,187 @@
 {{#if product}}
 {{#with product}}
 
+
 <section id="{{this.productID}}" class="product-container" >
 {{#if this.length}}
+<div class="col">
     <article id="length" class="product">
-        <h3>length</h3>
-        {{#each this.length}}
-        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
+        <div class="dimension-circle" ><div class="circle" id="length-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">LENGTH</p></br>
+                    <p class="varValue" id="length-value">Choose an option</p>
+                    <div class="options" id="lno">
+                        {{#each this.length}}
+                        <hr>
+                        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
+                        {{/each}}
+                    </div>
+            </div>
     </article>
+    <div id="length-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
     <article id="leatherColor" class="product">
-        <h3>Leather color</h3>
-        {{#each this.leatherColor}}
-        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
+        <div class="dimension-circle" ><div class="circle" id="leather-circle"></div></div>
+            <div class="vars">
+                <p class="varName">LEATHER COLOR</p></br>
+                <p class="varValue" id="leather-value">Choose an option</p>
+                <div class="options" id="lco">
+                    {{#each this.leatherColor}}
+                    <hr>
+                    <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                </div>
+            </div>
     </article>
-    <article id="threadColor" class="product" >
-        <h3>thread colors</h3>
-        {{#each this.threadColor}}
-        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="thickness" class="product" >
-        <h3>thickness</h3>
-        {{#each this.thickness}}
-        <p><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
-        {{/each}}
-    </article>
-{{else}}
-    <article id="wheelDiameter" class="product" >
-        <h3>wheel diameter</h3>
-        {{#each this.wheelDiameter}}
-        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span> </p>
-        {{/each}}
-    </article>
-    <article id="thickness" class="product" >
-        <h3>thickness</h3>
-        {{#each this.thickness}}
-        <p><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="leatherColor" class="product">
-        <h3>Leather color</h3>
-        {{#each this.leatherColor}}
-        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="threadColor" class="product" >
-        <h3>thread Color</h3>
-        {{#each this.threadColor}}
-        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="spokes" class="product" >
-        <h3>spokes</h3>
-        {{#each this.spokes}}
-        <p><span>{{this.description}}</span><span>{{this.amount}}</span><span>{{this.unit}}</span><span>{{this.price}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
-    </article>
+    <div id="leather-validation" class="validations">
+        <p>Please pick a value!</p>
+    </div>
+</div>
+<div class="col">
     <article id="colorOfSpokes" class="product" >
-        <h3>color of spokes</h3>
-        {{#each this.colorOfSpokes}}
-        <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
-        {{/each}}
+        <div class="dimension-circle" ><div class="circle" id="thread-circle"></div></div>
+            <div class="vars">
+                <p class="varName">COLOR OF THREAD</p></br>
+                <p class="varValue" id="thread-value">Choose an option</p>
+                  <div class="options" id="cto">
+                    {{#each this.colorOfSpokes}}
+                    <hr>
+                    <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                 </div>
+            </div>
     </article>
+    <div id="thread-validation" class="validations">
+        <p>Please pick a value!</p>
+    </div>
+    <article id="thickness" class="product" >
+      <div class="dimension-circle" ><div class="circle" id="thickness-circle"></div></div>
+            <div class="vars">
+                <p class="varName">THICKNESS</p></br>
+                <p class="varValue" id="thickness-value">Choose an option</p>
+                <div class="options" id="tho">
+                    {{#each this.thickness}}
+                    <hr>
+                    <p><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
+                    {{/each}}
+                </div>
+            </div>
+    </article>
+      <div id="thickness-validation" class="validations">
+        <p>Please pick a value!</p>
+      </div>
+</div>
+{{else}}
+     <div class="col">
+        <article id="wheelDiameter" class="product" >
+            <div class="dimension-circle" ><div class="circle" id="wheel-diam-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">WHEEL DIAMETER</p></br>
+                    <p class="varValue" id="wheel-diam-value">Choose an option</p>
+                    <div class="options" id="wdo">
+                        {{#each this.wheelDiameter}}
+                        <hr>
+                        <p class="value"><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span> <span>{{this.unit}}</span><span class="index">{{@index}}</span> </p>
+                        {{/each}}
+                    </div>
+                </div>
+        </article>
+         <div id="wheel-diam-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        <article id="leatherColor" class="product" >
+            <div class="dimension-circle" ><div class="circle" id="leather-circle"></div></div>
+            <div class="vars">
+                <p class="varName">LEATHER COLOR</p></br>
+                <p class="varValue" id="leather-value">Choose an option</p>
+                <div class="options" id="lco">
+                    {{#each this.leatherColor}}
+                    <hr>
+                    <p class="value"><span>{{this.color}}</span><span class="index">{{@index}}</span></p>
+                    {{/each}}
+                </div>
+            </div>
+        </article>
+        <div id="leather-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        </article>
+        <article id="thickness" class="product">
+            <div class="dimension-circle" ><div class="circle" id="thickness-circle"></div></div>
+            <div class="vars">
+                <p class="varName">THICKNESS</p></br>
+                <p class="varValue" id="thickness-value">Choose an option</p>
+                <div class="options" id="tho">
+                    {{#each this.thickness}}
+                    <hr>
+                    <p class="value"><span>{{this.amount}}</span> <span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                </div>
+        </article>
+        <div id="thickness-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        </article>
+    </div>
+    <div class="col">
+        <article id="threadColor" class="product" >
+             <article class="single-dimension" id="ct">
+            <div class="dimension-circle" ><div class="circle" id="thread-circle"></div></div>
+            <div class="vars">
+                <p class="varName">COLOR OF THREAD</p></br>
+                <p class="varValue" id="thread-value">Choose an option</p>
+                  <div class="options" id="cto">
+                    {{#each this.threadColor}}
+                    <hr>
+                    <p class="value"><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                 </div>
+            </div>
+        </article>
+        <div id="thread-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        </article>
+        <article id="spokes" class="product" >
+            <div class="dimension-circle" ><div class="circle" id="spokes-circle"></div></div>
+            <div class="vars">
+                <p class="varName">SPOKES 8 PCS</p></br>
+                <p class="varValue" id="spokes-value">Choose an option</p>
+                <div class="options" id="spo">
+                    {{#each this.spokes}}
+                    <hr>
+                    <p class="value"><span>{{this.description}}</span> <span>{{this.amount}}</span><span>{{this.unit}}</span> (+<span>{{this.price}}</span>€)<span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                 </div>
+            </div>
+        </article>
+        <div id="spokes-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        <article id="colorOfSpokes" class="product" >
+            <div class="dimension-circle" ><div class="circle" id="spokes-color-circle"></div></div>
+            <div class="vars">
+                <p class="varName">COLOR OF SPOKES</p></br>
+                <p class="varValue" id="spokes-color-value">Choose an option</p>
+                <div class="options" id="cso">
+                    {{#each this.colorOfSpokes}}
+                    <hr>
+                    <p class="value"><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    {{/each}}
+                  </div>
+            </div>
+        </article>
+        <div id="colorspokes-validation" class="validations">
+            <p>Please pick a value!</p>
+        </div>
+        <section class="button-container">
+            <button id="submit">ADD</button>
+        </section>
+    </div>
 {{/if}}
 </section>
-{{/with}}
-{{#section 'stylesheets'}}
-<link rel="stylesheet" href="{{subRoutes}}css/products/product.css" >
-{{/section}}
-{{#section 'script'}}
-<script type="module" src="{{subRoutes}}js/products/product.js"></script>
-{{/section}}
-{{/if}}
 
+{{/with}}
+{{/if}}
 
