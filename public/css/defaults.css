@@ -13,3 +13,45 @@ a {
     text-decoration: none;
 }
 
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content;
+    grid-auto-rows: min-content;
+    height: 100vh;
+}
+
+.site-wide-header {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 80px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+footer {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+@media screen and (min-width: 950px) {
+    main {
+        margin-top: 145px;
+        display: flex;
+        flex-flow: column-nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

@@ -1,23 +1,54 @@
-<section>
-    <a href="/login">login</a>
-    <a href="/register" >register</a>
-    <a href="/checkout/address" >address</a>
-    <a href="/product" >products</a>
-    <a href="/" >home</a>
-    <a href="/logout">logout</a>
-    <a href="/about" >about</a>
-    <a href="/shoppingCart" >shopping cart</a>
-    <a href="/product/wheelCover" >wheelcover</a>
-    <a href="/product/sprayhood" >sprayhood</a>
-    <a href="/new/header">new header</a>
-    {{#if stateCart}}
-    <p>{{stateCart.meta.totalAmount}}</p>
-    {{/if}}
-    {{#if username}}
-    <p>{{username}}</p>
-    {{/if}}
-</section>
-
+<header class="site-wide-header" >
+    <section class="logo-container">
+        <a href="/" ><img src="{{subRoutes}}assets/socials/google_logo.png" alt="company-logo"></a>
+    </section>
+    <section class="shoppingCart-container" >
+        <p><a href="/shoppingCart" ><img src="{{subRoutes}}assets/smalls/shopping-bag-ffecd.png" alt="shopping-cart-logo" ></a></p>
+        {{#if stateCart}}
+        <div class="shoppingCart-amount" ><p>{{stateCart.meta.totalAmount}}</p></div>
+        {{/if}}
+    </section>
+    <section class="mobile-hamburger-container" >
+        <div class="hamburger" >
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
+    <section class="navigation-container" >
+        <ul class="topmenu">
+            <li><a class="top-link" href="/" >HOME</a></li>
+            <li><a class="top-link" href="#company" >COMPANY</a></li>
+            <li><a class="top-link" href="#" >SOMETHING</a></li>
+            <li class="submenu-link"><span class="top-link" >SHOP</span>
+                <ul class="submenu">
+                    <li><a class="sub-link" href="/product/wheelCover" >WHEELCOVER</a></li>
+                    <li><a class="sub-link" href="/product/sprayhood" >SPRAYHOOD GRAB BAR COVER</a></li>
+                    <li><a class="sub-link" href="/product/custom" >CUSTOM</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section class="account-container">
+        {{#if username}}
+        <ul class="logged-in-account">
+            <li class="submenu-account-container"><p><span class="account-name">{{username}}</span><span class="account-logo-parent"><img class="account-logo" src="{{subRoutes}}assets/smalls/user_success.png" alt="user-icon" ></span></p>
+                <ul id="specificity-account" class="submenu-account">
+                    <li><a href="/account/orders" >ORDERS</a></li>
+                    <li><a href="/account/addresses" >ADDRESSES</a></li>
+                    <li><a href="/account/settings" >SETTINGS</a></li>
+                    <li><a href="/logout">LOGOUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        {{else}}
+        <ul class="not-logged-in-account">
+            <li><span><a href="/login" >Login</a></span><span><a href="/register" >Register</a></span><span><img class="account-logo-not-logged-in" src="{{subRoutes}}assets/smalls/user.png" id="user" alt="logo" ></span>
+            </li>
+        </ul>
+        {{/if}}
+    </section>
+</header>
 
 {{#section 'stylesheets'}}
 <link rel="stylesheet" href="{{subRoutes}}css/header.css" >
@@ -25,68 +56,3 @@
 {{#section 'script'}}
 <script type="module" src="{{subRoutes}}js/header.js"></script>
 {{/section}}
-
-<header>
-    <nav id="mobile" class="stickymenu">
-        <div class="topnav">
-            <div class="padd">
-                <img src="{{subRoutes}}assets/socials/google_logo.png" class="active" alt="logo"> 
-                <div class="shopping-bag"> 
-                    <img src="{{subRoutes}}assets/smalls/shopping-bag.svg" id="bag" class="bag" alt="logo"  >
-                    <div class="bag-number">3</div>
-                </div>
-            </div>
-            <img src="{{subRoutes}}assets/smalls/mobHamb.png" id="hamburger" class="icon" alt="logo"  >   
-        </div>
-        <div id="myLinks">
-            <div class="spread">
-                <a href="#" >Home</a>
-                <a href="#" >Compant</a>
-                <a href="#" >Product</a>
-                <a href="#" >Contact</a>
-            </div>
-            <div class="bottom">
-                <a href="#" class="user-status">Login/User account</a>
-                <a href="#" class="user-status">Logout</a>
-            </div>
-        </div>
-    </nav>
-<!--
-    <nav id="desktop" class="stickymenu">
-        <section id="logo"> 
-            <a href="#"><img src="{{subRoutes}}assets/socials/google_logo.png" alt="logo" ></a>
-        </section>
-        <section id="desktop-links">
-            <a href="#home">HOME</a>
-            <a href="#company">COMPANY</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#contact">CONTACT</a>
-        </section>
-        <section id="login">
-            <img src="{{subRoutes}}assets/smalls/shopping-bag.svg" id="desktop-bag" alt="logo"  >
-            <div class="desktop-bag-number">3</div>
-            <div class="login-panel">
-                <p>Login <img src="{{subRoutes}}assets/smalls/user.png" id="user" alt="logo" ></p>
-            </div>
-        </section>
-    </nav>
--->
-    <nav id="desktop" >
-        <section id="logo">
-            <a href="#"><img src="{{subRoutes}}assets/socials/google_logo.png" alt="logo" ></a>
-        </section>
-        <section id="desktop-links">
-            <a href="#home">HOME</a>
-            <a href="#company">COMPANY</a>
-            <a href="#product">PRODUCT</a>
-            <a href="#contact">CONTACT</a>
-        </section>
-        <section id="login">
-            <img src="{{subRoutes}}assets/smalls/shopping-bag.svg" id="desktop-bag" alt="logo"  >
-            <div class="desktop-bag-number">3</div>
-            <div class="login-panel">
-                <p>Login <img src="{{subRoutes}}assets/smalls/user.png" id="user" alt="logo" ></p>
-            </div>
-        </section>
-    </nav>
-</header>

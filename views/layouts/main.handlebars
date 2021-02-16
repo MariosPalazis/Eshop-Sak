@@ -12,6 +12,14 @@
             {{{_sections.stylesheets}}}
             {{{_sections.script}}}
         </main>
+        {{#if flashMessages}}
         {{> flashMessages}}
+        {{{_sections.stylesheets}}}
+        {{{_sections.script}}}
+        {{/if}}
+        {{> footer}}
+        {{{_sections.stylesheets}}}
+        {{{_sections.script}}}
     </body>
 </html>
+
