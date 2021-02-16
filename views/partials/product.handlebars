@@ -13,7 +13,7 @@
                     <div class="options" id="lno">
                         {{#each this.length}}
                         <hr>
-                        <p><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
+                        <p class="value"><span>{{this.amount.from}}</span>-<span>{{this.amount.to}}</span><span>{{this.unit}}</span><span class="index" >{{@index}}</span></p>
                         {{/each}}
                     </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="options" id="lco">
                     {{#each this.leatherColor}}
                     <hr>
-                    <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    <p class="value"><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
                     {{/each}}
                 </div>
             </div>
@@ -45,9 +45,9 @@
                 <p class="varName">COLOR OF THREAD</p></br>
                 <p class="varValue" id="thread-value">Choose an option</p>
                   <div class="options" id="cto">
-                    {{#each this.colorOfSpokes}}
+                    {{#each this.threadColor}}
                     <hr>
-                    <p><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
+                    <p class="value"><span>{{this.color}}</span><span class="index" >{{@index}}</span></p>
                     {{/each}}
                  </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="options" id="tho">
                     {{#each this.thickness}}
                     <hr>
-                    <p><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
+                    <p class="value"><span>{{this.amount}}</span><span>{{this.unit}}</span><span class="index">{{@index}}</span></p>
                     {{/each}}
                 </div>
             </div>
@@ -71,7 +71,11 @@
       <div id="thickness-validation" class="validations">
         <p>Please pick a value!</p>
       </div>
+    <section class="button-container">
+        <button id="submit">ADD</button>
+    </section>
 </div>
+
 {{else}}
      <div class="col">
         <article id="wheelDiameter" class="product" >
