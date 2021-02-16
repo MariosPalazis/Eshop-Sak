@@ -1,189 +1,572 @@
+.site-wide-header {
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 4fr min-content;
+    grid-template-rows: 80px;
+    grid-auto-rows: 1fr min-content;
+    background-color: #000044;
+    font-size: 0.8em;
+    position: fixed;
+}
 
-  /*Mobile menu*/
-  #mobile {
-    width: 100%;
-    margin: auto;
-    background-color: #e6e6e6;
-    color: white;
-    display: flex;
-    flex-direction: column;
-  }
-  .mobile-show{
-    height: 100vh;
-    z-index: 10;
-  }
-  .hide{
-    display: none;
+.site-wide-header a {
+    outline: none;
+}
+
+.account-container {
     visibility: hidden;
-    opacity: 0;
-  }
-  .topnav {
-    overflow: hidden;
-    background-color: #e6e6e6;
-    position: relative;
-    padding: 5px;
-    flex: 0 1 auto;
-  }
-  .padd{
-    position: relative;
-  }
-  #myLinks {
     display: none;
-    text-align: center;
-    flex-direction: column;
-    flex: 1 1 auto;
-  }
-  .spread{
+}
+
+.navigation-container {
+    visibility: hidden;
+    display: none;
+}
+
+
+
+.logo-container > a {
+    max-width: 100px; /* a max-width given here enables its container to get a size of 1fr */
+    min-width: 100px;
+    height: 100%;  /* otherwise image overflows */
+    /* keep logo centered vertically and horizontally in its container */
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-evenly;
-    flex: 1 0 auto;
-  }
-  .bottom{
-    margin-top: auto;
-    flex: 0 1 auto;
-  }
-  .spread a{
-    color: #a6a6a6;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-    width: 100%;
-  }
-  .user-status{
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-    background-color: gray;
-    width: 100%;
-    margin: 2px;
-  }
- .icon {
-    background: black;
-    width: 45px;
-    height: 50px;
-    display: block;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 5px;
-  }
-
-  .shopping-bag{
-    position: absolute;
-    top: 5px;
-    right: 55px;
-    cursor: pointer;
-  }
-  .bag {
-    width: 43px;
-    height: 38px;
-    cursor: pointer;
-  }
-  .bag-number {
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-
-    background: rgb(255, 0, 0);
-    border: none;
-    color: rgb(255, 255, 255);
-    text-align: center;
-
-    position: absolute;
-    right: -5px;
-    top: 0;
-    font: 17px Arial, sans-serif;
-  }
-  
-  .spread a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  .active{
-    width: 50px;
-  }
-  
-
-  /*AERO HEADER*/
-  #desktop{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: right;
-    background-color: rgb(185, 185, 185);
-    padding: 10px 5px;
-    width: 100%;
-  }
-  #logo{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-  }
-  #logo img{
+    padding-left: 20px;
+
+    /* make sure that the logos container can freely flow inside its container always keeping an equal
+       distance both sides, it appears as though the logo always remains centered */
+    margin: auto;
+}
+
+.logo-container > a > img {
+    /* Do not want the image to cover its container fully so that it appears to float within it */
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+
+.shoppingCart-container {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.shoppingCart-container > p {
     width: 40px;
-  }
-  #desktop-links{
-    width: 60%;
-    display: flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-  }
-  #desktop-links a{
-    color: rgb(49, 49, 49);
-    margin:0px 10px;
-  }
-  #desktop-bag{
-    width: 30px;
-    position: absolute;
-    right: 110px;
-  }
-  .desktop-bag-number{
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    height: 100%;
+}
 
-    background: rgb(255, 0, 0);
-    border: none;
-    color: rgb(255, 255, 255);
-    text-align: center;
+.shoppingCart-container > p > a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.shoppingCart-container > p > a > img {
+    width: 70%;
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: -1px;
+}
+
+.shoppingCart-amount {
+    position: relative;
+}
+
+.shoppingCart-amount p {
+    background-color: #fc4444;
+    border-radius: 50%;
+    padding: 6px 6px 5px 5px;
     position: absolute;
-    right: 100px;
-    top: 10px;
-    font: 17px Arial, sans-serif;
-  }
-  #login{
-    flex: 0 0 20%;
+    bottom: 7px;
+    left: -13px;
+    z-index: 10;
+}
+
+
+.hamburger {
+
+    width: 50px;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-right: 7px;
+    padding-left: 9px;
+    margin-right: 7px;
+}
+
+.hamburger > span {
+    width: 90%;
+    height: 2px;
+    border-radius: 10px;
+    background-color: #fffecd;
+}
+
+.hamburger > span:nth-child(2) {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.navigation-container {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.navigation-container > ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: 100%;
+}
+
+.navigation-container > ul > li {
+    width: 100%;
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+.navigation-container .top-link {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    cursor: pointer;
+    color: #fffecd;
+}
+
+.navigation-container .top-link:hover {
+    color: grey;
+}
+
+.navigation-container .top-link:active {
+    color: grey;
+}
+
+.navigation-container .top-link:focus {
+    color: grey;
+}
+
+.submenu {
+    list-style-type: none;
+    text-decoration: none;
+    visibility: hidden;
+    display: none;
+    background-color: #000066;
+}
+
+.submenu > li {
+    width: 100%;
+    flex: 0 1 auto;
+    text-align: center;
+}
+
+.sub-link {
+    display: inline-block;
+    padding: 20px 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #fffecd;
+
+}
+
+.sub-link:hover {
+    color: grey;
+}
+.sub-link:active {
+    color: grey;
+}
+.sub-link:focus {
+    color: grey;
+}
+.submenu-link {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.submenu-link > .top-link {
+    width: auto;
+    height: auto;
+}
+
+.toggle-submenu {
+    visibility: visible;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 3px solid black;
+    flex: 3;
+}
+.account-container {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: #000066;
+    margin-left: 9px;
+}
+
+
+
+.account-container * {
+    color: #fffecd;
+}
+
+.not-logged-in-account {
+    list-style-type: none;
+    text-align: center;
+}
+.logged-in-account {
+    list-style-type: none;
+    text-align: center;
+}
+
+.logged-in-account a:hover {
+    color: grey;
+}
+
+.logged-in-account a:active {
+    color: grey;
+}
+
+.logged-in-account a:focus {
+    color: grey;
+}
+
+.not-logged-in-account > li {
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
-    position: relative;
-    padding: 15px;
-  }
-  #login p{
-    color: white;
+}
+
+.logged-in-account > li {
+    width: 100%;
+
+}
+
+.account-logo-not-logged-in {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+
+.submenu-account-container > p {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.account-name {
+    display: inline-block;
+    margin-bottom: -8px;
+    margin-left: 12px;
+    padding-right: 5px;
+}
+.account-logo-parent {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+.account-logo {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.not-logged-in-account span:not(:last-child) {
+    border-right: 3px solid black;
+}
+
+.not-logged-in-account span:last-child {
+    margin-left: 10px;
+}
+
+.not-logged-in-account span a {
     text-decoration: none;
-  }
-  .login-panel{
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 2px 3px 3px 6px;
-    text-align: center;
-    position: relative;
-  }
-  #user{
-    width: 22px;
-    margin-bottom: -5px;
-  }
-  .stickymenu{
-    position: fixed;
-    top: 0px;
-    z-index: 20;
-  }
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 3px;
+    outline: none;
+}
+
+.not-logged-in-account span a:hover {
+    background-color: #000044;
+}
+.not-logged-in-account span a:active {
+
+    background-color: #000044;
+}
+
+.not-logged-in-account span a:focus {
+    background-color: #000044;
+}
+
+.submenu-account  {
+    visibility: hidden;
+    display: none;
+    list-style-type: none;
+    text-decoration: none;
+    height: 200px;
+}
+
+.submenu-account > li {
+    width: 100%;
+    flex: 1;
+}
+.submenu-account >li:nth-child(1) {
+    margin-top: 10px;
+}
+.submenu-account > li > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Added by javascript at the click of the hamburger */
+.toggle-visibility {
+    visibility: visible;
+    display: block;
+}
+
+.toggle-submenu {
+    visibility: visible;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 3px solid black;
+    flex: 3;
+    height: 200px;
+}
+
+@media screen and (min-width: 950px) {
+    .site-wide-header {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .logo-container {
+        width: 100vw;
+        height: 80px;
+    }
+    .logo-container > a {
+        max-width: inherit;
+        min-width: auto;
+        padding: 0px;
+        justify-content: center;
+    }
+    .logo-container > a > img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .shoppingCart-container {
+        order: 2;
+        position: absolute;
+        right: 232px;
+        top: 72px;
+        background-color: initial;
+        width: 70px;
+        height: 70px;
+        justify-content: center;
+    }
+
+    .shoppingCart-container > p {
+        width: 100%;
+    }
+
+    .shoppingCart-container > p > a {
+        justify-content: center;
+    }
+
+    .shoppingCart-container > p > a > img {
+        width: 40%;
+        height: 40%;
+    }
+    .shoppingCart-amount p {
+        background-color: #fc4444;
+        border-radius: 50%;
+        padding: 6px 6px 5px 5px;
+        position: absolute;
+        bottom: 7px;
+        left: -30px;
+        z-index: 10;
+    }
+
+
+    .mobile-hamburger-container {
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+    }
+
+    .navigation-container {
+        visibility: visible;
+        display: block;
+        flex: 2;
+    }
+
+    .navigation-container > ul {
+        flex-flow: row nowrap;
+        justify-content: center;
+    }
+    .navigation-container > ul > li {
+        flex: 0;
+        padding: 10px 20px;
+    }
+
+
+    .navigation-container > ul > li > a {
+        margin-bottom: -10px;
+    }
+    .submenu {
+        background-color: #000044;
+    }
+
+    .submenu-link > span {
+        margin-bottom: -10px;
+        margin-right: 20px;
+    }
+    .submenu-link {
+        position: relative;
+    }
+
+    .account-container {
+        visibility: visible;
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 70px;
+        background-color: #000044;
+    }
+
+    .not-logged-in-account > li span {
+        margin: 0;
+        border: none;
+        height: 100%;
+    }
+
+    .not-logged-in-account > li span:first-child {
+        border-left: 3px solid black;
+    }
+
+    .not-logged-in-account span a:hover {
+        background-color: #000066;
+    }
+    .not-logged-in-account span a:active {
+        background-color: #000066;
+    }
+    .not-logged-in-account span a:focus {
+        background-color: #000066;
+    }
+
+    .logged-in-account {
+        margin-top: 12px;
+        border-left: 3px solid black;
+    }
+
+    .submenu-account-container {
+        position: relative;
+    }
+    .submenu-account-container > p {
+        background-color: initial;
+    }
+    .account-logo-parent {
+        padding-right: 10px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .shoppingCart-logged-in {
+        right: 110px;
+        top: 77px;
+    }
+
+    .toggle-submenu {
+        position: absolute;
+        top: 60px;
+        left: -120px;
+        width: 330px;
+    }
+
+
+    #specificity-account {
+        width: 170px;
+        left: -67px;
+        top: 55px;
+        background-color: #000044;
+    }
+
+    .submenu-account-container:hover > #specificity-account {
+        visibility: visible;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: space-around;
+        flex: 3;
+        height: 200px;
+        position: absolute;
+    }
+
+    .submenu-link:hover > .submenu {
+        position: absolute;
+        top: 60px;
+        left: -120px;
+        width: 330px;
+        visibility: visible;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: space-around;
+        flex: 3;
+        height: 200px;
+
+    }
+
+
+    .logo-aside {
+        width: 250px;
+    }
+
+    .account-logo-left {
+        position: initial;
+        order: 3;
+    }
+    .account-logo-left .account-logo-not-logged-in {
+        margin-right: 20px;
+    }
+    .account-logo-left .account-logo-parent {
+        margin-right: 20px;
+    }
+    .shoppingCart-logo-left {
+        position: initial;
+        margin-top: 7px;
+    }
+}

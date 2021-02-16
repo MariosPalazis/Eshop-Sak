@@ -1,13 +1,14 @@
 <section class="flash-messages-container">
-{{#if flashMessages}}
-{{#each flashMessages}}
-{{{this.payload}}}
-{{/each}}
-{{#section 'stylesheets'}}
-<link rel="stylesheet" href="{{subRoutes}}css/flashmessages.css" >
-{{/section}}
-{{#section 'script'}}
-<script type="module" src="{{subRoutes}}js/flashmessages.js"></script>
-{{/section}}
-{{/if}}
+    {{#if flashMessages}}
+    {{#each flashMessages}}
+    {{{this.payload}}}
+    {{/each}}
+    {{#section 'stylesheets'}}
+    <link rel="stylesheet" href="{{subRoutes}}css/flashmessages.css" >
+    {{/section}}
+    {{#section 'script'}}
+    <script type="module" src="{{subRoutes}}js/flashmessages.js"></script>
+    {{/section}}
+    {{/if}}
 </section>
+

@@ -12,13 +12,14 @@
         <main>
             {{{body}}}
         </main>
-        {{> footer}}
-        {{{_sections.stylesheets}}}
-        {{{_sections.script}}}
         {{#if flashMessages}}
         {{> flashMessages}}
         {{{_sections.stylesheets}}}
         {{{_sections.script}}}
         {{/if}}
+        {{> footer}}
+        {{{_sections.stylesheets}}}
+        {{{_sections.script}}}
     </body>
 </html>
+

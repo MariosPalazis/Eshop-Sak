@@ -1,6 +1,6 @@
 export default {
   shoppingCart(req, res) {
-    
+    res.render("shopping_cart", {layout: "main"});
   },
 
   addProduct(req, res) {
