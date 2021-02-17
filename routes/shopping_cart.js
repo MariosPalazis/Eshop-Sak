@@ -7,5 +7,6 @@ Router.get("/", Handlers.shoppingCart);
 Router.post("/add", Handlers.addProduct);
 Router.post("/reduce", Handlers.reduceProduct);
 Router.post("/remove", Handlers.removeProduct);
+Router.post("/transfer", Handlers.transferShoppingCart);
 
 export default Router;

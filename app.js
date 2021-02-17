@@ -121,8 +121,6 @@ import adminRoutes from "./routes/admin.js";
 import shoppingCartRoutes from "./routes/shopping_cart.js";
 
 app.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.session.state);
   next();
 })
 
