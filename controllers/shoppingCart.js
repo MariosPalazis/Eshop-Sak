@@ -19,7 +19,8 @@ export default {
     //   }
     // };
 
-    req.app.locals.capability.ShoppingCart.shoppingCartControlCenter(req.app.locals.capability, req.session, req.app.locals.products, payload);
+    req.app.locals.capability.ShoppingCart.shoppingCartControlCenter(req.app.locals.capability, req.session, req.app.locals.products, req.body);
+    res.send("success");
   },
 
   reduceProduct(req, res) {

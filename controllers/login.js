@@ -31,10 +31,14 @@ export default {
     res.render("login", {layout: "none"});
   },
 
-  logout(req, res) {
+  async logout(req, res) {
     req.logout();
     if (req.session.passport) delete req.session.passport;
-    req.app.locals.capability.User.logout(req.session);
+    try {
+      await req.app.locals.capability.User.logout(req.app.locals.capability, req.session);
+    } catch (err) {
+      console.log(err);
+    }
     res.redirect(303, "/");
   },
 
@@ -223,7 +227,7 @@ export default {
 
   postLogin(req, res, next) {
     console.log(Chalk.cyan.bold("<<<---- INITIATING POST LOGIN PROCCESS ---->>>"));
-    res.locals.capability.User.login(res, req.session);
+    res.locals.capability.User.login(res, req.session, req.app.locals.products);
     next();
   },
 
