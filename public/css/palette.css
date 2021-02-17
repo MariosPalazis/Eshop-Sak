@@ -1,0 +1,36 @@
+:root{
+    /*Colors*/
+    --navyblue-var1:#000000;
+    --navyblue-var2:#000033;
+    --navyblue-var3:#000055;
+    --navyblue-var4:#000066;
+    --navyblue-var5:#000099;
+
+
+    --white-var1: #fffd99;
+    --white-var2:#fffeb3;
+    --white-var3: #fffecd;
+    --white-var4:#ffffe6;
+    --white-var5: #ffffff;
+
+    /*Fonts*/
+    --font-fam:Arial, Helvetica, sans-serif;
+    --font-color: black;
+
+    --header-color:beige;
+    --footer-color:gray;
+    /*DESKTOP */
+    --font-sz-ds:5px;
+    --heading-sz-ds:15px;
+
+    /*links*/
+    --link-sz-ds:5px;
+
+    /*Mobile */
+    --font-sz-mb:3px;
+    --heading-sz-mb:8px;
+
+    /*links*/
+    --link-sz-mb:3px;
+    
+}
