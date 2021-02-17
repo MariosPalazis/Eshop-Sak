@@ -63,3 +63,20 @@
     </div>
 </article>
 </div>
+
+<section class="flash-messages-container">
+<link rel="stylesheet" href="{{subRoutes}}css/flashmessages.css" >
+    <aside class="popup-container flash100" >
+      <p class="popup-logo" ><img src="/assets/smalls/user_success.png" alt="popup-logo"></p>
+    <p class="popup-message" >Successfully logged in</p>
+      <p class="popup-close"><div class="X-image-circle"><img src="/assets/smalls/close.svg" alt="close-window"></p></div>
+    </aside>
+    <aside class="popup-container flash200" >
+        <section class="popup-message"> <p>Previous user left a shopping Cart!</p> <p>Should we add it to yours?</p></section>
+        <section class="action">
+            <span class="yes-action">Yes!</span>
+            <span class="no-action">No!</span>
+        </section>
+    </aside>
+    <script type="module" src="{{subRoutes}}js/flashmessages.js"></script>
+</section>
