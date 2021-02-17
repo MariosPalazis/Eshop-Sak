@@ -120,6 +120,9 @@ import productsRoutes from "./routes/products.js";
 import adminRoutes from "./routes/admin.js";
 import shoppingCartRoutes from "./routes/shopping_cart.js";
 
+app.use((req, res, next) => {
+  next();
+})
 
 app.get("/", (req, res) => {
   res.render("home");

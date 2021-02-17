@@ -1,3 +1,7 @@
+* TODO for later
+** TODO the shopping cart cannot have more than 99 items.
+   this case can be taken care of before adding a product in the shopping cart.
+** TODO when a user logs out his state must be saved in the database
 * use case
 ** DONE case 1
    CLOSED: [2021-01-13 Wed 14:41]
@@ -375,3 +379,11 @@ does not work
       anonymous: {},
       stateCart: {},
   }
+* DONE checking if the postLogin function is correctly invoking the anonymous has shopping cart function and that this function behaves normally
+  CLOSED: [2021-02-17 Wed 06:31]
+
+* TODO merging of two shopping carts.
+  locate each productId and rowsId and rows in a shopping cart, take that whole structure create a new data structure and
+  continue passing that to the addProduct function
+
+* TODO save a shopping cart to the users database

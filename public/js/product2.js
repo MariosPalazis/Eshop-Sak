@@ -193,12 +193,12 @@ function popValid(validpop,bl){
       meta:{
         operation:"add",
         repeat:1,
-        productId:"100"
+        productId:"200"
       },
       rows:{
         length: toSendArray[0],
         leatherColor: toSendArray[1],
-        colorOfSpokes: toSendArray[2],
+        threadColor: toSendArray[2],
         thickness: toSendArray[3]
       }
     };
@@ -207,17 +207,17 @@ function popValid(validpop,bl){
     // receive the response and perform the
     // proper action
     console.log(toSendArray);
-    /*fetch("/shoppingCart/add", {
+    fetch("/shoppingCart/add", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(payload)
     }).then(response => {
         return response.text();
     }).then(data => {
-        togglePopup(data);
+      if (data === "success") location.reload();
     }).catch(err => {
-        togglePopup("connError");
-    });*/
+      alert(err);
+    });
   }
   //send data
   const submitButton = document.getElementById("submit");

@@ -294,7 +294,7 @@ function sendData(){
       wheelDiameter: toSendArray[0],
       thickness: toSendArray[2],
       leatherColor: toSendArray[1],
-      colorOfThread: toSendArray[3],
+      threadColor: toSendArray[3],
       spokes: toSendArray[4],
       colorOfSpokes: toSendArray[5]
     }
@@ -303,18 +303,17 @@ function sendData(){
   // send the data to the server and then
   // receive the response and perform the
   // proper action
-  console.log(toSendArray);
-  /*fetch("/shoppingCart/add", {
+  fetch("/shoppingCart/add", {
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(payload)
   }).then(response => {
       return response.text();
   }).then(data => {
-      togglePopup(data);
+    if (data === "success") location.reload();
   }).catch(err => {
-      togglePopup("connError");
-  });*/
+    alert(err);
+  });
 }
 //send data
 const submitButton = document.getElementById("submit");

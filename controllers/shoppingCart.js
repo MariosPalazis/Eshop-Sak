@@ -18,8 +18,8 @@ export default {
     //     threadColor: 1,
     //   }
     // };
-
-    req.app.locals.capability.ShoppingCart.shoppingCartControlCenter(req.app.locals.capability, req.session, req.app.locals.products, payload);
+    req.app.locals.capability.ShoppingCart.shoppingCartControlCenter(req.app.locals.capability, req.session, req.app.locals.products, req.body);
+    res.send("success");
   },
 
   reduceProduct(req, res) {
@@ -46,4 +46,13 @@ export default {
     req.app.locals.capability.ShoppingCart.shoppingCartControlCenter(req.app.locals.capability, req.session, req.app.locals.products, payload);
   },
 
+  transferShoppingCart(req, res) {
+    if (req.body.response === "yes") {
+      req.app.locals.capability.ShoppingCart.mergeTwoCarts(req.app.locals.capability, req.session, req.app.locals.products, req.session.state.anonymous.shoppingCart);
+    }
+
+    req.session.state.flashMessages.pop();
+
+    res.send("success");
+  },
 }
