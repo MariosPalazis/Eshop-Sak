@@ -382,8 +382,29 @@ does not work
 * DONE checking if the postLogin function is correctly invoking the anonymous has shopping cart function and that this function behaves normally
   CLOSED: [2021-02-17 Wed 06:31]
 
-* TODO merging of two shopping carts.
-  locate each productId and rowsId and rows in a shopping cart, take that whole structure create a new data structure and
-  continue passing that to the addProduct function
+* leather Type alteration
+** DONE check how that effects each products page
+   CLOSED: [2021-02-17 Wed 13:20]
+   It does not
+** DONE add the new leather type in the partials/products
+   CLOSED: [2021-02-17 Wed 13:30]
 
-* TODO save a shopping cart to the users database
+** DONE add the new leather type in the admins
+   CLOSED: [2021-02-17 Wed 17:19]
+
+** DONE adjust the shoppingCart operations to accomodate the new leatherType Field
+   CLOSED: [2021-02-18 Thu 06:15]
+   the new object does not affect the creation of the rows id, in fact
+   the new object becomes part of the now rowsid
+
+
+   -> constructRowsId (safe);
+   -> searchCart (safe);
+
+   nothing to adjust, it handles the new object without needing any alterations
+** DONE update the product200 with the new information
+   CLOSED: [2021-02-18 Thu 06:04]
+
+** update the partials/products page 
+* TODO add the ability for the shopping cart lib to not allow a user to exceed more than 99 items in his shopping cart
+  this should trigger a flash message as well

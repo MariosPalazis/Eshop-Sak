@@ -1,35 +1,17 @@
 import mongoose from "mongoose";
 
-// const productSchema = new mongoose.Schema({
-//   productID: {type: String, index: true},
-//   description: String,
-//   stock: Number,
-//   price: {
-//     amount: Number,
-//     unit: String,
-//   },
-//   shipping_price: {
-//     amount: Number,
-//     unit: String,
-//   },
-//   wheel_diameter: {
-//     amount: Number,
-//     unit: String,
-//   },
-//   thickness: {
-//     amount: Number,
-//     unit: String,
-//   },
-//   leather_color: String,
-//   thread_color: String,
-//   spokes: String,
-//   color_of_spokes: String,
-// })
-
-
 const productSchema = new mongoose.Schema({
   productID: {type: String, index: true},
   description: String,
+  leatherType: [
+    {
+      material: String,
+      price: Number,
+      priceUnit: String,
+      stock: Number,
+      enableStock: Boolean,
+    },
+  ],
   wheelDiameter: [
     {
       amount: {
@@ -40,6 +22,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
   thickness: [
@@ -49,6 +32,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
   length: [
@@ -61,6 +45,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     },
   ],
   leatherColor: [
@@ -69,6 +54,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
   threadColor: [
@@ -77,6 +63,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
   spokes: [
@@ -87,6 +74,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
   colorOfSpokes: [
@@ -95,6 +83,7 @@ const productSchema = new mongoose.Schema({
       price: Number,
       priceUnit: String,
       stock: Number,
+      enableStock: Boolean,
     }
   ],
 })

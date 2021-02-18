@@ -129,6 +129,9 @@ app.get("/", (req, res) => {
 })
 
 
+app.get("/test", (req, res) => {
+  res.render("test", {layout: null});
+});
 app.use("/", loginRoutes);
 app.use("/checkout", checkoutRoutes);
 app.use("/shoppingCart", shoppingCartRoutes);

@@ -6,7 +6,7 @@ export default {
       });
       if (index < 0) throw new Error("colud not find product with id 100, wheelCover controller for /product/wheelCover route");
 
-      res.render("products/wheelCover", {layout: "main", product: req.app.locals.products[index]});
+      res.render("products/wheelCover", {layout: null, product: req.app.locals.products[index]});
     } catch (err) {
       console.log(err);
     }
@@ -18,7 +18,7 @@ export default {
       });
       if (index < 0) throw new Error("colud not find product with id 200, wheelCover controller for /product/wheelCover route");
 
-      res.render("products/sprayhood", {layout: "main", product: req.app.locals.products[index]});
+      res.render("products/sprayhood", {layout: null, product: req.app.locals.products[index]});
     } catch (err) {
       console.log(err);
     }
