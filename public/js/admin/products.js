@@ -109,6 +109,10 @@ function addThis(event) {
       }
     }
 
+    if (!/true|false/.test(children[children.length -4].children[0].value.toString())) {
+      alert('only "true" or "false" allowed in the enable-stock column, try again!');
+      return;
+    }
     tableCellContentSwitch(children[children.length -1], "add");
     createNewTableRow(parentRow, childrenText);
     parentRow.classList.remove("add");
@@ -206,6 +210,11 @@ function editThis() {
         children[0].firstChild.classList.remove("delete");
         children[1].firstChild.classList.remove("delete");
       }
+    }
+
+    if (!/true|false/.test(children[children.length -4].children[0].value.toString())) {
+      alert('only "true" or "false" allowed in the enable-stock column, try again!');
+      return;
     }
 
     // turn the table cell with class edit from a done button to the edit icon
@@ -338,6 +347,7 @@ function createInputNodes(node, text) {
   // make sure that the units cannot be altered with
   let regexp = new RegExp('.*unit');
   if (regexp.test(node.className)) input.disabled = true;
+
 
   return input;
 }
@@ -555,6 +565,15 @@ function changeFormat(row, typeOfRow) {
   let formatedRow = {};
   let cells = row.children;
   switch (typeOfRow) {
+  case "leatherType":
+    formatedRow = {
+      material: cells[0].innerText,
+      price: parseInt(cells[1].innerText),
+      priceUnit: cells[2].innerText,
+      stock: parseInt(cells[3].innerText),
+      enableStock: cells[4].innerText,
+    };
+    break;
   case "wheelDiameter":
     // range of cells of interest: 0 - 5
     formatedRow = {
@@ -566,6 +585,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
       stock: parseInt(cells[5].innerText),
+      enableStock: cells[6].innerText,
     };
     break;
   case "length":
@@ -579,6 +599,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
       stock: parseInt(cells[5].innerText),
+      enableStock: cells[6].innerText,
     };
     break;
   case "thickness":
@@ -589,6 +610,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[2].innerText),
       priceUnit: cells[3].innerText,
       stock: parseInt(cells[4].innerText),
+      enableStock: cells[5].innerText,
     };
     break;
   case "leatherColor":
@@ -598,6 +620,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
       stock: parseInt(cells[3].innerText),
+      enableStock: cells[4].innerText,
     };
     break;
   case "threadColor":
@@ -607,6 +630,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
       stock: parseInt(cells[3].innerText),
+      enableStock: cells[4].innerText,
     };
     break;
   case "spokes":
@@ -618,6 +642,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[3].innerText),
       priceUnit: cells[4].innerText,
       stock: parseInt(cells[5].innerText),
+      enableStock: cells[6].innerText,
     };
     break;
   case "colorOfSpokes":
@@ -627,6 +652,7 @@ function changeFormat(row, typeOfRow) {
       price: parseInt(cells[1].innerText),
       priceUnit: cells[2].innerText,
       stock: parseInt(cells[3].innerText),
+      enableStock: cells[4].innerText,
     };
     break;
   default:

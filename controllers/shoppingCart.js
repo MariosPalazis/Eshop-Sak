@@ -4,7 +4,7 @@ export default {
   },
 
   addProduct(req, res) {
-    // expected object:
+    //expected object:
     // let payload = {
     //   meta: {
     //     operation: "add",
@@ -12,6 +12,7 @@ export default {
     //     productId: "200",
     //   },
     //   rows: {
+    //     leatherType: 0,
     //     length: 0,
     //     thickness: 2,
     //     leatherColor: 1,

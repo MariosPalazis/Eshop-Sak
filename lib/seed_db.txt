@@ -1,9 +1,25 @@
-// WHEEL COVER FIRST
+// wheel bar cover
 let a = async () => {
   let myAdmin = new Admin();
   const newProduct = {
     productID: "100",
     description: "WHEEL COVER",
+    leatherType: [
+      {
+        material: "suede",
+        price: 0,
+        priceUnit: "euro",
+        stock: 10,
+        enableStock: false,
+      },
+      {
+        material: "hard",
+        price: 0,
+        priceUnit: "euro",
+        stock: 10,
+        enableStock: false,
+      },
+    ],
     wheelDiameter: [
       {
         amount: {
@@ -14,6 +30,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: {
@@ -24,6 +41,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: {
@@ -34,6 +52,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: {
@@ -44,6 +63,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: {
@@ -54,6 +74,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
 
@@ -64,6 +85,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: 25,
@@ -71,6 +93,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: 30,
@@ -78,6 +101,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
 
@@ -87,36 +111,42 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark grey",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "light brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "gray",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "marine blue",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
     threadColor: [
@@ -125,30 +155,35 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "light brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "marine blue",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "white",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
     spokes: [
@@ -159,6 +194,7 @@ let a = async () => {
         price: 0,
         priceUnit: "euro",
         stock: -1,
+        enableStock: false,
       },
       {
         description: "straight",
@@ -167,6 +203,7 @@ let a = async () => {
         price: 15,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         description: "cone shaped",
@@ -175,6 +212,7 @@ let a = async () => {
         price: 15,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
     colorOfSpokes: [
@@ -183,18 +221,21 @@ let a = async () => {
         price: 0,
         priceUnit: "euro",
         stock: -1,
+        enableStock: false,
       },
       {
         color: "dark grey",
         price: 40,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "light grey",
         price: 40,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
   }
@@ -203,12 +244,30 @@ let a = async () => {
 
 a();
 
-// SPRAYHOOD GRAB BAR COVER
+
+// SPRAYHOOD BAR COVER
+
 let a = async () => {
   let myAdmin = new Admin();
   const newProduct = {
     productID: "200",
     description: "SPRAYHOOD GRAB BAR COVER",
+    leatherType: [
+      {
+        material: "suede",
+        price: 0,
+        priceUnit: "euro",
+        stock: 10,
+        enableStock: false,
+      },
+      {
+        material: "hard",
+        price: 0,
+        priceUnit: "euro",
+        stock: 10,
+        enableStock: false,
+      }
+    ],
     length: [
       {
         amount: {
@@ -219,6 +278,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -229,6 +289,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -239,6 +300,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -249,6 +311,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -259,6 +322,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -269,6 +333,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
       {
         amount: {
@@ -279,6 +344,7 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 20,
+        enableStock: false,
       },
     ],
     thickness: [
@@ -288,6 +354,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: 25,
@@ -295,6 +362,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         amount: 30,
@@ -302,6 +370,7 @@ let a = async () => {
         price: 10,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
 
@@ -311,36 +380,42 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark grey",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "light brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "gray",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "marine blue",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
     threadColor: [
@@ -349,30 +424,35 @@ let a = async () => {
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "dark brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "light brown",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "marine blue",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
       {
         color: "white",
         price: 20,
         priceUnit: "euro",
         stock: 10,
+        enableStock: false,
       },
     ],
   }

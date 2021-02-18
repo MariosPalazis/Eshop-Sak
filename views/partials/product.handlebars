@@ -3,8 +3,15 @@
 
 
 <section id="{{this.productID}}" class="product-container" >
-{{#if this.length}}
-<div class="col">
+    <div class="leatherType-container">
+        <article class="leatherType-options">
+        {{#each this.leatherType}}
+            <button><p class="leatherType">{{this.material}}</p></button>
+        {{/each}}
+        </article>
+    </div>
+    {{#if this.length}}
+    <div class="col">
     <article id="length" class="product">
         <div class="dimension-circle" ><div class="circle" id="length-circle"></div></div>
                 <div class="vars">
