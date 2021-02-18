@@ -2,65 +2,122 @@
 {{#with product}}
 <section id="{{this.productID}}" class="product-container" >
     {{#if this.length}}
-    <article id="leatherType" class="product" >
+    <article id="leatherType" class="leather-type-container" >
         {{#each this.leatherType}}
-        <p><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p class="leather-type-option"><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
-    <article id="length" class="product" >
-        {{#each this.length}}
-        <p><span class="amount-from show">{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="thickness" class="product" >
-        {{#each this.thickness}}
-        <p><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="leatherColor" class="product" >
-        {{#each this.leatherColor}}
-        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
-        {{/each}}
-    </article>
-    <article id="threadColor" class="product" >
-        {{#each this.threadColor}}
-        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
-        {{/each}}
-    </article>
+    <div id="leatherType-validation" class="validations">
+        <p>Please pick a value!</p>
+    </div>
+
+    <section class="product-options">
+        <div class="col">
+            <article id="length" class="product" >
+                <div class="dimension-circle" ><div class="circle" id="length-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">LENGTH</p></br>
+                    <p class="varValue" id="length-value">Choose an option</p>
+                    <div class="options" id="lno">
+                        {{#each this.length}}
+                        <hr>
+                        <p class="value"><span class="amount-from show">{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >0</span><span class="stock-disable hide" >true</span><span class="index hide" >{{@index}}</span></p>
+                        {{/each}}
+                    </div>
+                </div>
+                <div id="length-validation" class="validations">
+                    <p>Please pick a value!</p>
+                </div>
+            </article>
+            <article id="thickness" class="product" >
+                <div class="dimension-circle" ><div class="circle" id="thickness-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">THICKNESS</p></br>
+                    <p class="varValue" id="thickness-value">Choose an option</p>
+                    <div class="options" id="tho">
+                        {{#each this.thickness}}
+                        <hr>
+                        <p class="value"><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+                        {{/each}}
+                     </div>
+                </div>
+                <div id="thickness-validation" class="validations">
+                    <p>Please pick a value!</p>
+                </div>
+            </article>
+        </div>
+        <div class="col">
+            <article id="leatherColor" class="product" >
+                <div class="dimension-circle" ><div class="circle" id="leatherColor-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">LEATHER COLOR</p></br>
+                    <p class="varValue" id="leatherColor-value">Choose an option</p>
+                    <div class="options" id="lco">
+                        {{#each this.leatherColor}}
+                        <hr>
+                        <p class="value"><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+                        {{/each}}
+                    </div>
+                </div>
+                <div id="leather-validation" class="validations">
+                    <p>Please pick a value!</p>
+                </div>
+            </article>
+            <article id="threadColor" class="product" >
+                <div class="dimension-circle" ><div class="circle" id="threadColor-circle"></div></div>
+                <div class="vars">
+                    <p class="varName">THREAD COLOR</p></br>
+                    <p class="varValue" id="threadColor-value">Choose an option</p>
+                    <div class="options" id="tco">
+                        {{#each this.threadColor}}
+                        <hr>
+                        <p class="value"><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+                        {{/each}}
+                    </div>
+                </div>
+                 <div id="thread-validation" class="validations">
+                    <p>Please pick a value!</p>
+                </div>
+            </article>
+        </div>
+        
+    </section>
+
     {{else}}
+
     <article id="leatherType" class="product" >
         {{#each this.leatherType}}
-        <p><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="wheelDiameter" class="product" >
         {{#each this.wheelDiameter}}
-        <p><span class="amount-from show" >{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="amount-from show" >{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="thickness" class="product" >
         {{#each this.thickness}}
-        <p><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="leatherColor" class="product" >
         {{#each this.leatherColor}}
-        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="threadColor" class="product" >
         {{#each this.threadColor}}
-        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.price}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="spokes" class="product" >
         {{#each this.spokes}}
-        <p><span class="description show" >{{this.description}}</span><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="description show" >{{this.description}}</span><span class="amount show" >{{this.amount}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <article id="colorOfSpokes" class="product" >
         {{#each this.colorOfSpokes}}
-        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p><span class="color show" >{{this.color}}</span><span class="price hide" >{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     {{/if}}

@@ -7,105 +7,64 @@ function Toggle(option,val){
 
 const ln =document.getElementById("length");
 const lc =document.getElementById("leatherColor");
-const cs =document.getElementById("colorOfSpokes");
+const cs =document.getElementById("threadColor");
 const th =document.getElementById("thickness");
 
 const lno =document.getElementById("lno");
 const lco=document.getElementById("lco");
-const cso =document.getElementById("cto");
+const cso =document.getElementById("tco");
 const tho=document.getElementById("tho");
 
-ln.addEventListener("click",function(){
-    Toggle(lno,lengthvalue);
-    lco.classList.remove("options-show");
-    cso.classList.remove("options-show");
-    tho.classList.remove("options-show");
-    paintValue(thicknessvalue,false);
-    paintValue(leathervalue,false);
-    paintValue(spokescolorvalue,false);
-  });
-th.addEventListener("click",function(){
-    lno.classList.remove("options-show");
-    Toggle(tho,thicknessvalue);
-    lco.classList.remove("options-show");
-    cso.classList.remove("options-show");
-    paintValue(lengthvalue,false);
-    paintValue(leathervalue,false);
-    paintValue(spokescolorvalue,false);
-  });
-lc.addEventListener("click",function(){
-    lno.classList.remove("options-show");
-    tho.classList.remove("options-show");
-    Toggle(lco,leathervalue);
-    cs.classList.remove("options-show");
-    paintValue(lengthvalue,false);
-    paintValue(thicknessvalue,false);
-    paintValue(spokescolorvalue,false);
-  });
-cs.addEventListener("click",function(){
-    lno.classList.remove("options-show");
-    tho.classList.remove("options-show");
-    lco.classList.remove("options-show");
-    Toggle(cso,spokescolorvalue);
-    paintValue(lengthvalue,false);
-    paintValue(thicknessvalue,false);
-    paintValue(leathervalue,false);
-  });
-
-  //Change value length
+/*values and circles*/
 const lengthvalue =document.getElementById("length-value");
 const lengthcircle =document.getElementById("length-circle");
 
-const lengthOptions = document.querySelectorAll("#length .value");
-
-for(const lengthOption of lengthOptions){
-  lengthOption.addEventListener("click",function(){
-    lengthvalue.innerHTML=this.innerHTML;
-    lengthcircle.style.backgroundColor=" #99ff99";
-    popValid(lengthvalidation,false);
-  })
-}
-//Change value THICKNESS
 const thicknessvalue =document.getElementById("thickness-value");
 const thicknesscircle =document.getElementById("thickness-circle");
-const thicknessOptions = document.querySelectorAll("#thickness .value");
 
+const leathervalue =document.getElementById("leatherColor-value");
+const leathercircle =document.getElementById("leatherColor-circle");
 
-for(const thicknessOption of thicknessOptions){
-  thicknessOption.addEventListener("click",function(){
-    thicknessvalue.innerHTML=this.innerHTML;
-    thicknesscircle.style.backgroundColor=" #99ff99";
-    popValid(thicknessvalidation,false);
-  })
+const spokescolorvalue =document.getElementById("threadColor-value");
+const spokescolorcircle =document.getElementById("threadColor-circle");
+
+function ckeckstock(x){
+    if(x.tagName=="SPAN"){
+        if(x.parentElement.querySelector(".out-of-stock").classList.contains("show-out-of-stock")){
+            return true;
+        }
+    }
+    if(x.classList.contains("value")){
+        if(x.querySelector(".out-of-stock").classList.contains("show-out-of-stock")){
+            return true;
+        }
+    }
+    return false;
 }
-//Change value LEATHER COLOR
-const leathervalue =document.getElementById("leather-value");
-const leathercircle =document.getElementById("leather-circle");
 
-const leatherOptions = document.querySelectorAll("#leatherColor .value");
-
-
-for(const leatherOption of leatherOptions){
-  leatherOption.addEventListener("click",function(){
-    leathervalue.innerHTML=this.innerHTML;
-    leathercircle.style.backgroundColor=" #99ff99";
-    popValid(leathervalidation,false);
-  })
-}
-//Change value spokescolor
-const spokescolorvalue =document.getElementById("t");
-const spokescolorcircle =document.getElementById("thread-circle");
-const colorOfSpokesOptions = document.querySelectorAll("#colorOfSpokes .value");
-
-for(const colorOfSpokesOption of colorOfSpokesOptions){
-  colorOfSpokesOption.addEventListener("click",function(){
-    spokescolorvalue.innerHTML=this.innerHTML;
-    spokescolorcircle.style.backgroundColor=" #99ff99";
-    popValid(colorspokesvalidation,false);
-  })
-} 
-
-function paintValue(val,open){
+ln.addEventListener("click",function(event){
+    if(ckeckstock(event.target)==true){
+        return null;
+    }
+   
+    Toggle(lno,lengthvalue);
+    
+    
+  });
+th.addEventListener("click",function(){
+    Toggle(tho,thicknessvalue);
+    
+  });
+lc.addEventListener("click",function(){
+    
+    Toggle(lco,leathervalue);
+  });
+cs.addEventListener("click",function(){
+    
+    Toggle(cso,spokescolorvalue);
+  });
+ 
+  function paintValue(val,open){
     if(open){
       if(val.innerHTML!="Choose an option" && val.innerHTML!="None") {
         val.innerHTML=val.innerHTML.replace(" ~","");
@@ -122,6 +81,61 @@ function paintValue(val,open){
       val.innerHTML=val.innerHTML.replace("~ ","");
     }
   }
+
+
+  //Change value length
+
+const lengthOptions = document.querySelectorAll("#length .value");
+
+for(const lengthOption of lengthOptions){
+    let stock= lengthOption.getElementsByClassName("stock");
+    let stockDisable=lengthOption.getElementsByClassName("stock-disable");
+
+    if(stockDisable[0].innerHTML=="true" && stock[0].innerHTML<=0){
+        lengthOption.getElementsByClassName("out-of-stock")[0].classList.remove("hide");
+        lengthOption.getElementsByClassName("out-of-stock")[0].classList.add("show-out-of-stock");
+    }
+    else{
+        lengthOption.addEventListener("click",function(){
+            lengthvalue.innerHTML=this.innerHTML;
+            lengthcircle.style.backgroundColor=" #99ff99";
+            popValid(lengthvalidation,false);
+        })
+    }
+}
+//Change value THICKNESS
+const thicknessOptions = document.querySelectorAll("#thickness .value");
+
+
+for(const thicknessOption of thicknessOptions){
+  thicknessOption.addEventListener("click",function(){
+    thicknessvalue.innerHTML=this.innerHTML;
+    thicknesscircle.style.backgroundColor=" #99ff99";
+    popValid(thicknessvalidation,false);
+  })
+}
+//Change value LEATHER COLOR
+
+const leatherOptions = document.querySelectorAll("#leatherColor .value");
+
+
+for(const leatherOption of leatherOptions){
+  leatherOption.addEventListener("click",function(){
+    leathervalue.innerHTML=this.innerHTML;
+    leathercircle.style.backgroundColor=" #99ff99";
+    popValid(leathervalidation,false);
+  })
+}
+//Change value spokescolor
+const colorOfSpokesOptions = document.querySelectorAll("#threadColor .value");
+
+for(const colorOfSpokesOption of colorOfSpokesOptions){
+  colorOfSpokesOption.addEventListener("click",function(){
+    spokescolorvalue.innerHTML=this.innerHTML;
+    spokescolorcircle.style.backgroundColor=" #99ff99";
+    popValid(colorspokesvalidation,false);
+  })
+} 
 
 //Submit-Add+Validations
 const lengthvalidation =document.getElementById("length-validation");
@@ -187,7 +201,6 @@ function popValid(validpop,bl){
     }
     return x;
   }
-
   function sendData(){
     const payload={
       meta:{
