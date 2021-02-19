@@ -1,4 +1,6 @@
-let toSendArray=[-1,-1,-1,-1];
+let toSendArray=[-1,-1,-1,-1,-1];
+let currentPrice=[ 0, 0, 0, 0, 0];
+
 
 function Toggle(option,val){
     option.classList.toggle("options-show");
@@ -14,6 +16,17 @@ const lno =document.getElementById("lno");
 const lco=document.getElementById("lco");
 const cso =document.getElementById("tco");
 const tho=document.getElementById("tho");
+
+const totalPrice= document.querySelector(".totalPrice");
+
+function priceCalculator(toprintPrice, prices){
+  let total=0;
+  let i;
+  for( i=0; i < prices.length; i++){
+    total+=parseInt(prices[i]);
+  }
+  toprintPrice.innerHTML=total;
+}
 
 /*values and circles*/
 const lengthvalue =document.getElementById("length-value");
@@ -52,17 +65,23 @@ ln.addEventListener("click",function(event){
     
   });
 th.addEventListener("click",function(){
-    Toggle(tho,thicknessvalue);
-    
-  });
+  if(ckeckstock(event.target)==true){
+    return null;
+  }
+  Toggle(tho,thicknessvalue);   
+});
 lc.addEventListener("click",function(){
-    
-    Toggle(lco,leathervalue);
-  });
+  if(ckeckstock(event.target)==true){
+    return null;
+  }  
+  Toggle(lco,leathervalue);
+});
 cs.addEventListener("click",function(){
-    
-    Toggle(cso,spokescolorvalue);
-  });
+  if(ckeckstock(event.target)==true){
+    return null;
+  }  
+  Toggle(cso,spokescolorvalue);
+});
  
   function paintValue(val,open){
     if(open){
@@ -99,6 +118,8 @@ for(const lengthOption of lengthOptions){
         lengthOption.addEventListener("click",function(){
             lengthvalue.innerHTML=this.innerHTML;
             lengthcircle.style.backgroundColor=" #99ff99";
+            currentPrice[1]=lengthvalue.querySelector(".price").innerHTML;;
+            priceCalculator(totalPrice,currentPrice);
             popValid(lengthvalidation,false);
         })
     }
@@ -108,11 +129,23 @@ const thicknessOptions = document.querySelectorAll("#thickness .value");
 
 
 for(const thicknessOption of thicknessOptions){
-  thicknessOption.addEventListener("click",function(){
-    thicknessvalue.innerHTML=this.innerHTML;
-    thicknesscircle.style.backgroundColor=" #99ff99";
-    popValid(thicknessvalidation,false);
-  })
+
+  let stock= thicknessOption.getElementsByClassName("stock");
+  let stockDisable=thicknessOption.getElementsByClassName("stock-disable");
+
+    if(stockDisable[0].innerHTML=="true" && stock[0].innerHTML<=0){
+        thicknessOption.getElementsByClassName("out-of-stock")[0].classList.remove("hide");
+        thicknessOption.getElementsByClassName("out-of-stock")[0].classList.add("show-out-of-stock");
+    }
+    else{
+      thicknessOption.addEventListener("click",function(){
+        thicknessvalue.innerHTML=this.innerHTML;
+        thicknesscircle.style.backgroundColor=" #99ff99";
+        currentPrice[2]=thicknessvalue.querySelector(".price").innerHTML;;
+        priceCalculator(totalPrice,currentPrice);
+        popValid(thicknessvalidation,false);
+      })
+    }
 }
 //Change value LEATHER COLOR
 
@@ -120,28 +153,95 @@ const leatherOptions = document.querySelectorAll("#leatherColor .value");
 
 
 for(const leatherOption of leatherOptions){
-  leatherOption.addEventListener("click",function(){
-    leathervalue.innerHTML=this.innerHTML;
-    leathercircle.style.backgroundColor=" #99ff99";
-    popValid(leathervalidation,false);
-  })
+  let stock= leatherOption.getElementsByClassName("stock");
+  let stockDisable=leatherOption.getElementsByClassName("stock-disable");
+
+    if(stockDisable[0].innerHTML=="true" && stock[0].innerHTML<=0){
+      leatherOption.getElementsByClassName("out-of-stock")[0].classList.remove("hide");
+      leatherOption.getElementsByClassName("out-of-stock")[0].classList.add("show-out-of-stock");
+    }
+    else{
+      leatherOption.addEventListener("click",function(){
+        leathervalue.innerHTML=this.innerHTML;
+        leathercircle.style.backgroundColor=" #99ff99";
+        currentPrice[3]=leathervalue.querySelector(".price").innerHTML;;
+        priceCalculator(totalPrice,currentPrice);
+        popValid(leathervalidation,false);
+      })
+    }
 }
 //Change value spokescolor
 const colorOfSpokesOptions = document.querySelectorAll("#threadColor .value");
 
 for(const colorOfSpokesOption of colorOfSpokesOptions){
-  colorOfSpokesOption.addEventListener("click",function(){
-    spokescolorvalue.innerHTML=this.innerHTML;
-    spokescolorcircle.style.backgroundColor=" #99ff99";
-    popValid(colorspokesvalidation,false);
-  })
+  let stock= colorOfSpokesOption.getElementsByClassName("stock");
+  let stockDisable=colorOfSpokesOption.getElementsByClassName("stock-disable");
+
+    if(stockDisable[0].innerHTML=="true" && stock[0].innerHTML<=0){
+      colorOfSpokesOption.getElementsByClassName("out-of-stock")[0].classList.remove("hide");
+      colorOfSpokesOption.getElementsByClassName("out-of-stock")[0].classList.add("show-out-of-stock");
+    }
+    else{
+      colorOfSpokesOption.addEventListener("click",function(){
+        spokescolorvalue.innerHTML=this.innerHTML;
+        spokescolorcircle.style.backgroundColor=" #99ff99";
+        currentPrice[4]=spokescolorvalue.querySelector(".price").innerHTML;
+        priceCalculator(totalPrice,currentPrice);
+        popValid(colorspokesvalidation,false);
+      })
+    }
 } 
+
+
+
+
+
+//Change value leatherType
+const leathertypeOptions = document.querySelectorAll("#leatherType .leather-type-option");
+
+for(const leathertypeOption of leathertypeOptions){
+    let stock= leathertypeOption.getElementsByClassName("stock");
+    let stockDisable=leathertypeOption.getElementsByClassName("stock-disable");
+  
+      if(stockDisable[0].innerHTML=="true" && stock[0].innerHTML<=0){
+        leathertypeOption.getElementsByClassName("out-of-stock")[0].classList.remove("hide");
+        leathertypeOption.getElementsByClassName("out-of-stock")[0].classList.add("show-out-of-stock");
+      }
+      else{
+        leathertypeOption.addEventListener("click",function(){
+          removeSelection(leathertypeOptions);
+          leathertypeOption.classList.add("leather-type-option-checked");
+          leathertypeOption.classList.remove("leather-type-option");
+          toSendArray[0]=leathertypeOption.lastElementChild.innerHTML;
+          currentPrice[0]=leathertypeOption.querySelector(".price").innerHTML;;
+          priceCalculator(totalPrice,currentPrice);
+          popValid(leathetypevalidation,false);
+        })
+      }
+} 
+
+
+function removeSelection(options){
+  for(let option of options){
+    option.classList.remove("leather-type-option-checked");
+    option.classList.add("leather-type-option");
+  }
+} 
+
+
+
+
+
+
+
+
 
 //Submit-Add+Validations
 const lengthvalidation =document.getElementById("length-validation");
 const thicknessvalidation=document.getElementById("thickness-validation");
 const leathervalidation =document.getElementById("leather-validation");
 const colorspokesvalidation=document.getElementById("thread-validation");
+const leathetypevalidation=document.getElementById("leatherType-validation");
 
 //toggle popups validations function
 function popValid(validpop,bl){
@@ -159,6 +259,13 @@ function popValid(validpop,bl){
 
   function validateResults(){
     let x=true;
+    if(toSendArray[0]<0){
+      x=false;
+      popValid(leathetypevalidation,true);
+    }
+    else{
+      popValid(lengthvalidation,false);
+    }
     if(lengthvalue.innerHTML=="Choose an option"){
         x=false;
         lengthcircle.style.backgroundColor="red";
@@ -209,10 +316,11 @@ function popValid(validpop,bl){
         productId:"200"
       },
       rows:{
-        length: toSendArray[0],
-        leatherColor: toSendArray[1],
-        threadColor: toSendArray[2],
-        thickness: toSendArray[3]
+        leatherType: toSendArray[0],
+        length: toSendArray[1],
+        leatherColor: toSendArray[2],
+        threadColor: toSendArray[3],
+        thickness: toSendArray[4]
       }
     };
   
@@ -241,3 +349,19 @@ function popValid(validpop,bl){
         sendData();
     }
   }
+
+
+  //measurments
+  const measures=document.querySelectorAll(".measure");
+  for(const measure of measures){
+      measure.addEventListener("click", function(){
+        this.querySelector(".measure-options").classList.toggle("hide");
+      })
+      
+    const options = measure.querySelectorAll(".measure-options > .measure-option");
+      for(let option of options){
+          option.addEventListener("click",function(){
+            this.parentElement.parentElement.querySelector(".title").children[0].innerHTML=this.innerHTML;
+        })
+      }
+  } 

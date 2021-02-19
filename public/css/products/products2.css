@@ -17,10 +17,19 @@
     border-radius: 5px;
     color: #fffecd;
     background-color: #00002c;
-    padding: 5px 15px;
+    padding: 10px 15px;
     margin: 5px 25px;
     cursor: pointer;
 }
+.leather-type-option-checked{
+    color: #00002c;
+    background-color: #99ff99;
+    padding: 10px 15px;
+    margin: 5px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 
 .product-options{
     display: grid;
@@ -107,7 +116,7 @@
 }
 .value{
     color: #fffecd;
-    padding: 3px;
+    padding: 5px;
     cursor: pointer;
     font-family: Georgia, 'Times New Roman', Times, cursive;
 }
@@ -116,7 +125,7 @@
 }
 .options hr{
     width: 20%;
-    margin: 5px auto;
+    margin: 1px auto;
     color: #fffecd;
 }
 .validations{
@@ -152,7 +161,7 @@
     padding: 15px 60px;
     font-size: 1em;
     background-color: #000033;
-    border: 1px solid grey;
+    border: 1px solid#fffecd;
     color: white;
     border-radius: 5px;
     font-family: Georgia, 'Times New Roman', Times, cursive;
@@ -172,4 +181,65 @@
 .out-of-stock{
     font-style:italic ;
     color: #fc4444;
+}
+
+/*measurments*/
+.measurments-section{
+    width: 100%;
+    max-width: 550px;
+    background-color: #000066;
+    padding: 15px 10px;
+    margin: 20px 0px 80px;
+    border-radius: 0px 5px 5px 0px;
+    position: relative;
+    height: 80px;
+}
+
+.measure{
+    background-color: #00002c;
+    border: 1px solid #fffecd;
+    color: #fffecd;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 0px;
+    margin-right: 20px;
+    width: 150px;
+    text-align: center;
+}
+@media (max-width:550px){
+    .measurments-section{
+        width: 100%;
+        max-width: 550px;
+        background-color: #000066;
+        padding: 15px 10px;
+        margin: 20px 0px 80px;
+        border-radius:0px;
+        position: relative;
+        height: 80px;
+    }
+}
+#units{
+    position: absolute;
+    right: 150px;
+    top: 15px;
+}
+#currency{
+    position: absolute;
+    right: -5px;
+    top:15px;
+}
+.title{
+    padding: 5px 5px;
+}
+.measure-options{
+    text-align: center;
+}
+
+.measure-option{
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+.measure-option:hover{
+    background-color: #45458f;
 }

@@ -4,24 +4,43 @@
     {{#if this.length}}
     <article id="leatherType" class="leather-type-container" >
         {{#each this.leatherType}}
-        <p class="leather-type-option"><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
+        <p class="leather-type-option"><span class="material show">{{this.material}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide">{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock</span><span class="stock hide">{{this.stock}}</span><span class="stock-disable hide">{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
         {{/each}}
     </article>
     <div id="leatherType-validation" class="validations">
         <p>Please pick a value!</p>
     </div>
 
+    <section class="measurments-section">
+            <article id="units" class="measure"> 
+                <p class="title">Unit: <span>Metric</span></p>
+                <div class="measure-options hide">
+                    <p class="measure-option">Metric</p>
+                    <p class="measure-option">Imperial</p>
+                    <p class="measure-option">American</p>
+                </div>
+            </article>
+            <article id="currency" class="measure">
+                <p class="title">Currency: <span>Euro</span></p>
+                <div class="measure-options hide">
+                    <p class="measure-option">Euro</p>
+                    <p class="measure-option">Dollar</p>
+                    <p class="measure-option">Pounts</p>
+                </div>
+            </article>
+    </section>
+
     <section class="product-options">
         <div class="col">
             <article id="length" class="product" >
                 <div class="dimension-circle" ><div class="circle" id="length-circle"></div></div>
                 <div class="vars">
-                    <p class="varName">LENGTH</p></br>
+                    <p class="varName"><b>LENGTH</b></p></br>
                     <p class="varValue" id="length-value">Choose an option</p>
                     <div class="options" id="lno">
                         {{#each this.length}}
                         <hr>
-                        <p class="value"><span class="amount-from show">{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >0</span><span class="stock-disable hide" >true</span><span class="index hide" >{{@index}}</span></p>
+                        <p class="value"><span class="amount-from show">{{this.amount.from}}</span>-<span class="amount-to show" >{{this.amount.to}}</span><span class="unit show" >{{this.unit}}</span><span class="price hide">{{this.price}}</span><span class="price-unit hide" >{{this.priceUnit}}</span><span class="out-of-stock hide"> Out of stock </span><span class="stock hide" >{{this.stock}}</span><span class="stock-disable hide" >{{this.enableStock}}</span><span class="index hide" >{{@index}}</span></p>
                         {{/each}}
                     </div>
                 </div>
